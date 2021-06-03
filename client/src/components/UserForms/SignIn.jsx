@@ -53,7 +53,7 @@ const SignIn = () => {
 
   return (
     <>
-    <Title>Форма регистрации</Title>
+    <Title>Форма авторизации</Title>
     <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
 
       <Form.Item
