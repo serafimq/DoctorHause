@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Calendar, Badge, Row, Col } from 'antd';
 import style from './CalendarPage.module.css'
 import { Button } from 'antd';
+import CalendarModal from '../CalendarModal/CalendarModal';
 
 
 const CalendarPage = () => {
 
+  const [event, setEvent] = useState({})
+  console.log(event); 
   function getListData(value) {
 
     const one = [{ type: 'warning', content: 'Первый' }]
-    const two = [{ type: 'warning', content: 'Второй' }]
-    const three = [{ type: 'warning', content: 'Третий' }]
-    const four = [{ type: 'warning', content: 'Четвертый' }]
+    
     
     let listData;
     switch (value.date()) {
@@ -19,15 +20,7 @@ const CalendarPage = () => {
       case 8:
         listData = one;
         break;
-      case 3:
-        listData = two;
-        break;
-      case 5:
-        listData = three;
-        break;
-      case 6:
-        listData = four;
-        break;
+      
 
       default:
     }
@@ -54,11 +47,13 @@ const CalendarPage = () => {
 
   return (
     <div className={style.calendar_box}>
-      <Calendar dateCellRender={dateCellRender} dateCellRender={dateCellRender}  onChange={clickDate} />
+      <Calendar 
+      dateCellRender={dateCellRender}  
+      onChange={clickDate} />
       <Row >
         <Col className={style.button_form} span={6} >
 
-          <Button>Default Button</Button>
+          <CalendarModal setEvent={setEvent}/>
         </Col>
       </Row>
     </div>
