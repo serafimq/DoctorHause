@@ -10,7 +10,7 @@ const PersonalArea = () => {
             RIGHT COL
           </Col>
           <Col className={style.left_col}  span={6} pull={18}>
-            LEFt COL
+            LEFT COL
           </Col>
       </Row>
     </div>
