@@ -7,23 +7,17 @@ import RegistreForm from './components/RegistreForm/RegistreForm.jsx';
 import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 
 
-
-
 function App() {
   return (
     <div className='App'>
       <Router>
         <NavBar />
-        <CardDoctorPage />
+
         <Switch>
-          <Route exact path='/'>
-            <Homepage />
-            <Link to={'/registration'}>Зарегистрироваться</Link>
-          </Route>
-          <Route exact path='/registration'>
-            <RegistreForm />
-          </Route>
-          <MainPage />
+          <Route exact path="/homepage" render={() => <Homepage />} />
+          <Route exact path="/" render={() => <CardDoctorPage />} />
+          <Route exact path="/registration" render={() => <RegistreForm />} />
+          <Route exact path="/" render={() => <MainPage />} />
         </Switch>
       </Router>
 

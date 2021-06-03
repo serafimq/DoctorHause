@@ -26,7 +26,7 @@ const  CalendarModal = ({setEvent}) => {
   const submitHandler = (e) => {
     e.preventDefault();
     visibleModal()
-    console.log(values)
+    
     setEvent(values)
   }
 

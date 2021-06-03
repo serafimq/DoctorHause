@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Calendar, Badge, Row, Col } from 'antd';
 import style from './CalendarPage.module.css'
-import { Button } from 'antd';
 import CalendarModal from '../CalendarModal/CalendarModal';
 
 
