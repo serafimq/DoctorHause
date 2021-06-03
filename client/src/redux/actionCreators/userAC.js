@@ -13,12 +13,14 @@ export const signup = ({name, role, email, pass}) => async (dispatch) => {
   dispatch(signupAC(newUser))
 }
 
-export const signupAC = (newUserId, nickname = '') => {
+export const signupAC = (newUser) => {
   return {
     type: SIGNUP,
     payload: {
-      id: newUserId,
-      nickname,
+      id: newUser._id,
+      email: newUser.email,
+      name: newUser.name,
+      role: newUser.role,
       isAuth: true
     }
   }
@@ -37,12 +39,14 @@ export const signin = ({email, pass, role}) => async (dispatch) => {
   dispatch(signinAC(user))
 }
 
-export const signinAC = (userId, nickname = '') => {
+export const signinAC = (user) => {
   return {
     type: SIGNIN,
     payload: {
-      id: userId,
-      nickname,
+      id: user._id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
       isAuth: true
     }
   }

@@ -1,6 +1,7 @@
 import { Form, Input, Button, Select } from 'antd';
 import { Typography } from 'antd';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { Redirect } from 'react-router';
 import { signin } from '../../redux/actionCreators/userAC';
 
 const { Title } = Typography;
@@ -51,7 +52,12 @@ const SignIn = () => {
     }
   };
 
+  const isAuth = useSelector(state => state.user.isAuth) 
+
   return (
+    isAuth ?
+    <Redirect to="/"/>
+    :
     <>
     <Title>Форма авторизации</Title>
     <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >

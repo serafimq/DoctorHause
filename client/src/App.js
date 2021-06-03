@@ -1,48 +1,35 @@
 import './App.css';
+import CardDoctorPage from './components/cardDoctorPage/cardDoctorPage';
 import Homepage from './components/Homepage/Homepage';
-import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
+import MainPage from './components/MainPage/MainPage';
+import NavBar from './components/NavBar/NavBar';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './components/UserForms/SignUp';
 import SignIn from './components/UserForms/SignIn';
-import { signout } from './redux/actionCreators/userAC';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from "react-router";
 
 function App() {
-
-  const id = useSelector(state => state.user._id)
-  const isAuth = useSelector(state => state.user.isAuth) 
-  console.log(id);
-  const dispatch = useDispatch()
-
-  const deleteHandler = async (id) => {
-    dispatch(signout(id))
-  }
-
-  // isAuth ?
-  // <Redirect to="/"/>
-  // :
-
   return (
-
     <div className='App'>
-    <Router>
-      <Switch>
-        <Route exact path='/'>
-          <Homepage />
-          <Link to={'/signup'}>Зарегистрироваться</Link><br/>
-          <Link to={'/signin'}>Авторизоваться</Link><br/>
-          <Link onClick={() => deleteHandler(id)} to={'/'}>Выйти</Link>
-        </Route>
-        <Route exact path='/signup'>
-        <Link to={'/'}>Главная</Link>
-          <SignUp/>    
-        </Route>
-        <Route exact path='/signin'>
-        <Link to={'/'}>Главная</Link>
-          <SignIn/>    
-        </Route>
-      </Switch>
-    </Router>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Router exact path="/homepage"> 
+            <Homepage/>
+          </Router>
+          <Router exact path="/signup"> 
+            <SignUp/>
+          </Router>
+          <Router exact path="/signin"> 
+            <SignIn/>
+          </Router>
+          <Route exact path="/">
+            <CardDoctorPage/>
+          </Route>
+          <Route exact path="/">
+            <MainPage/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
