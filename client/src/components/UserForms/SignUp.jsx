@@ -20,7 +20,7 @@ const tailLayout = {
   },
 };
 
-const RegistreForm = () => {
+const SignUp = () => {
 
   const dispatch = useDispatch()
 
@@ -124,4 +124,4 @@ const RegistreForm = () => {
   );
 };
 
-export default RegistreForm
+export default SignUp

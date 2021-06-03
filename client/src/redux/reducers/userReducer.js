@@ -4,7 +4,7 @@ import { SIGNIN, SIGNOUT, SIGNUP } from '../types/userTypes'
 function userReducer(state = initState, action) {
   switch (action.type) {
     case  SIGNUP:
-      return action.payload
+      return action.payload.id
       case  SIGNIN:
         return action.payload      
     case  SIGNOUT:
