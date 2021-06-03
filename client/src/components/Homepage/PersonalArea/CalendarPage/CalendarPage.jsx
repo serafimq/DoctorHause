@@ -8,6 +8,7 @@ const CalendarPage = () => {
 
   const [event, setEvent] = useState({})
   console.log(event); 
+  
   function getListData(value) {
 
     const one = [{ type: 'warning', content: 'Первый' }]
