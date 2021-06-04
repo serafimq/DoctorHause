@@ -40,10 +40,8 @@ export default function NavBar() {
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link to='/signup'>Регистрация</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/signin'>Авторизация </Link></Menu.Item>
-          <Menu.Item key="4"><Link to='/homepage'>Личный кабинет</Link></Menu.Item>
         </Menu>
       </Header>
     </Layout>
   )
 }
-
