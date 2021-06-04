@@ -29,6 +29,9 @@ const CardDoctorPage = () => {
               <li className={style.lishka}>
                 Телефон для записи: +7-926-345-56-77
             </li>
+            <li className={style.lishka}>
+                email: sara1997@mail.ru
+            </li>
               <li className={style.lishka}>
                 Метро: Новокузнецкая
             </li>
