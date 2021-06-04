@@ -5,11 +5,16 @@ const express = require('express');
 const session = require('express-session');
 const { sessionConfig } = require('./ServDB/config');
 const { createErr, cathErrAndSendAnswer } = require('./middleware/checkErrors');
+const passport = require('passport');
+require('./ServDB/config-passport');
 
 const apiRouterUser = require('./routes/apiRouterUser');
 const apiRouterEvents = require('./routes/apiRouterEvents');
 
 const app = express();
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set('trust proxy', 1);
 app.set('cookieName', 'connect.sid');

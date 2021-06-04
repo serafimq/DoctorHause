@@ -23,9 +23,6 @@ function App() {
             <SignIn />
           </Router>
           <Route exact path="/">
-
-          </Route>
-          <Route exact path="/">
             <MainPage />
           </Route>
         </Switch>

@@ -55,7 +55,8 @@ const  CalendarModal = () => {
         style={{ top: 20 }}
         visible={modal1Visible}
         onOk={() => visibleModal()}
-        onCancel={() => visibleModal()}    
+        onCancel={() => visibleModal()}
+        width={800}    
       >
         <Form
           labelCol={{

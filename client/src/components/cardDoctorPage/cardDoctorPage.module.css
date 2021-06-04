@@ -3,5 +3,11 @@
 }
 
 .lishka {
-margin-top: 15px;
+margin-top: 5px;
+}
+
+.feedback {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }

@@ -24,6 +24,7 @@ const sessionConfig = {
     mongoUrl: dbConnectionURL,
   }),
   cookie: {
+    path: '/',
     secure: false,
     httpOnly: true,
     maxAge: 90000 * 1e3,
