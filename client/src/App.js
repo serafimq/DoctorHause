@@ -1,11 +1,10 @@
 import './App.css';
-import CardDoctorPage from './components/cardDoctorPage/cardDoctorPage';
 import Homepage from './components/Homepage/Homepage';
 import MainPage from './components/MainPage/MainPage';
 import NavBar from './components/NavBar/NavBar';
-import RegistreForm from './components/RegistreForm/RegistreForm.jsx';
-import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
-
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import SignUp from './components/UserForms/SignUp';
+import SignIn from './components/UserForms/SignIn';
 
 function App() {
   return (
@@ -14,13 +13,23 @@ function App() {
         <NavBar />
 
         <Switch>
-          <Route exact path="/homepage" render={() => <Homepage />} />
-          <Route exact path="/" render={() => <CardDoctorPage />} />
-          <Route exact path="/registration" render={() => <RegistreForm />} />
-          <Route exact path="/" render={() => <MainPage />} />
+          <Router exact path="/homepage">
+            <Homepage />
+          </Router>
+          <Router exact path="/signup">
+            <SignUp />
+          </Router>
+          <Router exact path="/signin">
+            <SignIn />
+          </Router>
+          <Route exact path="/">
+
+          </Route>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
         </Switch>
       </Router>
-
     </div>
   );
 }

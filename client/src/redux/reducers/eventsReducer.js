@@ -1,14 +1,12 @@
 import initState from '../initState'
-import { SIGNIN, SIGNOUT, SIGNUP } from '../types/userTypes'
+import { SET_EVENTS } from '../types/eventsTypes';
+
 
 function userReducer(state = initState, action) {
   switch (action.type) {
-    case  SIGNUP:
+    case SET_EVENTS:
       return action.payload
-      case  SIGNIN:
-        return action.payload
-    case  SIGNOUT:
-      return action.payload
+
     default:
       return state;
   }

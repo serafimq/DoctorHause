@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { Calendar, Badge, Row, Col } from 'antd';
 import style from './CalendarPage.module.css'
 import CalendarModal from '../CalendarModal/CalendarModal';
+import { useSelector } from 'react-redux';
 
 
 const CalendarPage = () => {
 
-  const [event, setEvent] = useState({})
   
-  event.num = 4;
-  console.log(event); 
+  
+  const events = useSelector(state => state.events) 
+
+  
   const allEvents = [
     {
       firstLastName: 'тима',
@@ -27,15 +29,12 @@ const CalendarPage = () => {
       num : 3,
     }, 
   ]
-  allEvents.push(event)
+  allEvents.push(events)
   const filter1 = allEvents.filter(el => el.num === 1)
   const filter2 = allEvents.filter(el => el.num === 2)
   const filter3 = allEvents.filter(el => el.num === 3)
   const filter4 = allEvents.filter(el => el.num === 4)
   
-
-
-
   function getListData(value) {
 
       let listData;
@@ -63,18 +62,16 @@ const CalendarPage = () => {
   
   function dateCellRender(value) {
     const listData = getListData(value);
-    console.log('hi', listData)
+    
     return (
       <ul className={style.events}>
         {listData.map(item => (
           <li key={item.content}>
             <div>
-
             <Badge status={item.hospital} text={item.firstLastName} />
             </div>
             <div>
-
-            <Badge status={item.hospital} text={item.hospital} />
+              <Badge status={item.hospital} text={item.hospital} />
             </div>
             
           </li>
@@ -96,7 +93,7 @@ const CalendarPage = () => {
       <Row >
         <Col className={style.button_form} span={6} >
 
-          <CalendarModal setEvent={setEvent}/>
+          <CalendarModal setEvent={(e) => console.log(e)}/>
         </Col>
       </Row>
     </div>
