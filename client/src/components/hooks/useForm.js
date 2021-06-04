@@ -1,4 +1,4 @@
-import {useState } from "react"
+import { useState } from "react"
 
 const useFormModal = () => {
 
@@ -6,7 +6,7 @@ const useFormModal = () => {
 
   const changeHandler = (e) => {
     // console.log(new Date(e._d));
-    setValues(prev => ({...prev, [e.target.name]: e.target.value}))
+    setValues(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
   return [values, changeHandler]
 }

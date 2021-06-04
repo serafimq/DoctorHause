@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useFormModal from "../../hooks/useForm"
+import useFormModal from "../../../hooks/useForm"
 import {
   Modal,
   Form,
@@ -19,13 +19,14 @@ const config = {
 };
 
 
-function CalendarModal() {
+const  CalendarModal = ({setEvent}) => {
 
   const [values, changeHandler] = useFormModal()
-
+  
   const submitHandler = (e) => {
-    // e.preventDefault();
-    console.log(values)
+    e.preventDefault();
+    visibleModal()
+    setEvent(values)
   }
 
   const [componentSize, setComponentSize] = useState('default');
@@ -67,7 +68,7 @@ function CalendarModal() {
           onValuesChange={onFormLayoutChange}
           size={componentSize}
           value="default"
-          onFinish={submitHandler}
+          // onFinish={submitHandler}
           // onSubmit={submitHandler}
         >
           <Form.Item label="Клиника">
@@ -91,7 +92,7 @@ function CalendarModal() {
           </Form.Item>
           
           {/* onClick={submitHandler} */}
-          <Button  type="primary" htmlType="submit" >
+          <Button onClick={submitHandler}  type="primary" htmlType="submit" >
             Добавить в календарь
           </Button>
         </Form>

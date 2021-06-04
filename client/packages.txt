@@ -1,0 +1,5 @@
+npm install sass
+npm install react-redux
+npm install react-router-dom
+npm install thunk
+npm install redux-saga
