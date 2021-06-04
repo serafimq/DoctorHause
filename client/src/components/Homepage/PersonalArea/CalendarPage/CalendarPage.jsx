@@ -7,32 +7,76 @@ import CalendarModal from '../CalendarModal/CalendarModal';
 const CalendarPage = () => {
 
   const [event, setEvent] = useState({})
+  
+  event.num = 4;
   console.log(event); 
+  const allEvents = [
+    {
+      firstLastName: 'тима',
+      hospital: 'Привет',
+      num : 1,
+    }, 
+    {
+      firstLastName: 'Dima',
+      hospital: 'Пока',
+      num : 2,
+    }, 
+    {
+      firstLastName: 'Buba',
+      hospital: 'Ура',
+      num : 3,
+    }, 
+  ]
+  allEvents.push(event)
+  const filter1 = allEvents.filter(el => el.num === 1)
+  const filter2 = allEvents.filter(el => el.num === 2)
+  const filter3 = allEvents.filter(el => el.num === 3)
+  const filter4 = allEvents.filter(el => el.num === 4)
+  
+
+
+
   function getListData(value) {
 
-    const one = [{ type: 'warning', content: 'Первый' }]
-    
-    
-    let listData;
-    switch (value.date()) {
-
-      case 8:
-        listData = one;
-        break;
-      
-
-      default:
-    }
-    return listData || [];
+      let listData;
+      switch (value.date()) {
+        
+        case 1:
+          listData = filter1;
+          break;
+        case 2:
+          listData = filter2;
+          break;
+        case 3:
+          listData = filter3;
+          break;
+          
+        case 4:
+          listData = filter4;
+          break;
+          
+          default:
+          }
+          return listData || [];
+        
   }
   
   function dateCellRender(value) {
     const listData = getListData(value);
+    console.log('hi', listData)
     return (
       <ul className={style.events}>
         {listData.map(item => (
           <li key={item.content}>
-            <Badge status={item.type} text={item.content} />
+            <div>
+
+            <Badge status={item.hospital} text={item.firstLastName} />
+            </div>
+            <div>
+
+            <Badge status={item.hospital} text={item.hospital} />
+            </div>
+            
           </li>
         ))}
       </ul>
