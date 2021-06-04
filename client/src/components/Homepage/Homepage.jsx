@@ -6,8 +6,6 @@ const Homepage = () => {
   return (
     <div>
       <PersonalArea />
-         
-      
     </div>
   )
 }
