@@ -1,12 +1,17 @@
 import React from 'react'
-import CalendarModal from './CalendarModal/CalendarModal'
+import CardDoctorPage from '../cardDoctorPage/cardDoctorPage'
+import FormDoctor from '../FormDoctor/FormDoctor'
+
 import PersonalArea from './PersonalArea/PersonalArea'
 
 const Homepage = () => {
   return (
     <div>
       <PersonalArea />
-      <CalendarModal/>
+      <FormDoctor/>
+      <CardDoctorPage/>
+         
+      
     </div>
   )
 }

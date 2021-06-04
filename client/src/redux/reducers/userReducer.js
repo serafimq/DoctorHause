@@ -6,7 +6,7 @@ function userReducer(state = initState, action) {
     case  SIGNUP:
       return action.payload
       case  SIGNIN:
-        return action.payload      
+        return action.payload
     case  SIGNOUT:
       return action.payload
     default:
