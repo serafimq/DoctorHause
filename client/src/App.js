@@ -12,6 +12,7 @@ function App() {
     <div className='App'>
       <Router>
         <NavBar />
+  
         <Switch>
           <Router exact path="/homepage"> 
             <Homepage/>
@@ -22,9 +23,6 @@ function App() {
           <Router exact path="/signin"> 
             <SignIn/>
           </Router>
-          <Route exact path="/">
-            <CardDoctorPage/>
-          </Route>
           <Route exact path="/">
             <MainPage/>
           </Route>
