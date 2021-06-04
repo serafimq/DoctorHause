@@ -7,6 +7,8 @@ import {
   Button,
   DatePicker,
 } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { addEventsAxiox } from '../../../../redux/actionCreators/eventsAC';
 
 const config = {
   rules: [
@@ -19,14 +21,16 @@ const config = {
 };
 
 
-const  CalendarModal = ({setEvent}) => {
+const  CalendarModal = () => {
 
+  const dispatch = useDispatch()
   const [values, changeHandler] = useFormModal()
   
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(addEventsAxiox(values))
+    
     visibleModal()
-    setEvent(values)
   }
 
   const [componentSize, setComponentSize] = useState('default');

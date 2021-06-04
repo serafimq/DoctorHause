@@ -8,6 +8,7 @@ const eventSchema = new Schema({
   address: String,
   comment: String,
   dateTime: Date,
+  num: Number,
 })
 
 const Events = model('Events', eventSchema)
