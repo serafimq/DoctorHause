@@ -1,14 +1,17 @@
 import React from 'react'
-import CalendarModal from './CalendarModal/CalendarModal'
+import FormDoctor from '../FormDoctor/FormDoctor'
+
 import PersonalArea from './PersonalArea/PersonalArea'
 
 const Homepage = () => {
   return (
     <div>
       <PersonalArea />
-      <CalendarModal/>
+         
+      
     </div>
   )
 }
+
 
 export default Homepage

@@ -1,12 +1,19 @@
-import { List, Card, Meta, Typography, Divider, Col, Row, Rate } from 'antd';
+import { Card, Modal, Col, Row, Rate, Button } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import style from './cardDoctorPage.module.css'
 import { UserOutlined } from '@ant-design/icons'
+import {useState} from 'react'
+import FormDoctor from '../FormDoctor/FormDoctor';
 
 
 const CardDoctorPage = () => {
 
+  const [modal1Visible, setModal1Visible] = useState(false)
 
+  function visibleModal() {
+    setModal1Visible(!modal1Visible)
+  }
+  
   return (
     <div className="site-card-wrapper">
       <Row align="middle" justify="center" gutter={1}>
@@ -29,10 +36,23 @@ const CardDoctorPage = () => {
               <li className={style.lishka}>
                 Телефон для записи: +7-926-345-56-77
             </li>
+            <li className={style.lishka}>
+                email: sara1997@mail.ru
+            </li>
               <li className={style.lishka}>
                 Метро: Новокузнецкая
             </li>
             </ul>
+            <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
+            <Modal
+        title="Редактировать данные"
+        style={{ top: 20 }}
+        visible={modal1Visible}
+        onOk={() => visibleModal()}
+        onCancel={() => visibleModal()}    
+      >
+        <FormDoctor/>
+      </Modal>
           </Card>
         </Col>
       </Row>
