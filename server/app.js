@@ -17,7 +17,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(session(sessionConfig));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({credentials: true, origin: "http://localhost:3001"}));
+app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 app.use(logger('common', {stream: fs.createWriteStream('./access.log', {flags: 'a'})}));
 
 app.use('/api/v1/user', apiRouterUser);
