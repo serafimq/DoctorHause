@@ -23,7 +23,9 @@ function App() {
           <Route exact path='/registration'>
             <RegistreForm />
           </Route>
+          <Route>
           <MainPage />
+          </Route>
         </Switch>
       </Router>
 
