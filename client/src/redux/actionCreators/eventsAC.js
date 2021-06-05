@@ -14,7 +14,7 @@ const setEvents = (events) => {
 }
 
 const addEventsAxiox = (event) => async (dispatch) => {
-  console.log(event)
+  console.log('----<>SAS', event)
 
   const response = await axios.post('http://localhost:3006/api/v1/events', { event })
   dispatch(addEvents(response.data))

@@ -51,7 +51,7 @@ const CalendarPage = () => {
     const filter31 = events.filter(el => el.num === 31)  
 
   function getListData(value) {
-    console.log(value.date(), value.month());
+    // console.log(value.date(), value.month());
       let listData;
       switch (value.date()) {
         case 1: listData = filter1 
@@ -143,7 +143,7 @@ const CalendarPage = () => {
   }
   
   const clickDate = (value) => {
-    console.log(value.date(), value.month(), value.year());
+    // console.log(value.date(), value.month(), value.year());
     
   }
 

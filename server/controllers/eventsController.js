@@ -9,6 +9,8 @@ const setAllEvents = async (req, res) => {
 const addEvent = async (req, res) => {
   try {
     const { event } = req.body;
+    console.log(event)
+
     const { hospital,
       firstLastName,
       specialization,
@@ -17,7 +19,7 @@ const addEvent = async (req, res) => {
     const num = String(event.dateTime.match(/\d{2}T/gm)).slice(0, 2)
     // console.log(Number(num))
     const date = Date.parse(event.dateTime)
-    // console.log(date)
+    console.log(date)
 
     if (event) {
       const newEvent = await Events.create({
