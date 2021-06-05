@@ -1,7 +1,69 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .ant-radio-button-wrapper {
   display:none;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-content {
+  height: 65px;
+}
+
+.ant-layout, .ant-layout * {
+  background-color: #f6eafd ;
+  
+}
+
+.ant-picker-calendar-header {
+  background-color: #fff;
+}
+
+
+.ant-layout-header {
+    height: 65px;
+    background: #f6eafd;
+}
+
+
+
+input.fab {
+	display: none
+}
+
+figure {
+  overflow: hidden;
+  height: 350px;
+}
+
+.img-profile {
+    -webkit-clip-path: circle(41% at 70% 25%);
+    -moz-clip-path: circle(41% at 70% 25%);
+    clip-path: circle(41% at 70% 25%);
+    transform: translatez(0);
+    transition: all .3s linear;
+    max-width: 100%;
+}
+.img-profile:hover {
+    -webkit-clip-path: circle(25% at 50% 35%);
+    clip-path: circle(25% at 50% 35%);
+    transform: scale(1.07) rotate(2deg) translatez(0);
+}
+.profile-card .fab+.toggle {
+	top: 63%;
+	z-index: 10;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	font-size: 60px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 50%;
+	position: absolute;
+	color: #fff;
+	background: #F44336;
+	box-shadow: 0 4px 4px #666;
+	transition: all 0.3s ease-in-out 0s;
 }

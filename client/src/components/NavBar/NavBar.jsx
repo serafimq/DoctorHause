@@ -23,7 +23,7 @@ export default function NavBar() {
     <Layout className="layout">
       <Header>
         <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']} >
+          <Menu mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1">{name}</Menu.Item>
           <Menu.Item key="2">{role}</Menu.Item>
@@ -36,7 +36,7 @@ export default function NavBar() {
     <Layout className="layout">
       <Header>
         <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']} >
+        <Menu mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link to='/signup'>Регистрация</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/signin'>Авторизация </Link></Menu.Item>

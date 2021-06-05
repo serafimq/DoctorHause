@@ -1,7 +1,8 @@
 import React from 'react'
+// import style from './Homepage.model.css'
 import { useSelector } from 'react-redux'
 import CardDoctorPage from '../cardDoctorPage/cardDoctorPage'
-import FormDoctor from '../FormDoctor/FormDoctor'
+
 
 import PersonalArea from './PersonalArea/PersonalArea'
 
@@ -12,17 +13,11 @@ const Homepage = () => {
     <div>
 
       {role !== 'doctor'  ? 
-      
       <PersonalArea />
       :
-      <>
-        <FormDoctor/>
-        <CardDoctorPage/>
-      </>
+      <CardDoctorPage/>
       }
-      
-         
-      
+
     </div>
   )
 }

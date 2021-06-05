@@ -13,7 +13,11 @@ const CalendarPage = () => {
    useEffect(() => {
     dispatch(setAllEvents())
    }, [])
- 
+   
+  //  let arr =[]
+  //  for (let i = 1; i <= 31; i++) {
+  //    arr.push({i: events.filter(el => el.num === 1)})
+  //  }
     const filter1 = events.filter(el => el.num === 1)
     const filter2 = events.filter(el => el.num === 2)
     const filter3 = events.filter(el => el.num === 3)
@@ -47,7 +51,7 @@ const CalendarPage = () => {
     const filter31 = events.filter(el => el.num === 31)  
 
   function getListData(value) {
-
+    console.log(value.date(), value.month());
       let listData;
       switch (value.date()) {
         case 1: listData = filter1 
@@ -120,20 +124,18 @@ const CalendarPage = () => {
   }
   
   function dateCellRender(value) {
-    
     const listData = getListData(value);
     
     return (
       <ul className={style.events}>
         {listData.map(item => (
-          <li key={item.content}>
+          <li key={item._id}>
             <div>
-            <Badge status={item.hospital} text={item.firstLastName} />
+            <Badge status={item.hospital} text={item.hospital} />
             </div>
             <div>
-              <Badge status={item.hospital} text={item.hospital} />
+              <Badge status={item.hospital} text={item.specialization} />
             </div>
-            
           </li>
         ))}
       </ul>
@@ -147,13 +149,12 @@ const CalendarPage = () => {
 
   return (
     <div className={style.calendar_box}>
-      <Calendar 
+      <Calendar className={style.calendar}
       dateCellRender={dateCellRender}  
       onChange={clickDate} />
       <Row >
         <Col className={style.button_form} span={6} >
-
-          <CalendarModal setEvent={(e) => console.log(e)}/>
+          <CalendarModal />
         </Col>
       </Row>
     </div>

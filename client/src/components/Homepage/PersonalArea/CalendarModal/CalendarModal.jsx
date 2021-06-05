@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import style from './CalendarModal.module.css'
 import useFormModal from "../../../hooks/useForm"
 import {
   Modal,
@@ -47,7 +48,7 @@ const  CalendarModal = () => {
 
   return (
     <>
-      <Button type="primary" onClick={() => visibleModal()}>
+      <Button className={style.button} type="primary" onClick={() => visibleModal()}>
         Add for Calendar
       </Button>
       <Modal
