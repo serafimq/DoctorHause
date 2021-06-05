@@ -1,8 +1,21 @@
-.left_col {
+/* .left_col {
   background-color: #b9c7fc;
   
 }
 .margin {
   margin-right: 300px;
   margin-left: 50px;
+} */
+
+.card {
+  color: black;
 }
+
+.news {
+  padding: 20px;
+  /* display: flex; */
+  /* align-content:space-between ; */
+}
+ .text {
+   text-align: justify;
+ }

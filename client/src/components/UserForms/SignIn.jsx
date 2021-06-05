@@ -1,4 +1,4 @@
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Row } from 'antd';
 import { Typography } from 'antd';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router';
@@ -59,7 +59,10 @@ const SignIn = () => {
     <Redirect to="/"/>
     :
     <>
-    <Title>Форма авторизации</Title>
+    <Row justify="center">
+      <Title>Форма авторизации</Title>
+    </Row>
+    <Row justify="center">
     <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
 
       <Form.Item
@@ -114,6 +117,7 @@ const SignIn = () => {
       </Form.Item>
 
     </Form>
+    </Row>
     </>
   );
 };

@@ -9,6 +9,8 @@ import {
   Select,
 } from 'antd';
 import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux';
+import { addEventsAxiox } from '../../../../redux/actionCreators/eventsAC';
 
 const { Option } = Select;
 
@@ -24,8 +26,9 @@ const config = {
 };
 
 
-const CalendarModal = ({ setEvent }) => {
+const  CalendarModal = () => {
 
+  const dispatch = useDispatch()
   const [values, changeHandler] = useFormModal()
 
   // const submitHandler = (e) => {
@@ -41,7 +44,7 @@ const CalendarModal = ({ setEvent }) => {
       beforeSent = { ...values, dateTime: values.dateTime.format('YYYY/MM/DD HH:mm') }
     }
     console.log('Success:', beforeSent);
-    setEvent(beforeSent)
+    dispatch(addEventsAxiox(beforeSent))
     visibleModal()
   };
 

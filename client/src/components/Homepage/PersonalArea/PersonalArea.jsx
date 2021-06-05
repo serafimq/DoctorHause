@@ -16,7 +16,7 @@ const PersonalArea = () => {
             <CalendarPage /> 
           </Col>
           <Col className={style.left_col}  span={6} pull={18}>
-            LEFT COL
+            
           </Col>
       </Row>
     </div>

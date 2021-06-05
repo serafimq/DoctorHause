@@ -6,10 +6,17 @@ const session = require('express-session');
 const { sessionConfig } = require('./ServDB/config');
 const { createErr, cathErrAndSendAnswer } = require('./middleware/checkErrors');
 const fileUpload = require("express-fileupload")
-console.log(__dirname);
+const passport = require('passport');
+
+require('./ServDB/config-passport');
+
 const apiRouterUser = require('./routes/apiRouterUser');
+const apiRouterEvents = require('./routes/apiRouterEvents');
 
 const app = express();
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set('trust proxy', 1);
 app.set('cookieName', 'connect.sid');
@@ -18,10 +25,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(session(sessionConfig));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags: 'a' }) }));
 app.use(fileUpload())
 app.use('/api/v1/user', apiRouterUser);
+app.use('/api/v1/events', apiRouterEvents);
 
 app.post('/file', (req, res) => {
 
