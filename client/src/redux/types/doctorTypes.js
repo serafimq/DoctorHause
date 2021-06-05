@@ -1,0 +1,6 @@
+const SET_DOCTORS = 'SET_DOCTORS'
+const ADD_DOCTOR = 'ADD_DOCTOR'
+
+export {
+  SET_DOCTORS, ADD_DOCTOR
+}

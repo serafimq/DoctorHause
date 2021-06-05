@@ -26,7 +26,7 @@ export default function NavBar() {
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1">{name}</Menu.Item>
-          <Menu.Item key="1">{role}</Menu.Item>
+          <Menu.Item key="2">{role}</Menu.Item>
           <Menu.Item key="3"><Link onClick={() => deleteHandler(id)} to='/'>Выйти</Link></Menu.Item>
           <Menu.Item key="4"><Link to='/homepage'>Личный кабинет</Link></Menu.Item>
         </Menu>

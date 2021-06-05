@@ -20,6 +20,11 @@ const userSchema = new Schema({
   },
   role: String,
   isAuth: Boolean,
+  spec: String,
+  stage: Number,
+  phone: Number,
+  metro: String,
+  price: Number,
 })
 
 const User = model('User', userSchema)
