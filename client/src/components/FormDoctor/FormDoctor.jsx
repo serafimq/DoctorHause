@@ -1,6 +1,15 @@
-import { Form, Input, Select, InputNumber } from 'antd'
+import { Form, Input, Select, InputNumber, Button } from 'antd'
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { addDoctorThunk } from '../../redux/actionCreators/doctorAC';
+
 
 const FormDoctor = () => {
+  const [input, setInput] = useState('')
+  if (input.trim()) {
+  const dispatch = useDispatch()
+  }
+}
   const layout = {
     labelCol: {
       span: 8,
@@ -24,7 +33,8 @@ const FormDoctor = () => {
   /* eslint-enable no-template-curly-in-string */
   const { Option } = Select;
   const onFinish = (values) => {
-    console.log('VAAAAAAAAAAAAAAALLLUUES',values);
+    dispatch(addDoctorThunk(input))
+    // console.log('VAAAAAAAAAAAAAAALLLUUES',values);
   }
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -38,7 +48,7 @@ const FormDoctor = () => {
     <>
       <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
         <Form.Item label="Специализация"
-          name={['user', 'spec']}
+          name='spec'
         >
           <Select
             showSearch
@@ -61,14 +71,14 @@ const FormDoctor = () => {
           </Select>
         </Form.Item>
         <Form.Item
-          name={['user', 'name']}
+          name='name'
           label="ФИО"
 
         >
           <Input />
         </Form.Item>
         <Form.Item
-          name={['user', 'email']}
+          name='email'
           label="Email"
           rules={[
             {
@@ -79,7 +89,7 @@ const FormDoctor = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          name={['user', 'stage']}
+          name='stage'
           label="Стаж"
           style={{ width: '100%' }}
           rules={[
@@ -101,6 +111,9 @@ const FormDoctor = () => {
         <Form.Item label="Метро" name="metro">
           <Input />
         </Form.Item>
+        <Button htmlType='submit'>
+          Ok
+        </Button>
       </Form>
     </>
   )

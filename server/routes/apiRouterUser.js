@@ -8,6 +8,8 @@ const {
   checkUser,
 } = require('../controllers/userController')
 
+const {addDoctors} = require ('../controllers/doctorController')
+
 const {checkAuth} = require('../middleware/checkAuth')
 
 apiRouterUser.route('/signup')
@@ -24,5 +26,8 @@ apiRouterUser.route('/checkAuth')
 
 apiRouterUser.route('/getInfo')
   .get(checkAuth, userInfo)
+
+  apiRouterUser.route('/doctor')
+  .post(addDoctors)
 
 module.exports = apiRouterUser
