@@ -24,6 +24,7 @@ const userSchema = new Schema({
   stage: Number,
   phone: Number,
   metro: String,
+  price: Number,
 })
 
 const User = model('User', userSchema)

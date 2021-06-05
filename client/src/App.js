@@ -1,5 +1,4 @@
 import './App.css';
-import CardDoctorPage from './components/cardDoctorPage/cardDoctorPage';
 import Homepage from './components/Homepage/Homepage';
 import MainPage from './components/MainPage/MainPage';
 import NavBar from './components/NavBar/NavBar';
@@ -12,22 +11,19 @@ function App() {
     <div className='App'>
       <Router>
         <NavBar />
-  
+
         <Switch>
-          <Router exact path="/homepage"> 
-            <Homepage/>
+          <Router exact path="/homepage">
+            <Homepage />
           </Router>
-          <Router exact path="/signup"> 
-            <SignUp/>
+          <Router exact path="/signup">
+            <SignUp />
           </Router>
-          <Router exact path="/signin"> 
-            <SignIn/>
+          <Router exact path="/signin">
+            <SignIn />
           </Router>
           <Route exact path="/">
-            
-          </Route>
-          <Route exact path="/">
-            <MainPage/>
+            <MainPage />
           </Route>
         </Switch>
       </Router>

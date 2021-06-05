@@ -27,7 +27,7 @@ apiRouterUser.route('/checkAuth')
 apiRouterUser.route('/getInfo')
   .get(checkAuth, userInfo)
 
-  apiRouterUser.route('/doctor')
+apiRouterUser.route('/doctors')
   .post(addDoctors)
 
 module.exports = apiRouterUser
