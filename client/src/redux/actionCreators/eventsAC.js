@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const setAllEvents = () => async (dispatch) => {
   const response = await axios('http://localhost:3006/api/v1/events')
+  console.log('response.data', response.data);
   dispatch(setEvents(response.data))
 }
 
@@ -13,10 +14,10 @@ const setEvents = (events) => {
   }
 }
 
-const addEventsAxiox = (event) => async (dispatch) => {
-  console.log(event)
+const addEventsAxiox = (event, id) => async (dispatch) => {
+  console.log(event, '----------')
 
-  const response = await axios.post('http://localhost:3006/api/v1/events', { event })
+  const response = await axios.post('http://localhost:3006/api/v1/events', { event, id })
   dispatch(addEvents(response.data))
 }
 
@@ -27,9 +28,17 @@ const addEvents = (events) => {
   }
 }
 
+const getOneEventThunk = ({ date }) => async (dispatch) => {
+  console.log(date, 'date');
+  const response = await axios.post('http://localhost:3006/api/v1/events/oneEvent', { date: date })
+  // console.log('response.data', response.data);
+  // dispatch(getEvents(response.data))
+}
+
 export {
   setAllEvents,
   setEvents,
   addEventsAxiox,
-  addEvents
+  addEvents,
+  getOneEventThunk
 }

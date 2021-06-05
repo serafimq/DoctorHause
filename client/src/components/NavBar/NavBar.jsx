@@ -6,8 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function NavBar() {
   const { Header } = Layout;
-  const id = useSelector(state => state.user._id)
 
+  const user = useSelector(state => state.user)
+
+  const id = useSelector(state => state.user.id)
+  console.log('id-----------------------', id);
   const dispatch = useDispatch()
 
   const deleteHandler = async (id) => {
@@ -28,7 +31,7 @@ export default function NavBar() {
           <Menu.Item key="1">{name}</Menu.Item>
           <Menu.Item key="2">{role}</Menu.Item>
           <Menu.Item key="3"><Link onClick={() => deleteHandler(id)} to='/'>Выйти</Link></Menu.Item>
-          <Menu.Item key="4"><Link to='/homepage'>Личный кабинет</Link></Menu.Item>
+          <Menu.Item key="4"><Link to={`/homepage/${id}`}>Личный кабинет</Link></Menu.Item>
         </Menu>
       </Header>
     </Layout>

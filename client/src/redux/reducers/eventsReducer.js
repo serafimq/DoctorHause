@@ -1,4 +1,4 @@
-import { SET_EVENTS, ADD_EVENT } from '../types/eventsTypes';
+import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT } from '../types/eventsTypes';
 
 
 function eventsReducer(state = [], action) {
@@ -7,7 +7,8 @@ function eventsReducer(state = [], action) {
       return action.payload
     case ADD_EVENT:
       return [...state, action.payload]
-
+    case GET_ONE_EVENT:
+      return action.payload
     default:
       return state;
   }
