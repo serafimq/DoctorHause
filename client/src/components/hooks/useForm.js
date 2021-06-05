@@ -13,7 +13,7 @@ const useFormModal = () => {
       setValues(prev => ({ ...prev, dateTime: e.dateTime }))
     }
   }
-  console.log(values, 'values');
+  
   return [values, changeHandler]
 }
 export default useFormModal

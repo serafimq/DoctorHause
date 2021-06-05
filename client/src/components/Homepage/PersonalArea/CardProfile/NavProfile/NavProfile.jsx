@@ -1,12 +1,12 @@
 import React from 'react'
 import style from './NavProfile.module.css'
-import { Menu, Switch, Divider } from 'antd';
+import { Menu } from 'antd';
+import { Link } from 'react-router-dom'
 import {
-  MailOutlined,
   CalendarOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-  LinkOutlined,
+  HistoryOutlined,
+  FileTextOutlined,
+  CompassOutlined
 } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
@@ -27,16 +27,16 @@ const NavProfile = () => {
         mode={mode}
         theme={theme}
       >
-        <Menu.Item className={style.item} key="1" icon={<MailOutlined />}>
-          Календарь
+        <Menu.Item className={style.item} key="1" icon={<CalendarOutlined />}>
+          <Link className={style.link} to='/homepage'>Календарь</Link>
         </Menu.Item>
-        <Menu.Item className={style.item} key="2" icon={<CalendarOutlined />}>
+        <Menu.Item className={style.item} key="2" icon={<HistoryOutlined /> }>
           История
         </Menu.Item>
-        <Menu.Item className={style.item} key="3" icon={<CalendarOutlined />}>
+        <Menu.Item className={style.item} key="3" icon={<FileTextOutlined />}>
           Курс лечения
         </Menu.Item>
-        <Menu.Item className={style.item} key="4" icon={<CalendarOutlined />}>
+        <Menu.Item className={style.item} key="4" icon={<CompassOutlined />}>
           Карта
         </Menu.Item>
       </Menu>
@@ -46,5 +46,4 @@ const NavProfile = () => {
 }
 
 export default NavProfile
-
 

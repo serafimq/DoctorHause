@@ -51,6 +51,7 @@ const CalendarPage = () => {
     const filter31 = events.filter(el => el.num === 31)  
 
   function getListData(value) {
+    
     // console.log(value.date(), value.month());
       let listData;
       switch (value.date()) {
@@ -127,9 +128,9 @@ const CalendarPage = () => {
     const listData = getListData(value);
     
     return (
-      <ul className={style.events}>
+      <ul  className={style.events}>
         {listData.map(item => (
-          <li key={item._id}>
+          <li  key={item._id}>
             <div>
             <Badge status={item.hospital} text={item.hospital} />
             </div>
@@ -143,7 +144,7 @@ const CalendarPage = () => {
   }
   
   const clickDate = (value) => {
-    // console.log(value.date(), value.month(), value.year());
+    console.log(value.date(), value.month(), value.year());
     
   }
 

@@ -61,16 +61,14 @@ function ResultForm({ visibleModal }) {
 
   const [formData, setFormData] = useState({});
 
-  console.log(formData);
-
-  function onChange(value, dateString) {
-    if (value) {
-      setFormData({
-        ...formData,
-        "dateTime": value.toISOString(true)
-      });
-    }
-  }
+  // function onChange(value, dateString) {
+  //   if (value) {
+  //     setFormData({
+  //       ...formData,
+  //       "dateTime": value.toISOString(true)
+  //     });
+  //   }
+  // }
 
   const onFinish = (values) => {
     console.log(111);
@@ -129,20 +127,20 @@ function ResultForm({ visibleModal }) {
     }
   };
 
-  const onChangeFile = (info) => {
-    console.log('info', info);
-    const { status } = info.file;
-    if (status !== 'uploading') {
-      console.log(123);
-      console.log(info.file, info.fileList);
-    }
-    if (status === 'done') {
-      console.log('infoDONE');
-      message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  }
+  // const onChangeFile = (info) => {
+  //   console.log('info', info);
+  //   const { status } = info.file;
+  //   if (status !== 'uploading') {
+  //     console.log(123);
+  //     console.log(info.file, info.fileList);
+  //   }
+  //   if (status === 'done') {
+  //     console.log('infoDONE');
+  //     message.success(`${info.file.name} file uploaded successfully.`);
+  //   } else if (status === 'error') {
+  //     message.error(`${info.file.name} file upload failed.`);
+  //   }
+  // }
 
   const handleOnChange = ({ file, fileList, event }) => {
     // console.log(file, fileList, event);
@@ -185,12 +183,6 @@ function ResultForm({ visibleModal }) {
             {defaultFileList.length >= 1 ? null : <div>Upload Button</div>}
           </Upload>
           {progress > 0 ? <Progress percent={progress} /> : null}
-
-
-
-
-
-
           {/* <Upload.Dragger
             {...props}
             name="files"
@@ -214,8 +206,8 @@ function ResultForm({ visibleModal }) {
         <DatePicker
           format={"YYYY/MM/DD HH:mm"}
           showTime
-          defaultValue={moment([])}
-          onChange={onChange}
+          // defaultValue={moment([])}
+          // onChange={onChange}
           showNow={true}
         />
       </Form.Item>

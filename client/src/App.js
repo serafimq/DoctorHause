@@ -16,14 +16,31 @@ function App() {
           <Router exact path="/homepage">
             <Homepage />
           </Router>
+
           <Router exact path="/signup">
             <SignUp />
           </Router>
+
           <Router exact path="/signin">
             <SignIn />
           </Router>
+
           <Route exact path="/">
             <MainPage />
+          </Route>
+
+          <Route exact path="/homepage/calendar">
+            <Homepage />
+          </Route>
+
+          <Route exact path="/homepage/history">
+
+          </Route>
+          <Route exact path="/">
+
+          </Route>
+          <Route exact path="/">
+
           </Route>
         </Switch>
       </Router>
