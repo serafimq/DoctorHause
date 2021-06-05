@@ -38,6 +38,10 @@ const  CalendarModal = () => {
   //   setEvent(values)
   // }
 
+  // const resetFields = (values) => {
+  //   values = " "
+  // }
+
   const onFinish = (values) => {
     let beforeSent;
     if (values['dateTime']) {
@@ -62,19 +66,19 @@ const  CalendarModal = () => {
 
   const [formData, setFormData] = useState({});
 
-  console.log(formData);
+  // console.log(formData);
 
-  function onChange(value, dateString) {
+  // function onChange(value, dateString) {
 
-    if (value) {
-      console.log(value.format('YYYY/MM/DD HH:mm'), 'value');
-      setFormData({
-        ...formData,
-        "dateTime": value.format('YYYY/MM/DD HH:mm')
-      });
-      onFinish(formData)
-    }
-  }
+  //   if (value) {
+  //     console.log(value.format('YYYY/MM/DD HH:mm'), 'value');
+  //     setFormData({
+  //       ...formData,
+  //       "dateTime": value.format('YYYY/MM/DD HH:mm')
+  //     });
+  //     onFinish(formData)
+  //   }
+  // }
 
   return (
     <>
@@ -140,8 +144,8 @@ const  CalendarModal = () => {
             <DatePicker
               format={"YYYY/MM/DD HH:mm"}
               showTime
-              defaultValue={moment([])}
-              onChange={onChange}
+              // defaultValue={moment([])}
+              // onChange={onChange}
               showNow={true}
             />
           </Form.Item>
