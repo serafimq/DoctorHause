@@ -25,6 +25,12 @@ const userSchema = new Schema({
   phone: Number,
   metro: String,
   price: Number,
+  stars: Number,
+  feedback: [{
+    author: String,
+    text: String,
+    stars: Number
+  }]
 })
 
 const User = model('User', userSchema)

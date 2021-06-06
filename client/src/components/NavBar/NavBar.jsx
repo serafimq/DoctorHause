@@ -3,10 +3,15 @@ import { Layout, Menu } from 'antd';
 import {Link} from 'react-router-dom'
 import { signout } from '../../redux/actionCreators/userAC';
 import { useDispatch, useSelector } from 'react-redux';
+import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC';
 
 export default function NavBar() {
   const { Header } = Layout;
-  const id = useSelector(state => state.user._id)
+  const id = useSelector(state => state.user.id)
+
+  const setDoctor = () => {
+    dispatch(setOneDoctorThunk(id))
+  }
 
   const dispatch = useDispatch()
 
@@ -28,7 +33,7 @@ export default function NavBar() {
           <Menu.Item key="1">{name}</Menu.Item>
           <Menu.Item key="2">{role}</Menu.Item>
           <Menu.Item key="3"><Link onClick={() => deleteHandler(id)} to='/'>Выйти</Link></Menu.Item>
-          <Menu.Item key="4"><Link to='/homepage'>Личный кабинет</Link></Menu.Item>
+          <Menu.Item key="4"><Link to={`/homepage/user/${id}`} onClick={() => setDoctor(id)}>Личный кабинет</Link></Menu.Item>
         </Menu>
       </Header>
     </Layout>

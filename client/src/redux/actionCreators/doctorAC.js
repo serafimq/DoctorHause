@@ -1,27 +1,22 @@
-import {SET_DOCTORS, ADD_DOCTOR} from '../types/doctorTypes'
+import {SET_DOCTORS, ADD_DOCTOR, SET_ONEDOCTOR} from '../types/doctorTypes'
 import axios from 'axios'
 
-const setAllDoctors = (doctors) => {
-  return {
-    type: SET_DOCTORS,
-    payload: doctors
-  }
+
+export const setOneDoctorThunk = (id) => async (dispatch) => {
+ 
+  const result = await axios(`http://localhost:3006/api/v1/user/homepage/${id}`);
+  // console.log(result.data);
+  // dispatch(setOneDoctor(result.data))
+  dispatch({
+    type: SET_ONEDOCTOR,
+    payload: result.data
+  })
 }
 
-const addDoctor = (doctor) => {
-  return {
+export const updateDoctorThunk = (doctor, id) => async (dispatch) => {
+  const result = await axios.post(`http://localhost:3006/api/v1/user/homepage/${id}`, {doctor, id} );
+  dispatch ({
     type: ADD_DOCTOR,
-    payload: doctor
-  }
-}
-
-export const setAllDoctorsThunk = () => async (dispatch) => {
-  const result = await axios('http://localhost:3006/api/v1/user/doctors');
-  dispatch(setAllDoctors(result.data))
-}
-
-export const addDoctorThunk = (doctor) => async (dispatch) => {
-  console.log(doctor);
-  const result = await axios.post('http://localhost:3006/api/v1/user/doctors',  doctor );
-  dispatch(addDoctor(result.data))
+    payload: result
+  })
 }

@@ -5,28 +5,23 @@ import { UserOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
 import FormDoctor from '../FormDoctor/FormDoctor';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateDoctorThunk } from '../../redux/actionCreators/doctorAC'
-import { useParams } from 'react-router';
-import { FeedBack } from './FeedBack/FeedBack';
+import { addDoctorThunk } from '../../redux/actionCreators/doctorAC'
 
-const CardDoctorPage = () => {
-  const doctor = useSelector(state => state.doctor)
 
+export const cardDoctor = () => {
+  const [modal1Visible, setModal1Visible] = useState(false)
   const dispatch = useDispatch()
+
   useEffect(() => {
-    dispatch(updateDoctorThunk())
+    dispatch(addDoctorThunk())
   }, [dispatch])
 
-  const [modal1Visible, setModal1Visible] = useState(false)
   function visibleModal() {
     setModal1Visible(!modal1Visible)
   }
-
-  return (
-    <div className="site-card-wrapper">
-      <Row align="middle" justify="center" gutter={1}>
-        <Col span={6}>
-          <Card title={doctor.name} bordered={false}>
+  return(
+<Col span={6}>
+          <Card title="Абрамсон Сара Вениаминовна" bordered={false}>
             <Avatar src='http://cdn.fishki.net/upload/post/2019/07/15/3032379/tn/5823b4c01cefdd7191cb68ad0ec11dca.jpg' size={150} icon={<UserOutlined />} />
             <Row></Row>
             <Rate allowHalf defaultValue={2.5} />
@@ -36,31 +31,60 @@ const CardDoctorPage = () => {
           <Card title="Информация" bordered={false}>
             <ul >
               <li className={style.lishka}>
-                Специализация: {doctor.spec}
-              </li >
+                Специализация: Акушер
+            </li >
               <li className={style.lishka}>
-                Стаж: {doctor.stage}
-              </li>
+                Стаж: Высшая категория
+            </li>
               <li className={style.lishka}>
-                Телефон для записи: +7 {doctor.phone}
-              </li>
+                Телефон для записи: +7-926-345-56-77
+            </li>
               <li className={style.lishka}>
-                email: {doctor.email}
-              </li>
+                email: sara1997@mail.ru
+            </li>
               <li className={style.lishka}>
-                Метро: {doctor.metro}
-              </li>
+                Метро: Новокузнецкая
+            </li>
               <li className={style.lishka}>
-                Стоимость приемa: {doctor.price} p.
+                Стоимость приемы: 100$
             </li>
             </ul>
             <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
             <Card title="Отзывы о враче" bordered={false}>
               <Row className={style.feedback}>
- 
-                {doctor.feedback.length > 0? doctor.feedback.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
-                  : <p>Отзовы об этом враче отсутствуют</p> 
-                }
+                <Col>
+                  <Col>
+                    Зайцева Марина Сергеевна
+                </Col>
+                  <Col>
+                    <Rate allowHalf defaultValue={5.0} />
+                  </Col>
+                  Почему ребенок чёрный?
+              </Col>
+              </Row>
+
+              <Row className={style.feedback}>
+                <Col>
+                  <Col>
+                    Второй пациент
+                </Col>
+                  <Col>
+                    <Rate allowHalf defaultValue={5.0} />
+                  </Col>
+              Приняла роды у жены и сделала мне массаж простаты!
+              </Col>
+              </Row>
+
+              <Row className={style.feedback}>
+                <Col>
+                  <Col>
+                    Третий пациент
+                </Col>
+                  <Col>
+                    <Rate allowHalf defaultValue={5.0} />
+                  </Col>
+                  С врачом не общалась - рожала в электричке Москва - Мытищи.
+              </Col>
               </Row>
               <hr />
               <Row className={style.feedback}>
@@ -83,11 +107,11 @@ const CardDoctorPage = () => {
             </Modal>
           </Card>
         </Col>
-      </Row>
-    </div>
+
+
+
 
   )
 }
 
-export default CardDoctorPage;
 

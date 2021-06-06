@@ -3,6 +3,10 @@ import { List, Avatar } from 'antd';
 import { Row, Modal, Col } from 'antd';
 import style from './MainPage.module.css'
 import CardDoctorPage from '../cardDoctorPage/cardDoctorPage';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+
 
 const data = [
   {
@@ -54,7 +58,6 @@ export default function MainPage() {
   function visibleModal() {
     setModal1Visible(!modal1Visible)
   }
-
 
   return (
 
