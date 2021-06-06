@@ -13,7 +13,7 @@ function App() {
         <NavBar />
 
         <Switch>
-          <Router exact path="/homepage">
+          <Router exact path="/homepage/:id">
             <Homepage />
           </Router>
 

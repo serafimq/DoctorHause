@@ -1,4 +1,3 @@
-
 import React from 'react'
 import style from './PersonalArea.module.css'
 import { Row, Col } from 'antd';
@@ -7,9 +6,9 @@ import CardProfile from './CardProfile/CardProfile';
 import ResultModal from '../ResultModal/ResultModal';
 
 
+
 const PersonalArea = () => {
 
-  
   return (
     <>
       <div className={style.calendar}>
@@ -22,7 +21,6 @@ const PersonalArea = () => {
             </Col>
         </Row>
       </div>
-      <ResultModal/>
     </>
   )
 }

@@ -8,6 +8,7 @@ import {
   FileTextOutlined,
   CompassOutlined
 } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
 
 const { SubMenu } = Menu;
 
@@ -15,6 +16,7 @@ const NavProfile = () => {
 
   const [mode, setMode] = React.useState('inline');
   const [theme, setTheme] = React.useState('light');
+  const id = useSelector(state => state.user.id)
 
   return (
     <>
@@ -28,7 +30,7 @@ const NavProfile = () => {
         theme={theme}
       >
         <Menu.Item className={style.item} key="1" icon={<CalendarOutlined />}>
-          <Link className={style.link} to='/homepage'>Календарь</Link>
+          <Link className={style.link} to={`/homepage/${id}`}>Календарь</Link>
         </Menu.Item>
         <Menu.Item className={style.item} key="2" icon={<HistoryOutlined /> }>
           История

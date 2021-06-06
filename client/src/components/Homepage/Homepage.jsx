@@ -7,13 +7,14 @@ import CardDoctorPage from '../cardDoctorPage/cardDoctorPage'
 import PersonalArea from './PersonalArea/PersonalArea'
 
 const Homepage = () => {
-  const role = useSelector(state => state.user.role) 
+  const role = useSelector(state => state.user.role)
   return (
     <div>
-      {role !== 'doctor'  ? 
-      <PersonalArea />
-      :
-      <CardDoctorPage/>
+      {role !== 'doctor' ?
+
+        <PersonalArea />
+        :
+        <CardDoctorPage />
       }
     </div>
   )

@@ -3,15 +3,16 @@ import { Calendar, Badge, Row, Col } from 'antd';
 import style from './CalendarPage.module.css'
 import CalendarModal from '../CalendarModal/CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllEvents } from '../../../../redux/actionCreators/eventsAC';
+import { setAllEvents, getOneEventThunk } from '../../../../redux/actionCreators/eventsAC';
 
 const CalendarPage = () => {
 
-  const events = useSelector(state => state.events) 
-
+  const events = useSelector(state => state.events)
+  const id = useSelector(state => state.user.id)
+   
   const dispatch = useDispatch()
-   useEffect(() => {
-    dispatch(setAllEvents())
+  useEffect(() => {
+    dispatch(setAllEvents(id))
    }, [])
    
   //  let arr =[]
@@ -123,10 +124,10 @@ const CalendarPage = () => {
           return listData || [];
         
   }
-  
+
   function dateCellRender(value) {
     const listData = getListData(value);
-    
+
     return (
       <ul  className={style.events}>
         {listData.map(item => (
@@ -142,20 +143,51 @@ const CalendarPage = () => {
       </ul>
     );
   }
-  
+
   const clickDate = (value) => {
     console.log(value.date(), value.month(), value.year());
-    
+    const yearStr = value.year().toString()
+    const monthStr = value.month().toString()
+    const dateStr = value.date().toString()
+    console.log('dateStr', dateStr);
+    console.log('monthStr', monthStr);
+    console.log('yearStr', yearStr);
+
+    let fullDate;
+    if (monthStr.length == 1 && dateStr.length == 1) {
+      console.log(1);
+      fullDate = yearStr + '/0' + monthStr + '/0' + dateStr
+      console.log('fullDate', fullDate);
+      dispatch(getOneEventThunk({ date: fullDate }))
+    }
+    if (monthStr.length == 2 && dateStr.length == 1) {
+      console.log(2)
+      fullDate = yearStr + '/' + monthStr + '/0' + dateStr
+      console.log('fullDate', fullDate);
+      dispatch(getOneEventThunk({ date: fullDate }))
+    }
+    if (monthStr.length == 1 && dateStr.length == 2) {
+      console.log(3)
+      fullDate = yearStr + '/0' + monthStr + '/' + dateStr
+      console.log('fullDate', fullDate);
+      dispatch(getOneEventThunk({ date: fullDate }))
+    }
+    if (monthStr.length == 2 && dateStr.length == 2) {
+      console.log(4)
+      fullDate = yearStr + '/' + monthStr + '/' + dateStr
+      console.log('fullDate', fullDate);
+      dispatch(getOneEventThunk({ date: fullDate }))
+    }
   }
 
   return (
     <div className={style.calendar_box}>
-      <Calendar className={style.calendar}
-      dateCellRender={dateCellRender}  
-      onChange={clickDate} />
+      <Calendar
+        dateCellRender={dateCellRender}
+        onChange={clickDate} />
       <Row >
         <Col className={style.button_form} span={6} >
-          <CalendarModal />
+          <CalendarModal setEvent={(e) => console.log(e)} />
         </Col>
       </Row>
     </div>

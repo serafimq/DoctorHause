@@ -12,6 +12,7 @@ require('./ServDB/config-passport');
 
 const apiRouterUser = require('./routes/apiRouterUser');
 const apiRouterEvents = require('./routes/apiRouterEvents');
+const apiRouterHomepage = require('./routes/apiRouterHomepage');
 
 const app = express();
 
@@ -28,12 +29,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags: 'a' }) }));
 app.use(fileUpload())
+
+
 app.use('/api/v1/user', apiRouterUser);
 app.use('/api/v1/events', apiRouterEvents);
+app.use('/api/v1/homepage', apiRouterHomepage);
 
 app.post('/file', (req, res) => {
 
-  const {image} = req.files
+  const { image } = req.files
   console.log('image', image);
 
   if (!fs.existsSync(`${__dirname}/client/public/img/${image.name}`.replace("/server", ""))) {

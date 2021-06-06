@@ -29,6 +29,8 @@ const config = {
 
 const  CalendarModal = () => {
 
+  const user = useSelector(state => state.user)
+
   const dispatch = useDispatch()
   const [values, changeHandler] = useFormModal()
 
@@ -50,7 +52,8 @@ const  CalendarModal = () => {
       beforeSent = { ...values, dateTime: values.dateTime.format('YYYY/MM/DD HH:mm') }
     }
     console.log('Success:', beforeSent);
-    dispatch(addEventsAxiox(beforeSent))
+    
+    dispatch(addEventsAxiox(beforeSent, user.id))
     visibleModal()
   };
 

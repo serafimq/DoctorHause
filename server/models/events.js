@@ -9,6 +9,11 @@ const eventSchema = new Schema({
   comment: String,
   dateTime: Date,
   num: Number,
+  creator: 
+  {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 const Events = model('Events', eventSchema)

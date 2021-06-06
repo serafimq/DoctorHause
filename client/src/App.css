@@ -95,3 +95,20 @@ figure {
 	box-shadow: 0 4px 4px #666;
 	transition: all 0.3s ease-in-out 0s;
 }
+
+.ant-picker-calendar {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum', "tnum";
+  background: #fff;
+  border: 12px solid #fff;
+  border-radius: 35px;
+  background: #b9c7fc;
+  box-shadow: -25px 25px 50px #8e99c2, 25px -25px 50px #e4f5ff;
+}
