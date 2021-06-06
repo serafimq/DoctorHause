@@ -3,11 +3,11 @@ const apiRouterEvents = require('express').Router();
 const { setAllEvents, addEvent, findOneEvent } = require('../controllers/eventsController')
 
 
-apiRouterEvents.route('/')
+apiRouterEvents.route('/:id')
   .get(setAllEvents)
   .post(addEvent)
 
-  apiRouterEvents.route('/oneEvent')
+  apiRouterEvents.route('/:id/oneEvent')
   .post(findOneEvent)
 
 

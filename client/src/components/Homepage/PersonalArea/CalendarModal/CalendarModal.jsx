@@ -15,15 +15,15 @@ import { addEventsAxiox } from '../../../../redux/actionCreators/eventsAC';
 const { Option } = Select;
 
 
-const config = {
-  rules: [
-    {
-      type: 'object',
-      required: true,
-      message: 'Please select time!',
-    },
-  ],
-};
+// const config = {
+//   rules: [
+//     {
+//       type: 'object',
+//       required: true,
+//       message: 'Please select time!',
+//     },
+//   ],
+// };
 
 
 const  CalendarModal = () => {

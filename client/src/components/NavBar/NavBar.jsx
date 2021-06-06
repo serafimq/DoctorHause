@@ -6,11 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function NavBar() {
   const { Header } = Layout;
-
-  const user = useSelector(state => state.user)
-
+  // const id = useSelector(state => state.user._id)
   const id = useSelector(state => state.user.id)
-  console.log('id-----------------------', id);
+
+
   const dispatch = useDispatch()
 
   const deleteHandler = async (id) => {

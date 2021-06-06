@@ -9,9 +9,7 @@ import { useSelector } from 'react-redux';
 const PersonalArea = () => {
 
   const user = useSelector(state => state.user)
-  console.log(user.id, 'user.id')
-  console.log(user._id, 'user._id')
-
+  
   return (
     <>
       <div>

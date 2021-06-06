@@ -4,11 +4,8 @@ const Events = require("../models/events")
 const setAllEvents = async (req, res) => {
   console.log(req.params, 'req.params');
   const {id} = req.params
-  console.log('id', id);
   const allEvents = await Events.find()
-  console.log('allEvents', allEvents);
   const filterEvent = allEvents.filter(el => el.creator == id)
-  console.log('filerEvent', filterEvent);
   res.json(filterEvent)
 }
 const addEvent = async (req, res) => {
@@ -46,13 +43,19 @@ const addEvent = async (req, res) => {
 
 const findOneEvent = async (req, res) => {
   const {id} = req.params
-  console.log(id, 'id');
   const {date} = req.body
-  console.log(date);
-  const allEvent = await Events.find()
-  console.log('allEvent', allEvent)
-  const onePersonEvent = allEvent.filter(el => el.creator == id)
-  console.log(onePersonEvent, 'onePersonEvent');
+  try {
+    const allEvent = await Events.find()
+    const onePersonEvent = allEvent.filter(el => el.creator == id)
+    console.log('onePersonEvent', onePersonEvent)
+    const dataString = onePersonEvent.filter(el => el.dateTime.toISOString().slice(0, 10).replace('-', '/').replace('-', '/') == date)
+    console.log('dataString', dataString);
+    return res.json({arr: dataString})
+  } catch (error) {
+    console.log('Ошибка в загрузке конкретных записей', error);
+  }
+  
+
 
 }
 

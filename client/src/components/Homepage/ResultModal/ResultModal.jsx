@@ -6,7 +6,7 @@ import {
 } from 'antd';
 
 
-function ResultModal() {
+function ResultModal({idEvent}) {
 
   const [componentSize, setComponentSize] = useState('default');
 
@@ -23,7 +23,7 @@ function ResultModal() {
   return (
     <>
       <Button type="primary" onClick={() => visibleModal()}>
-        Add result
+        Добавить результат посещения
       </Button>
       <Modal
         title="Добавить результат"
@@ -33,7 +33,7 @@ function ResultModal() {
         onCancel={() => visibleModal()}
         width={800}
       >
-      <ResultForm visibleModal={visibleModal}/>
+      <ResultForm idEvent={idEvent} visibleModal={visibleModal}/>
         </Modal>
         </>
   )
