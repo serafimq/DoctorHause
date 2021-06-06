@@ -42,12 +42,18 @@ const addEvent = async (req, res) => {
 
 const findOneEvent = async (req, res) => {
   const { id } = req.params
-
   const { date } = req.body
+  try {
+    const allEvent = await Events.find()
+    const onePersonEvent = allEvent.filter(el => el.creator == id)
+    console.log('onePersonEvent', onePersonEvent)
+    const dataString = onePersonEvent.filter(el => el.dateTime.toISOString().slice(0, 10).replace('-', '/').replace('-', '/') == date)
+    console.log('dataString', dataString);
+    return res.json({ arr: dataString })
+  } catch (error) {
+    console.log('Ошибка в загрузке конкретных записей', error);
+  }
 
-  const allEvent = await Events.find()
-
-  const onePersonEvent = allEvent.filter(el => el.creator == id)
 
 
 }

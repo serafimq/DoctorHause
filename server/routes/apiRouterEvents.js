@@ -7,7 +7,7 @@ apiRouterEvents.route('/:id')
   .get(setAllEvents)
   .post(addEvent)
 
-apiRouterEvents.route('/oneEvent')
+apiRouterEvents.route('/:id/oneEvent')
   .post(findOneEvent)
 
 

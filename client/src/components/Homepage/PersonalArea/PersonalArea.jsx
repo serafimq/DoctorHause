@@ -8,7 +8,7 @@ import ResultModal from '../ResultModal/ResultModal';
 
 
 const PersonalArea = () => {
-
+  
   return (
     <>
       <div className={style.calendar}>

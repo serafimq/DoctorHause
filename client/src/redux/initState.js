@@ -7,6 +7,7 @@ const initState = () => {
     },
     events: [],
     avatar: null,
+    history: [],
   }
   const fromLS = JSON.parse(window.localStorage.getItem('DoctorHause'))
   return fromLS ? fromLS : state

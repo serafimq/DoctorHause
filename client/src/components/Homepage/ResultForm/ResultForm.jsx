@@ -11,10 +11,13 @@ import {
 } from 'antd';
 
 import axios from 'axios'
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux';
+import { addOneHistoryThunk } from '../../../redux/actionCreators/historyAC';
 
-function ResultForm({ visibleModal }) {
+function ResultForm({ visibleModal, idEvent }) {
+
+  const id = useSelector(state => state.user.id)
+  console.log('idididid', id);
 
 
   const [componentSize, setComponentSize] = useState('default');
@@ -51,15 +54,15 @@ function ResultForm({ visibleModal }) {
     setComponentSize(size);
   };
 
-  const checkPrice = (_, value) => {
-    if (value.number > 0) {
-      return Promise.resolve();
-    }
+  // const checkPrice = (_, value) => {
+  //   if (value.number > 0) {
+  //     return Promise.resolve();
+  //   }
 
-    return Promise.reject(new Error('Сумма должна быть больше 0'));
-  };
+  //   return Promise.reject(new Error('Сумма должна быть больше 0'));
+  // };
 
-  const [formData, setFormData] = useState({});
+  // const [formData, setFormData] = useState({});
 
   // function onChange(value, dateString) {
   //   if (value) {
@@ -70,14 +73,15 @@ function ResultForm({ visibleModal }) {
   //   }
   // }
 
+  const dispatch = useDispatch()
+
   const onFinish = (values) => {
-    console.log(111);
     let beforeSent;
-    if (values['dateTime']) {
-      beforeSent = { ...values, dateTime: values.dateTime.format('YYYY/MM/DD HH:mm') }
+    if (values['nextDateTime']) {
+      beforeSent = { ...values, nextDateTime: values.nextDateTime.format('YYYY/MM/DD HH:mm') }
     }
     console.log('Success:', beforeSent);
-    // setEvent(beforeSent)
+    dispatch(addOneHistoryThunk(beforeSent, id, idEvent))
     visibleModal()
   };
 
@@ -112,7 +116,7 @@ function ResultForm({ visibleModal }) {
     try {
       const response = await axios.post("http://localhost:3006/file", fmData, config);
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         message.success(`file uploaded successfully.`);
         onSuccess("Ok");
         console.log("server res: ", response);
@@ -143,10 +147,7 @@ function ResultForm({ visibleModal }) {
   // }
 
   const handleOnChange = ({ file, fileList, event }) => {
-    // console.log(file, fileList, event);
-    //Using Hooks to update the state to the current filelist
     setDefaultFileList(fileList);
-    //filelist - [{uid: "-1",url:'Some url to image'}]
   };
 
 
@@ -202,7 +203,7 @@ function ResultForm({ visibleModal }) {
           </Upload.Dragger> */}
         </Form.Item>
       </Form.Item>
-      <Form.Item name="dateTime" label="Дата и время следующего посещения" >
+      <Form.Item name="nextDateTime" label="Дата и время следующего посещения" >
         <DatePicker
           format={"YYYY/MM/DD HH:mm"}
           showTime

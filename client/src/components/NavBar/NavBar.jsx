@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function NavBar() {
   const { Header } = Layout;
-
+  // const id = useSelector(state => state.user._id)
   const id = useSelector(state => state.user.id)
   
   const dispatch = useDispatch()
