@@ -8,9 +8,8 @@ const session = require('express-session');
 const { sessionConfig } = require('./ServDB/config');
 const { createErr, cathErrAndSendAnswer } = require('./middleware/checkErrors');
 const fileUpload = require("express-fileupload")
-const passport = require('passport');
 
-require('./ServDB/config-passport');
+
 
 const apiRouterUser = require('./routes/apiRouterUser');
 const apiRouterEvents = require('./routes/apiRouterEvents');
@@ -20,9 +19,6 @@ const apiRouterHistory = require('./routes/apiRouterHistory');
 const Avatar = require('./models/avatar');
 
 const app = express();
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.set('trust proxy', 1);
 app.set('cookieName', 'connect.sid');

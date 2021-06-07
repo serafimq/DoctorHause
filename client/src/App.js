@@ -3,11 +3,13 @@ import Homepage from './components/Homepage/Homepage';
 import MainPage from './components/MainPage/MainPage';
 import NavBar from './components/NavBar/NavBar';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import SignUp from './components/UserForms/SignUp';
+import SignUpChoose from './components/UserForms/SignUpChoose';
 import SignIn from './components/UserForms/SignIn';
 import History from './components/History/History';
 import MapPage from './components/MapPage/MapPage';
 
+import SignUpDoctor from './components/UserForms/SignUpDoctor';
+import SignUpPatient from './components/UserForms/SignUpPatient';
 
 function App() {
 
@@ -17,13 +19,12 @@ function App() {
         <NavBar />
         <Switch>
 
-
           <Route exact path="/homepage/history/:id">
             <History />
           </Route>
 
           <Route exact path="/signup">
-            <SignUp />
+            <SignUpChoose />
           </Route>
 
           <Route exact path="/signin">
@@ -34,9 +35,12 @@ function App() {
             <MainPage />
           </Route>
 
-          {/* <Route exact path="/homepage/calendar/:id">
-            <Homepage />
-          </Route> */}
+          <Route exact path="/signupdoctor">
+            <SignUpDoctor />
+          </Route>
+          <Route exact path="/signuppatient">
+            <SignUpPatient />
+          </Route>
 
           <Route exact path="/homepage/map/:id">
             <MapPage />
