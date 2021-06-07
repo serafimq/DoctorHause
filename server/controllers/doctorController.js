@@ -2,8 +2,9 @@ const User = require('../models/user')
 
 const addDoctors = async (req, res) => {
   const { spec, price, name, stage, phone, metro } = req.body.doctor
-
+  
   const currentUser = await User.findById(req.body.id)
+  console.log(req.body.id);
   const updateUser = await currentUser.updateOne({
     spec, name, stage, phone, metro, price
   })

@@ -26,7 +26,7 @@ const userSchema = new Schema({
   metro: String,
   price: Number,
   stars: Number,
-  feedback: [{
+  feedBack: [{
     author: String,
     text: String,
     stars: Number
