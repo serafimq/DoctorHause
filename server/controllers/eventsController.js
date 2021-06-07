@@ -12,7 +12,8 @@ const setAllEvents = async (req, res) => {
 const addEvent = async (req, res) => {
   try {
     const { event, id } = req.body;
-    const { hospital,
+    const { problem,
+      hospital,
       firstLastName,
       specialization,
       address,
@@ -24,6 +25,7 @@ const addEvent = async (req, res) => {
 
     if (event) {
       const newEvent = await Events.create({
+        problem,
         hospital,
         firstLastName,
         specialization,

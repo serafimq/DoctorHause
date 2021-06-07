@@ -3,7 +3,7 @@ pluralize(null);
 
 const historySchema = new Schema({
   prescription: String,
-  // file: String,
+  imagePath: Array,
   nextDateTime: Date,
   analyzes: String,
   price: String,

@@ -5,6 +5,8 @@ import NavBar from './components/NavBar/NavBar';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './components/UserForms/SignUp';
 import SignIn from './components/UserForms/SignIn';
+import History from './components/History/History';
+import MapPage from './components/MapPage/MapPage';
 
 function App() {
   return (
@@ -13,29 +15,37 @@ function App() {
         <NavBar />
 
         <Switch>
-          <Router exact path="/homepage/:id">
-            <Homepage />
-          </Router>
+          <Route exact path="/homepage/history/:id">
+          <History/>
+          </Route>
 
-          <Router exact path="/signup">
+          <Route exact path="/signup">
             <SignUp />
-          </Router>
+          </Route>
 
-          <Router exact path="/signin">
+          <Route exact path="/signin">
             <SignIn />
-          </Router>
+          </Route>
+
 
           <Route exact path="/">
             <MainPage />
           </Route>
 
-          <Route exact path="/homepage/calendar">
+          {/* <Route exact path="/homepage/calendar/:id">
+            <Homepage />
+          </Route> */}
+
+          <Route exact path="/homepage/map/:id">
+            <MapPage />
+          </Route>
+          
+          <Route exact path="/homepage/:id">
             <Homepage />
           </Route>
 
-          <Route exact path="/homepage/history">
 
-          </Route>
+
           <Route exact path="/">
 
           </Route>

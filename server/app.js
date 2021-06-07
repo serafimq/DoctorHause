@@ -35,7 +35,7 @@ app.use('/api/v1/user', apiRouterUser);
 app.use('/api/v1/events', apiRouterEvents);
 app.use('/api/v1/homepage', apiRouterHomepage);
 app.use('/api/v1/history', apiRouterHistory);
-
+app.use('/api/v1/map', );
 
 app.post('/file', (req, res) => {
 
@@ -47,6 +47,7 @@ app.post('/file', (req, res) => {
     const location2 = `${__dirname}/public/img/${image.name}`
     image.mv(location)
     image.mv(location2)
+    
   }
   // res.json({imagePath: image.name})
   return res.sendStatus(200)

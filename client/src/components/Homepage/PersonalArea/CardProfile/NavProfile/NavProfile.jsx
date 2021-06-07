@@ -32,18 +32,18 @@ const NavProfile = () => {
         <Menu.Item className={style.item} key="1" icon={<CalendarOutlined />}>
           <Link className={style.link} to={`/homepage/${id}`}>Календарь</Link>
         </Menu.Item>
-        <Menu.Item className={style.item} key="2" icon={<HistoryOutlined /> }>
-          История
+        <Menu.Item className={style.item} key="2" icon={<HistoryOutlined />}>
+          <Link to={`/homepage/history/${id}`}>История</Link>
         </Menu.Item>
         <Menu.Item className={style.item} key="3" icon={<FileTextOutlined />}>
           Курс лечения
         </Menu.Item>
         <Menu.Item className={style.item} key="4" icon={<CompassOutlined />}>
-          Карта
+          <Link to={`/homepage/map/${id}`}>Карта</Link>
         </Menu.Item>
       </Menu>
     </>
- 
+
   )
 }
 

@@ -1,10 +1,10 @@
-const { addOneHistoryAxios } = require('../controllers/historyController');
+const { addOneHistoryAxios, setAllHistoryAxios,  } = require('../controllers/historyController');
 
 const apiRouterHistory = require('express').Router();
 
 
 apiRouterHistory.route('/:id')
-  // .get(setAllEvents)
+  .get(setAllHistoryAxios)
   .post(addOneHistoryAxios)
 
 
