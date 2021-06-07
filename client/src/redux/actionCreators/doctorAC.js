@@ -1,14 +1,7 @@
-import { SET_DOCTORS, ADD_DOCTOR, SET_ONEDOCTOR } from '../types/doctorTypes'
+import { ADD_DOCTOR, CLEAR_DOCTOR, SET_ONEDOCTOR } from '../types/doctorTypes'
 import axios from 'axios'
 
-export const setAllDoctorThunk = () => async (dispatch) => {
-  const result = await axios(`http://localhost:3006/api/v1/doctors`);
-  dispatch({
-    type: SET_DOCTORS,
-    payload: result.data
 
-  })
-}
 
 export const setOneDoctorThunk = (id) => async (dispatch) => {
   const result = await axios(`http://localhost:3006/api/v1/doctors/${id}`);
@@ -24,4 +17,11 @@ export const updateDoctorThunk = (doctor, id) => async (dispatch) => {
     type: ADD_DOCTOR,
     payload: result
   })
+}
+
+export const clearDoctor = () => {
+  return {
+    type: CLEAR_DOCTOR,
+    payload: {}
+  }
 }

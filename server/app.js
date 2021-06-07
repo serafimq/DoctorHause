@@ -33,13 +33,8 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags: 'a' }) }));
 app.use(fileUpload())
 
-app.use('/api/v1/doctors', apiRouterDoctor)
-app.use('/api/v1/user', apiRouterUser);
-app.use('/api/v1/events', apiRouterEvents);
-app.use('/api/v1/homepage', apiRouterHomepage);
-app.use('/api/v1/history', apiRouterHistory);
-
 app.post('/api/v1/homepage/:id', async (req, res) => {
+  console.log('Start foto3');
 
   const { id } = req.params
   const { image } = req.files
@@ -48,16 +43,27 @@ app.post('/api/v1/homepage/:id', async (req, res) => {
 
   image.mv(userAvatarPath)
   const oldAvatar = await Avatar.findOne({ user: id })
-  await Avatar.findByIdAndDelete(oldAvatar._id)
+
+  console.log(oldAvatar)
+
+
+  if (oldAvatar !== null) {
+    await Avatar.findByIdAndDelete(oldAvatar._id)
+  }
 
   const newAvatar = await Avatar.create({
     avatar: avatarPath,
     user: id
   })
-  console.log(newAvatar)
 
   res.json(newAvatar)
 })
+app.use('/api/v1/doctors', apiRouterDoctor)
+app.use('/api/v1/user', apiRouterUser);
+app.use('/api/v1/events', apiRouterEvents);
+app.use('/api/v1/history', apiRouterHistory);
+app.use('/api/v1/homepage', apiRouterHomepage);
+
 
 
 // app.use('/api/v1/map', );

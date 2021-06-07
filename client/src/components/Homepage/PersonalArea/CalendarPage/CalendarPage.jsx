@@ -11,109 +11,11 @@ const CalendarPage = () => {
   const events = useSelector(state => state.events)
   const id = useSelector(state => state.user.id)
    
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setAllEvents(id))
    }, [])
-   
-
-   function name(params) {
-     
-     //  let arr =[]
-     //  for (let i = 1; i <= 31; i++) {
-     //    arr.push({i: events.filter(el => el.num === 1)})
-     //  }
-     
-       // const filter = Array(12).fill(Array(31).fill([])) 
-   
-       // events.forEach(el => {
-       //   if (el.month) {
-       //     filter[el.month][el.day - 1] = [...filter[el.month][el.day - 1], el]
-           // console.log(filter[el.month], el.month, "this month");
-           // console.log(filter[el.month][el.day - 1], el.month, el.day - 1);
-       //   }
-       // })
-       // const filter1 = events.filter(el => el.num === 1)
-       // const filter2  
-   
-     // function getListData(value) {
-     //   if (filter[value.month()]) {
-     //     // console.log(value.month(), value.date(), "aaaaaa", filter[value.month()][value.date() - 1]);
-     //     return filter[value.month()][value.date() - 1]
-     //   } 
-     //   return []
-       // console.log(value.date(), value.month());
-         // let listData;
-         // switch (value.date()) {
-         //   case 1: listData = filter1 
-         //   break;
-         //   case 2: listData = filter2
-         //     break;
-         //   case 3: listData = filter3
-         //     break;
-         //   case 4: listData = filter4
-         //     break;
-         //   case 5: listData = filter5
-         //     break;
-         //   case 6: listData = filter6
-         //     break;
-         //   case 7: listData = filter7
-         //     break;
-         //   case 8: listData = filter8
-         //     break;
-         //   case 9: listData = filter9
-         //     break;
-         //   case 10: listData = filter10
-         //     break;
-         //   case 11: listData = filter11
-         //     break;
-         //   case 12: listData = filter12
-         //     break;
-         //   case 13: listData = filter13
-         //     break;
-         //   case 14: listData = filter14
-         //     break;
-         //   case 15: listData = filter15
-         //     break;
-         //   case 16: listData = filter16
-         //     break;
-         //   case 17: listData = filter17
-         //     break;
-         //   case 18: listData = filter18
-         //     break;
-         //   case 19: listData = filter19
-         //     break;
-         //   case 20: listData = filter20
-         //     break;
-         //   case 21: listData = filter21
-         //     break;
-         //   case 22: listData = filter22
-         //     break;
-         //   case 23: listData = filter23
-         //     break;
-         //   case 24: listData = filter24
-         //     break;
-         //   case 25: listData = filter25
-         //     break;
-         //   case 26: listData = filter26
-         //     break;
-         //   case 27: listData = filter27
-         //     break;
-         //   case 28: listData = filter28
-         //     break;
-         //   case 29: listData = filter29
-         //     break;
-         //   case 30: listData = filter30
-         //     break;
-         //   case 31: listData = filter31
-         //     break;
-          
-         //     default:
-         //     }
-         //     return listData || [];
-           
-     // }
-   }
 
   function dateCellRender(value) {
     const listData = events.filter(i => i.date === value.format('YYYY-MM-DD'));
@@ -178,8 +80,6 @@ const CalendarPage = () => {
     modalCardOpen()
   }
 
-  console.log(events, 'events');
-
   return (
     <>
       <div className={style.calendar_box}>
@@ -190,7 +90,6 @@ const CalendarPage = () => {
         />
         <Row >
           <Col className={style.button_form} span={6} >
-
             <CalendarModal setEvent={(e) => console.log(e)} />
           </Col>
         </Row>

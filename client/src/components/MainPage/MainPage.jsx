@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { List, Avatar } from 'antd';
-import { Row, Modal, Col, Affix, Button, Divider } from 'antd';
+import { Row, Modal, Col  } from 'antd';
 import style from './MainPage.module.css'
 import CardDoctorPage from '../cardDoctorPage/cardDoctorPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllDoctorThunk, setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
+import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
+import { setAllDoctorThunk } from '../../redux/actionCreators/doctorsAC'
+import CardsDoctor from './CardsDoctor/CardsDoctor';
 
 export default function MainPage() {
   const dispatch = useDispatch()
@@ -14,20 +15,7 @@ export default function MainPage() {
 
   const doctors = useSelector(state => state.doctors)
 
-  const [modal1Visible, setModal1Visible] = useState(false)
-
-  function visibleModal(id) {
-    setModal1Visible(!modal1Visible)
-  }
-
-  const openModal = (e) => {
-    dispatch(setOneDoctorThunk(e.id))
-    visibleModal()
-  }
-
-  const closeModal = () => {
-    visibleModal()
-  }
+  
 
   return (
     <Row>
@@ -52,25 +40,16 @@ export default function MainPage() {
         </div>
       </Col>
       <Col span={18} pull={6} className={style.colCentre}>
-        <Row justify="center">
-          <Col span={12} pull={0} justify="center">  {doctors.map(item => <li className={style.radius} id={item._id} onClick={(e) => {
-            openModal(e.target)
-          }}> {item.name} {item.spec}
-            <Modal
-              justify="center"
-              title="Информация о враче"
-              style={{ top: 20 }}
-              visible={modal1Visible}
-              onOk={(e) => openModal(e)}
-              onCancel={() => closeModal()}
-              width={900}
-            >
-              <CardDoctorPage />
-            </Modal>
-          </li>)}</Col>
-
+        <Row  justify="center">
+          <Col className={style.card_doc} span={12} pull={0} justify="center"> 
+           {doctors.map(item => <CardsDoctor 
+           id={item._id} 
+           key={item._id}
+           item={item}
+           />)}
+          </Col>
         </Row>
-
+        
       </Col>
     </Row>
 

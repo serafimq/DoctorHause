@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearAvatar } from '../../redux/actionCreators/avatarAC';
 import { clearHistory } from '../../redux/actionCreators/historyAC';
 import { clearEvents } from '../../redux/actionCreators/eventsAC';
+import { clearDoctor } from '../../redux/actionCreators/doctorAC';
 
 
 export default function NavBar() {
@@ -20,6 +21,7 @@ export default function NavBar() {
     dispatch(clearEvents())
     dispatch(clearAvatar())
     dispatch(clearHistory())
+    dispatch(clearDoctor())
   }
 
   const isAuth = useSelector(state => state.user.isAuth)
@@ -42,8 +44,11 @@ export default function NavBar() {
     </Layout>
     :
     <Layout className="layout">
-      <Header>
-        <div className="logo" />
+      <Header className={style.header}>
+        <div className={style.logo} >
+        <Link to='/'>DHouse</Link>
+      </div >
+        <div className="menu" />
         <Menu mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link to='/signup'>Регистрация</Link></Menu.Item>

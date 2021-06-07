@@ -18,7 +18,7 @@ const Foto = () => {
   }, [])
 
   const fileSelectedHandler = e => {
-    // dispatch(uploadAvatar(e.target.files[0]))
+    console.log('Start foto');
     dispatch(addNewAvatarAxios(e.target.files[0], user.id))
   }
   // const fileUploadHandler = (e) => {

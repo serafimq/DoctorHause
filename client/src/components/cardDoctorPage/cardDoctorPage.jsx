@@ -14,10 +14,10 @@ const CardDoctorPage = () => {
   const doctor = useSelector(state => state.doctor)
   // const [feedBack, setFeedBack] = useState ({})
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(setOneDoctorThunk(user.id))
-  }, [])
+  // const dispatch = useDispatch()
+  // useEffect(() => {
+  //   dispatch(setOneDoctorThunk(user.id))
+  // }, [])
 
   // const { id } = useParams()
   // useEffect(() => {
@@ -27,6 +27,7 @@ const CardDoctorPage = () => {
 
 
   const [modal1Visible, setModal1Visible] = useState(false)
+
   function visibleModal() {
     setModal1Visible(!modal1Visible)
   }
@@ -85,6 +86,7 @@ const CardDoctorPage = () => {
             title="Редактировать данные"
             style={{ top: 20 }}
             visible={modal1Visible}
+            onClick={(e) => console.log(e)}
             onOk={() => visibleModal()}
             onCancel={() => visibleModal()}
           >
