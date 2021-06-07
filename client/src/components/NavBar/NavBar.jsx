@@ -4,16 +4,21 @@ import { Layout, Menu } from 'antd';
 import {Link} from 'react-router-dom'
 import { signout } from '../../redux/actionCreators/userAC';
 import { useDispatch, useSelector } from 'react-redux';
+import { clearAvatar } from '../../redux/actionCreators/avatarAC';
+import { clearHistory } from '../../redux/actionCreators/historyAC';
+import { clearEvents } from '../../redux/actionCreators/eventsAC';
 
 export default function NavBar() {
   const { Header } = Layout;
-  // const id = useSelector(state => state.user._id)
   const id = useSelector(state => state.user.id)
   
   const dispatch = useDispatch()
 
   const deleteHandler = async (id) => {
     dispatch(signout(id))
+    dispatch(clearEvents())
+    dispatch(clearAvatar())
+    dispatch(clearHistory())
   }
 
   const isAuth = useSelector(state => state.user.isAuth)

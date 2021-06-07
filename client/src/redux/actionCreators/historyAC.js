@@ -1,4 +1,4 @@
-import { ADD_HISTORY, SET_HISTORY } from '../types/historyTypes'
+import { ADD_HISTORY, SET_HISTORY, CLEAR_HISTORY } from '../types/historyTypes'
 import axios from 'axios'
 
 // const setAllHistoryThunk = (id) => async (dispatch) => {
@@ -26,7 +26,15 @@ const addOneHistory = (history) => {
   }
 }
 
+const clearHistory = () => {
+  return {
+    type: CLEAR_HISTORY,
+    payload: []
+  }
+}
+
 export {
   addOneHistoryThunk,
-  addOneHistory
+  addOneHistory,
+  clearHistory,
 }

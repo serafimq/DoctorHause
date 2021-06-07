@@ -1,9 +1,8 @@
-import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT } from '../types/eventsTypes';
+import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT } from '../types/eventsTypes';
 import axios from 'axios'
 
 const setAllEvents = (id) => async (dispatch) => {
   const response = await axios(`http://localhost:3006/api/v1/events/${id}`)
-  // console.log('response.data', response.data);
   dispatch(setEvents(response.data))
 }
 
@@ -27,17 +26,24 @@ const addEvents = (events) => {
 }
 
 const getOneEventThunk = ({ date, id }) => async (dispatch) => {
-  console.log(date, 'date');
+
   const response = await axios.post(`http://localhost:3006/api/v1/events/${id}/oneEvent`, { date: date })
-  console.log('response.data', response.data);
+
   dispatch(getEvents(response.data.arr))
 }
 
 const getEvents = (events) => {
-  console.log(events, 'events');
+
   return {
     type: GET_ONE_EVENT,
     payload: events
+  }
+}
+
+const clearEvents = () => {
+  return {
+    type: CLEAR_EVENT,
+    payload: []
   }
 }
 
@@ -46,5 +52,6 @@ export {
   setEvents,
   addEventsAxiox,
   addEvents,
-  getOneEventThunk
+  getOneEventThunk,
+  clearEvents,
 }

@@ -1,13 +1,13 @@
 import { SIGNIN, SIGNOUT, SIGNUP } from "../types/userTypes"
 
-export const signup = ({name, role, email, pass}) => async (dispatch) => {
+export const signup = ({ name, role, email, pass }) => async (dispatch) => {
   const response = await fetch('http://localhost:3006/api/v1/user/signup', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     credentials: 'include',
-    body: JSON.stringify({name, role, email, pass})
+    body: JSON.stringify({ name, role, email, pass })
   })
   const newUser = await response.json()
   dispatch(signupAC(newUser))
@@ -26,14 +26,14 @@ export const signupAC = (newUser) => {
   }
 }
 
-export const signin = ({email, pass, role}) => async (dispatch) => {
+export const signin = ({ email, pass, role }) => async (dispatch) => {
   const response = await fetch('http://localhost:3006/api/v1/user/signin', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     credentials: 'include',
-    body: JSON.stringify({email, pass, role})
+    body: JSON.stringify({ email, pass, role })
   })
   const user = await response.json()
   dispatch(signinAC(user))
@@ -58,7 +58,7 @@ export const signout = () => async (dispatch) => {
     headers: {
       "Content-Type": "application/json"
     },
-    credentials: 'include', 
+    credentials: 'include',
   })
   const statusId = response.status
   dispatch(signoutAC(statusId))
@@ -68,7 +68,8 @@ export const signoutAC = () => {
   return {
     type: SIGNOUT,
     payload: {
-      isAuth: false
+      isAuth: false,
+
     }
   }
 }
