@@ -37,6 +37,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags: 'a' }) }));
 app.use(fileUpload())
 
+app.use('/api/v1/doctors', apiRouterDoctor)
 app.use('/api/v1/user', apiRouterUser);
 app.use('/api/v1/events', apiRouterEvents);
 app.use('/api/v1/homepage', apiRouterHomepage);
@@ -62,7 +63,8 @@ app.post('/api/v1/homepage/:id', async (req, res) => {
   res.json(newAvatar)
 })
 
-app.use('/api/v1', apiRouterDoctor);
+
+
 app.post('/file', (req, res) => {
 
   const { image } = req.files

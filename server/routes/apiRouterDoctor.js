@@ -1,14 +1,15 @@
 const apiRouterDoctor = require('express').Router();
-const {addDoctors, setDoctor, setAllDoctors} = require ('../controllers/doctorController')
+const { addDoctors, setDoctor, setAllDoctors } = require('../controllers/doctorController')
 
 
-apiRouterDoctor.route('/homepage/:id')
-  .post(addDoctors)
-  apiRouterDoctor.route('/homepage/:id')
-  .get(setDoctor)
-  apiRouterDoctor.route('/')
+apiRouterDoctor.route('/')
   .get(setAllDoctors)
-  
+
+apiRouterDoctor.route('/:id')
+  .post(addDoctors)
+  .get(setDoctor)
+
+
 
 
 module.exports = apiRouterDoctor
