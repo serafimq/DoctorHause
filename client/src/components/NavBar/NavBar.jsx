@@ -9,10 +9,6 @@ export default function NavBar() {
   const { Header } = Layout;
   const id = useSelector(state => state.user.id)
 
-  const setDoctor = () => {
-    dispatch(setOneDoctorThunk(id))
-  }
-
   const dispatch = useDispatch()
 
   const deleteHandler = async (id) => {
@@ -33,7 +29,7 @@ export default function NavBar() {
           <Menu.Item key="1">{name}</Menu.Item>
           <Menu.Item key="2">{role}</Menu.Item>
           <Menu.Item key="3"><Link onClick={() => deleteHandler(id)} to='/'>Выйти</Link></Menu.Item>
-          <Menu.Item key="4"><Link to={`/homepage/user/${id}`} onClick={() => setDoctor(id)}>Личный кабинет</Link></Menu.Item>
+          <Menu.Item key="4"><Link to={`/homepage/${id}`}>Личный кабинет</Link></Menu.Item>
         </Menu>
       </Header>
     </Layout>

@@ -15,6 +15,15 @@ const setDoctor = async (req, res) => {
   res.json(currentDoctor)
 }
 
+
+const setAllDoctors = async (req, res) => {
+  const doctorsList = await User.find( { role: "doctor" } )
+  res.json(doctorsList)
+}
+
+
+
+
 module.exports = {
-  addDoctors, setDoctor
+  addDoctors, setDoctor, setAllDoctors
 }

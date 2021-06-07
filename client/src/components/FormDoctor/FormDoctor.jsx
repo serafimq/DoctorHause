@@ -1,12 +1,10 @@
 import { Form, Input, Select, InputNumber, Button } from 'antd'
-import { useState } from 'react';
 import { useDispatch} from 'react-redux'
 import { useParams } from 'react-router';
 import { updateDoctorThunk } from '../../redux/actionCreators/doctorAC';
 
 
 const FormDoctor = () => {
-  // const [input, setInput] = useState('')
   const dispatch = useDispatch()
   const { id } = useParams()
 

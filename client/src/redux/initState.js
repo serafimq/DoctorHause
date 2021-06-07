@@ -6,6 +6,8 @@ const initState = () => {
       isAuth: false,
     },
     events: [],
+    doctors:[],
+    doctor: {}
   }
   const fromLS = JSON.parse(window.localStorage.getItem('DoctorHause'))
   return fromLS ? fromLS : state

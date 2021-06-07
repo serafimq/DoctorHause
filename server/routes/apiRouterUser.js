@@ -8,8 +8,6 @@ const {
   checkUser,
 } = require('../controllers/userController')
 
-const {addDoctors, setDoctor} = require ('../controllers/doctorController')
-
 const {checkAuth} = require('../middleware/checkAuth')
 
 apiRouterUser.route('/signup')
@@ -26,12 +24,5 @@ apiRouterUser.route('/checkAuth')
 
 apiRouterUser.route('/getInfo')
   .get(checkAuth, userInfo)
-
-apiRouterUser.route('/homepage/:id')
-  .post(addDoctors)
-
-apiRouterUser.route('/homepage/:id')
-  .get(setDoctor)
-
 
 module.exports = apiRouterUser

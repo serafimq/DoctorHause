@@ -6,27 +6,26 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './components/UserForms/SignUp';
 import SignIn from './components/UserForms/SignIn';
 import CardDoctorPage from './components/cardDoctorPage/cardDoctorPage';
+import { useSelector } from 'react-redux';
 
 function App() {
+
   return (
     <div className='App'>
       <Router>
         <NavBar />
         <Switch>
-          <Router exact path="/homepage">
-            <Homepage />
-          </Router>
-          <Router exact path="/signup">
+          <Route exact path="/signup">
             <SignUp />
-          </Router>
-          <Router exact path="/signin">
+          </Route>
+          <Route exact path="/signin">
             <SignIn />
-          </Router>
+          </Route>
           <Route exact path="/">
             <MainPage />
           </Route>
-          <Route exact path="/homepage/user/:id">
-            <CardDoctorPage />
+          <Route exact path="/homepage/:id">
+          <Homepage />
           </Route>
         </Switch>
       </Router>

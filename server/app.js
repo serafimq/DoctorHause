@@ -10,6 +10,7 @@ require('./ServDB/config-passport');
 
 const apiRouterUser = require('./routes/apiRouterUser');
 const apiRouterEvents = require('./routes/apiRouterEvents');
+const apiRouterDoctor = require('./routes/apiRouterDoctor');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags:
 
 app.use('/api/v1/user', apiRouterUser);
 app.use('/api/v1/events', apiRouterEvents);
+app.use('/api/v1', apiRouterDoctor);
 
 app.use(createErr, cathErrAndSendAnswer);
 

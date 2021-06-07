@@ -5,17 +5,18 @@ import { UserOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
 import FormDoctor from '../FormDoctor/FormDoctor';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateDoctorThunk } from '../../redux/actionCreators/doctorAC'
-import { useParams } from 'react-router';
+import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 import { FeedBack } from './FeedBack/FeedBack';
 
 const CardDoctorPage = () => {
+  // console.log(id);
+  const user = useSelector(state => state.user)
   const doctor = useSelector(state => state.doctor)
-
+  // const id = useSelector(state => state.user.id)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(updateDoctorThunk())
-  }, [dispatch])
+    dispatch(setOneDoctorThunk(user.id))
+  }, [])
 
   const [modal1Visible, setModal1Visible] = useState(false)
   function visibleModal() {
@@ -57,10 +58,9 @@ const CardDoctorPage = () => {
             <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
             <Card title="Отзывы о враче" bordered={false}>
               <Row className={style.feedback}>
- 
-                {doctor.feedback.length > 0? doctor.feedback.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
-                  : <p>Отзовы об этом враче отсутствуют</p> 
-                }
+                {/* {doctor.feedback.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)} */}
+                {doctor.feedback?.length > 0 ? doctor.feedback.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+                  : <p>Отзывы об этом враче отсутствуют</p>}
               </Row>
               <hr />
               <Row className={style.feedback}>
