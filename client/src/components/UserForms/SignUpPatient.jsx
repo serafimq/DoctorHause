@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router';
 import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
 import GoogleLogin from 'react-google-login'
-import axios from 'axios'
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -28,7 +27,7 @@ const SignUpPatient = () => {
   const dispatch = useDispatch()
 
   const onFinish = (values) => {
-    values.role = 'Пациент'
+    values.role = 'patient'
     dispatch(signup(values))
   };
 
@@ -38,25 +37,10 @@ const SignUpPatient = () => {
 
   const [form] = Form.useForm();
 
-  const onGenderChange = (value) => {
-    switch (value) {
-      case 'doctor':
-        form.setFieldsValue({
-          note: 'Привет врач!',
-        });
-        return;
-
-      case 'patient':
-        form.setFieldsValue({
-          note: 'Привет пациент!',
-        });
-        return;
-    }
-  };
   const isAuth = useSelector(state => state.user.isAuth) 
 
   const responseSuccesGoogle = async (response) => {
-    dispatch(succesGoogle({tokenId: response.tokenId, role: 'Пациент'}))
+    dispatch(succesGoogle({tokenId: response.tokenId, role: 'patient'}))
   }
 
   const responseErrorGoogle = (response) => {

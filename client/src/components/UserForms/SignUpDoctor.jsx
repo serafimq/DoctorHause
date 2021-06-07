@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router';
 import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
 import GoogleLogin from 'react-google-login';
-import Yandex from './Yandex';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -28,7 +27,7 @@ const SignUpDoctor = () => {
   const dispatch = useDispatch()
 
   const onFinish = (values) => {
-    values.role = 'Доктор'
+    values.role = 'doctor'
     dispatch(signup(values))
   };
 
@@ -38,25 +37,10 @@ const SignUpDoctor = () => {
 
   const [form] = Form.useForm();
 
-  const onGenderChange = (value) => {
-    switch (value) {
-      case 'doctor':
-        form.setFieldsValue({
-          note: 'Привет врач!',
-        });
-        return;
-
-      case 'patient':
-        form.setFieldsValue({
-          note: 'Привет пациент!',
-        });
-        return;
-    }
-  };
   const isAuth = useSelector(state => state.user.isAuth) 
 
   const responseSuccesGoogle = async (response) => {
-    dispatch(succesGoogle({tokenId: response.tokenId, role: 'Доктор'}))
+    dispatch(succesGoogle({tokenId: response.tokenId, role: 'doctor'}))
   }
 
   const responseErrorGoogle = (response) => {
@@ -71,10 +55,6 @@ const SignUpDoctor = () => {
     <Row justify="center">
       <Title>Регистрация врача</Title>
     </Row>
-
-    // <Row justify="center">
-    //   <Yandex/>
-    // </Row>
 
     <Row justify="center">
       <GoogleLogin
