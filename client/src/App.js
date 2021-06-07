@@ -4,25 +4,32 @@ import Homepage from './components/Homepage/Homepage';
 import MainPage from './components/MainPage/MainPage';
 import NavBar from './components/NavBar/NavBar';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import SignUp from './components/UserForms/SignUp';
+import SignUpChoose from './components/UserForms/SignUpChoose';
 import SignIn from './components/UserForms/SignIn';
+import SignUpDoctor from './components/UserForms/SignUpDoctor';
+import SignUpPatient from './components/UserForms/SignUpPatient';
 
 function App() {
   return (
     <div className='App'>
       <Router>
         <NavBar />
-  
         <Switch>
-          <Router exact path="/homepage"> 
+          <Route exact path="/homepage"> 
             <Homepage/>
-          </Router>
-          <Router exact path="/signup"> 
-            <SignUp/>
-          </Router>
-          <Router exact path="/signin"> 
+          </Route>
+          <Route exact path="/signup"> 
+            <SignUpChoose/>
+          </Route>
+          <Route exact path="/signupdoctor">
+            <SignUpDoctor/>
+          </Route>
+          <Route exact path="/signuppatient">
+            <SignUpPatient/>
+          </Route>
+          <Route exact path="/signin"> 
             <SignIn/>
-          </Router>
+          </Route>
           <Route exact path="/">
             <MainPage/>
           </Route>

@@ -1,9 +1,10 @@
 import { Form, Input, Button, Select, Row, Divider } from 'antd';
 import { Typography } from 'antd';
-import GoogleLogin from 'react-google-login';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router';
-import { signin, succesSignInGoogle } from '../../redux/actionCreators/userAC';
+import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
+import GoogleLogin from 'react-google-login';
+import Yandex from './Yandex';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -22,13 +23,13 @@ const tailLayout = {
   },
 };
 
-const SignIn = () => {
+const SignUpDoctor = () => {
 
   const dispatch = useDispatch()
 
   const onFinish = (values) => {
-    console.log('Success:', values);
-    dispatch(signin(values))
+    values.role = 'Доктор'
+    dispatch(signup(values))
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -52,16 +53,15 @@ const SignIn = () => {
         return;
     }
   };
+  const isAuth = useSelector(state => state.user.isAuth) 
 
   const responseSuccesGoogle = async (response) => {
-    dispatch(succesSignInGoogle({tokenId: response.tokenId}))
+    dispatch(succesGoogle({tokenId: response.tokenId, role: 'Доктор'}))
   }
 
   const responseErrorGoogle = (response) => {
     console.log(response);
   }
-
-  const isAuth = useSelector(state => state.user.isAuth) 
 
   return (
     isAuth ?
@@ -69,21 +69,39 @@ const SignIn = () => {
     :
     <>
     <Row justify="center">
-      <Title>Форма авторизации</Title>
+      <Title>Регистрация врача</Title>
     </Row>
-        <Row justify="center">
-        <GoogleLogin
-          clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
-          buttonText="Sign Up with Google"
-          onSuccess={responseSuccesGoogle}
-          onFailure={responseErrorGoogle}
-          cookiePolicy={'single_host_origin'}
-        />,
-      </Row>
-  
-      <Divider/>
+
+    // <Row justify="center">
+    //   <Yandex/>
+    // </Row>
+
+    <Row justify="center">
+      <GoogleLogin
+        clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
+        buttonText="Через Google Email"
+        onSuccess={responseSuccesGoogle}
+        onFailure={responseErrorGoogle}
+        cookiePolicy={'single_host_origin'}
+      />,
+    </Row>
+
+    <Divider/>
+    
     <Row justify="center">
     <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+
+      <Form.Item
+        name="name"
+        label="ФИО"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
 
       <Form.Item
         label="E-mail"
@@ -123,4 +141,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn
+export default SignUpDoctor
