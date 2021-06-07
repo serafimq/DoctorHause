@@ -14,6 +14,7 @@ require('./ServDB/config-passport');
 
 const apiRouterUser = require('./routes/apiRouterUser');
 const apiRouterEvents = require('./routes/apiRouterEvents');
+const apiRouterDoctor = require('./routes/apiRouterDoctor');
 const apiRouterHomepage = require('./routes/apiRouterHomepage');
 const apiRouterHistory = require('./routes/apiRouterHistory');
 const Avatar = require('./models/avatar');
@@ -60,6 +61,8 @@ app.post('/api/v1/homepage/:id', async (req, res) => {
 
   res.json(newAvatar)
 })
+
+app.use('/api/v1', apiRouterDoctor);
 app.post('/file', (req, res) => {
 
   const { image } = req.files

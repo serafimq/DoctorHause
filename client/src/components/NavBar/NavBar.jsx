@@ -8,10 +8,11 @@ import { clearAvatar } from '../../redux/actionCreators/avatarAC';
 import { clearHistory } from '../../redux/actionCreators/historyAC';
 import { clearEvents } from '../../redux/actionCreators/eventsAC';
 
+
 export default function NavBar() {
   const { Header } = Layout;
   const id = useSelector(state => state.user.id)
-  
+
   const dispatch = useDispatch()
 
   const deleteHandler = async (id) => {

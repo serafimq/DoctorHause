@@ -3,7 +3,6 @@ import style from './PersonalArea.module.css'
 import { Row, Col } from 'antd';
 import CalendarPage from './CalendarPage/CalendarPage';
 import CardProfile from './CardProfile/CardProfile';
-import ResultModal from '../ResultModal/ResultModal';
 
 
 

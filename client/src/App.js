@@ -6,12 +6,13 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './components/UserForms/SignUp';
 import SignIn from './components/UserForms/SignIn';
 
+
 function App() {
+
   return (
     <div className='App'>
       <Router>
         <NavBar />
-
         <Switch>
           <Route exact path="/homepage/:id">
             <Homepage />

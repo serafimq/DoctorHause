@@ -3,7 +3,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import CardDoctorPage from '../cardDoctorPage/cardDoctorPage'
 
-
 import PersonalArea from './PersonalArea/PersonalArea'
 
 const Homepage = () => {

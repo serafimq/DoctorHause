@@ -3,11 +3,7 @@ const User = require('../models/user')
 
 const setAvatars = async (req, res) => {
   const { id } = req.params
-  console.log(id, '<<<<----айди пользователя')
-
   const setAvatar = await Avatar.findOne({ user: id })
-  console.log(setAvatar, 'аватар пользователя котоырй в сети')
-
   res.json(setAvatar)
 }
 

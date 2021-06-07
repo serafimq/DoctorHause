@@ -6,6 +6,8 @@ const initState = () => {
       isAuth: false,
     },
     events: [],
+    doctors:[],
+    doctor: {},
     avatar: null,
     history: [],
   }

@@ -34,7 +34,7 @@ const Foto = () => {
                 } className="img-fluid img-profile" alt="Card image"/>
               </figure>
               <input className={style.input} type='file' name='image'  ref={inputFile} onChange={(e) => fileSelectedHandler(e)}/>
-              {/* <button onClick={(e) => fileUploadHandler(e)}>Upload</button> */}
+              
               
               <div className={style.user_profile}>
                 <div className={style.user_name}>{user.name}</div>

@@ -8,8 +8,8 @@ const eventSchema = new Schema({
   address: String,
   comment: String,
   dateTime: Date,
-  num: Number,
-  creator: 
+  date: String,
+  creator:
   {
     type: Schema.Types.ObjectId,
     ref: 'User'
