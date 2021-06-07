@@ -64,6 +64,7 @@ app.post('/api/v1/homepage/:id', async (req, res) => {
 })
 
 
+// app.use('/api/v1/map', );
 
 app.post('/file', (req, res) => {
 
@@ -75,6 +76,7 @@ app.post('/file', (req, res) => {
     const location2 = `${__dirname}/public/img/${image.name}`
     image.mv(location)
     image.mv(location2)
+
   }
   // res.json({imagePath: image.name})
   return res.sendStatus(200)

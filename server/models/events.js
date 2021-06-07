@@ -2,6 +2,10 @@ const { model, Schema, pluralize } = require('mongoose');
 pluralize(null);
 
 const eventSchema = new Schema({
+  problem: {
+    type: String,
+    required: true
+  },
   hospital: String,
   firstLastName: String,
   specialization: String,

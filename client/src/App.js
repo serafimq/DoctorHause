@@ -5,6 +5,8 @@ import NavBar from './components/NavBar/NavBar';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './components/UserForms/SignUp';
 import SignIn from './components/UserForms/SignIn';
+import History from './components/History/History';
+import MapPage from './components/MapPage/MapPage';
 
 
 function App() {
@@ -14,8 +16,10 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/homepage/:id">
-            <Homepage />
+
+
+          <Route exact path="/homepage/history/:id">
+            <History />
           </Route>
 
           <Route exact path="/signup">
@@ -30,14 +34,21 @@ function App() {
             <MainPage />
           </Route>
 
-          <Route exact path="/homepage/calendar">
+          {/* <Route exact path="/homepage/calendar/:id">
+            <Homepage />
+          </Route> */}
+
+          <Route exact path="/homepage/map/:id">
+            <MapPage />
+          </Route>
+
+          <Route exact path="/homepage/:id">
             <Homepage />
           </Route>
 
-          <Route exact path="/homepage/history">
-          </Route>
           <Route exact path="/">
           </Route>
+
           <Route exact path="/">
           </Route>
         </Switch>

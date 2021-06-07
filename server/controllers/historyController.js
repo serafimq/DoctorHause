@@ -1,18 +1,20 @@
 const History = require('../models/history')
 
-// const setAllEvents = async (req, res) => {
-//   console.log(req.params, 'req.params');
-//   const {id} = req.params
-//   const allEvents = await Events.find()
-//   const filterEvent = allEvents.filter(el => el.creator == id)
-//   res.json(filterEvent)
-// }
+const setAllHistoryAxios = async (req, res) => {
+  console.log(req.params, 'req.params');
+  const {id} = req.params
+  const allHistoryUser = await History.find().populate('events')
+  const allHistoryFilter = allHistoryUser.filter(el => el.userCreator.toString() === id)
+  console.log(allHistoryFilter, 'allHistoryFilter');
+  res.json(allHistoryFilter)
+}
 
 const addOneHistoryAxios = async (req, res) => {
   console.log(req.body, '123443ithsdflmnc');
   try {
     const { id } = req.params
-    const { history, idEvent } = req.body;
+    const { history, idEvent, imagePath } = req.body;
+    console.log(imagePath, 'imagePath');
     const { prescription,
       nextDateTime,
       analyzes,
@@ -27,6 +29,7 @@ const addOneHistoryAxios = async (req, res) => {
       const newHistory = await History.create({
         prescription,
         analyzes,
+        imagePath,
         price,
         comment,
         nextDateTime: date,
@@ -46,6 +49,7 @@ const addOneHistoryAxios = async (req, res) => {
 
 module.exports = {
   addOneHistoryAxios,
+  setAllHistoryAxios
 }
 
 
