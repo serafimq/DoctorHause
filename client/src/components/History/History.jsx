@@ -42,8 +42,8 @@ const History = () => {
           <Card
             style={{ marginTop: 16, width: 700 }}
             type="inner"
-            // ${el.events[0].problem}
-            title={`Жалоба:`}
+            // 
+            title={`Жалоба:${el.events[0].problem}`}
             extra={<a href="#">More</a>}
             >
             {/* <div> Показывать файлы:   

@@ -5,6 +5,7 @@ import eventsReducer from './eventsReducer'
 import historyReducer from './historyReducer'
 import userReducer from './userReducer'
 import avatarReducer from './avatarReducer'
+import addressReducer from './addressReducer'
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   events: eventsReducer,
   avatar: avatarReducer,
   history: historyReducer,
+  address: addressReducer,
 })
 
 export default rootReducer

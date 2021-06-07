@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import style from './Foto.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewAvatarAxios, setAvatarAxios, uploadAvatar } from '../../../../../redux/actionCreators/avatarAC'
-import Drop from './Drop/Drop'
 
 const Foto = () => {
   

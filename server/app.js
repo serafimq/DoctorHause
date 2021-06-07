@@ -17,6 +17,7 @@ const apiRouterDoctor = require('./routes/apiRouterDoctor');
 const apiRouterHomepage = require('./routes/apiRouterHomepage');
 const apiRouterHistory = require('./routes/apiRouterHistory');
 const Avatar = require('./models/avatar');
+const apiRouterMap = require('./routes/apiRouterMap');
 
 const app = express();
 
@@ -32,6 +33,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags: 'a' }) }));
 app.use(fileUpload())
+
+
 
 app.post('/api/v1/homepage/:id', async (req, res) => {
   console.log('Start foto3');
@@ -63,10 +66,10 @@ app.use('/api/v1/user', apiRouterUser);
 app.use('/api/v1/events', apiRouterEvents);
 app.use('/api/v1/history', apiRouterHistory);
 app.use('/api/v1/homepage', apiRouterHomepage);
+app.use('/api/v1/map', apiRouterMap);
 
 
 
-// app.use('/api/v1/map', );
 
 app.post('/file', (req, res) => {
 
