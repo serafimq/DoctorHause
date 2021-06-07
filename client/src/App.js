@@ -14,17 +14,17 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Router exact path="/homepage/:id">
+          <Route exact path="/homepage/:id">
             <Homepage />
-          </Router>
+          </Route>
 
-          <Router exact path="/signup">
+          <Route exact path="/signup">
             <SignUp />
-          </Router>
+          </Route>
 
-          <Router exact path="/signin">
+          <Route exact path="/signin">
             <SignIn />
-          </Router>
+          </Route>
 
           <Route exact path="/">
             <MainPage />
@@ -35,10 +35,9 @@ function App() {
           </Route>
 
           <Route exact path="/homepage/history">
-
           </Route>
-          <Route exact path="/">
 
+          <Route exact path="/">
           </Route>
           <Route exact path="/">
 

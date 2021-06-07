@@ -30,11 +30,6 @@ export default function MainPage() {
     visibleModal()
   }
 
-  // const chooseOneDoctor = (id) => {
-  //   visibleModal()
-  //   dispatch(setOneDoctorThunk(id))
-  // }
-
   return (
 
     <Row >
