@@ -36,11 +36,9 @@ function App() {
 
           <Route exact path="/homepage/history">
           </Route>
-
           <Route exact path="/">
           </Route>
           <Route exact path="/">
-
           </Route>
         </Switch>
       </Router>
