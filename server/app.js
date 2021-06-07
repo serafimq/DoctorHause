@@ -18,6 +18,7 @@ const apiRouterDoctor = require('./routes/apiRouterDoctor');
 const apiRouterHomepage = require('./routes/apiRouterHomepage');
 const apiRouterHistory = require('./routes/apiRouterHistory');
 const Avatar = require('./models/avatar');
+const apiRouterMap = require('./routes/apiRouterMap');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/api/v1/user', apiRouterUser);
 app.use('/api/v1/events', apiRouterEvents);
 app.use('/api/v1/homepage', apiRouterHomepage);
 app.use('/api/v1/history', apiRouterHistory);
+app.use('/api/v1/map', apiRouterMap);
 
 app.post('/api/v1/homepage/:id', async (req, res) => {
 

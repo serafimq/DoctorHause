@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import style from './mapPage.module.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAllUserAddressThunk } from '../../redux/actionCreators/addressAC';
 
 const containerStyle = {
   width: '700px',
@@ -10,14 +11,16 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 55.75,
-  lng: 37.6167,
+  lat: 55.75222,
+  lng: 37.61556,
 };
 
 const MapPage = () => {
 
   const id = useSelector(state => state.user.id)
-
+  const dispatch = useDispatch()
+  const address = useSelector(state => state.address)
+  console.log('address', address);
   // let map;
   // const maps1 = document.querySelector('.maps')
   // console.log(resultCoordination)
@@ -40,10 +43,10 @@ const MapPage = () => {
   //   })
   // }
 
-  // useEffect(() => {
-  //   dispatch(setAllHistoryThunk(id))
-  // }, [])
-
+  useEffect(() => {
+    dispatch(setAllUserAddressThunk(id))
+  }, [])
+  console.log();
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -66,15 +69,20 @@ const MapPage = () => {
     <div className={style.maps_orientation} >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={12}
+        center={{
+          lat: 55.75222,
+          lng: 37.61556
+        }}
+        zoom={13}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        { /* Child components, such as markers, info windows, etc. */}
-        <></>
+        {
+          address ? address.map(el => <Marker position={{ lat: el.location.lat, lng: el.location.lng }} label={el.hospital} title={el.address}></Marker>) : null
+        }
+      <></>
       </GoogleMap>
-    </div>
+    </div >
   ) : <></>
 
 }
