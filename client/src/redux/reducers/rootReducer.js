@@ -1,14 +1,18 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 import doctorReducer from './doctorReducer'
-import userReducer from './userReducer'
-import eventsReducer from './eventsReducer'
 import doctorsReducer from './doctorsReducer'
+import eventsReducer from './eventsReducer'
+import historyReducer from './historyReducer'
+import userReducer from './userReducer'
+import avatarReducer from './avatarReducer'
 
 const rootReducer = combineReducers({
   user: userReducer,
   doctor: doctorReducer,
   doctors:doctorsReducer,
   events: eventsReducer,
+  avatar: avatarReducer,
+  history: historyReducer,
 })
 
 export default rootReducer

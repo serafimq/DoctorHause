@@ -5,9 +5,15 @@ const useFormModal = () => {
   const [values, setValues] = useState({})
 
   const changeHandler = (e) => {
-    // console.log(new Date(e._d));
-    setValues(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    console.log(e.dateTime, '============');
+    console.log(e);
+    if (e.target) {
+      setValues(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    } else {
+      setValues(prev => ({ ...prev, dateTime: e.dateTime }))
+    }
   }
+  
   return [values, changeHandler]
 }
 export default useFormModal

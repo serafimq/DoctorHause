@@ -5,8 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './components/UserForms/SignUp';
 import SignIn from './components/UserForms/SignIn';
-import CardDoctorPage from './components/cardDoctorPage/cardDoctorPage';
-import { useSelector } from 'react-redux';
+
 
 function App() {
 
@@ -15,17 +14,34 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/signup">
+          <Router exact path="/homepage/:id">
+            <Homepage />
+          </Router>
+
+          <Router exact path="/signup">
             <SignUp />
-          </Route>
-          <Route exact path="/signin">
+          </Router>
+
+          <Router exact path="/signin">
             <SignIn />
-          </Route>
+          </Router>
+
           <Route exact path="/">
             <MainPage />
           </Route>
-          <Route exact path="/homepage/:id">
-          <Homepage />
+
+          <Route exact path="/homepage/calendar">
+            <Homepage />
+          </Route>
+
+          <Route exact path="/homepage/history">
+
+          </Route>
+          <Route exact path="/">
+
+          </Route>
+          <Route exact path="/">
+
           </Route>
         </Switch>
       </Router>
