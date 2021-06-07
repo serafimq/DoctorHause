@@ -1,5 +1,4 @@
 import './App.css';
-import CardDoctorPage from './components/cardDoctorPage/cardDoctorPage';
 import Homepage from './components/Homepage/Homepage';
 import MainPage from './components/MainPage/MainPage';
 import NavBar from './components/NavBar/NavBar';
@@ -7,24 +6,39 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './components/UserForms/SignUp';
 import SignIn from './components/UserForms/SignIn';
 
+
 function App() {
+
   return (
     <div className='App'>
       <Router>
         <NavBar />
-  
         <Switch>
-          <Router exact path="/homepage"> 
-            <Homepage/>
-          </Router>
-          <Router exact path="/signup"> 
-            <SignUp/>
-          </Router>
-          <Router exact path="/signin"> 
-            <SignIn/>
-          </Router>
+          <Route exact path="/homepage/:id">
+            <Homepage />
+          </Route>
+
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
+
+          <Route exact path="/signin">
+            <SignIn />
+          </Route>
+
           <Route exact path="/">
-            <MainPage/>
+            <MainPage />
+          </Route>
+
+          <Route exact path="/homepage/calendar">
+            <Homepage />
+          </Route>
+
+          <Route exact path="/homepage/history">
+          </Route>
+          <Route exact path="/">
+          </Route>
+          <Route exact path="/">
           </Route>
         </Switch>
       </Router>

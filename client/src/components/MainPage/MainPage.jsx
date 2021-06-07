@@ -1,93 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { List, Avatar } from 'antd';
-import { Row, Modal, Col, Affix, Button } from 'antd';
+import { Row, Modal, Col, Affix, Button, Divider } from 'antd';
 import style from './MainPage.module.css'
 import CardDoctorPage from '../cardDoctorPage/cardDoctorPage';
-
-const data = [
-  {
-    id: 1,
-    title: 'Карточка врача',
-    spetialization: 15,
-
-  },
-  {
-    id: 2,
-    title: 'Карточка врача',
-    spetialization: 17,
-
-  },
-  {
-    id: 3,
-    title: 'Карточка врача',
-    spetialization: 5,
-
-  },
-  {
-    id: 4,
-    title: 'Карточка врача',
-    spetialization: 20,
-  },
-  {
-    id: 5,
-    title: 'Карточка врача',
-    spetialization: 285,
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { setAllDoctorThunk, setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 
 export default function MainPage() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(setAllDoctorThunk())
+  }, [])
+
+  const doctors = useSelector(state => state.doctors)
 
   const [modal1Visible, setModal1Visible] = useState(false)
 
-  function visibleModal() {
+  function visibleModal(id) {
     setModal1Visible(!modal1Visible)
   }
 
-  // const [container, setContainer] = useState(null);
+  const openModal = (e) => {
+    dispatch(setOneDoctorThunk(e.id))
+    visibleModal()
+  }
 
+  const closeModal = () => {
+    visibleModal()
+  }
+
+  // const chooseOneDoctor = (id) => {
+  //   visibleModal()
+  //   dispatch(setOneDoctorThunk(id))
+  // }
 
   return (
-
     <Row>
-      <Col span={18}>
-
-        <List className={style.radius}
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={item => (
-            <>
-              <List.Item  >
-                <List.Item.Meta className={style.meta}
-
-                  title={<a onClick={() => visibleModal()}> {item.title}</a>}
-
-                  description={<li  > {<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />} <br /> {item.title}<br /> {item.spetialization} </li>}
-
-
-                />
-              </List.Item>
-              <Modal
-                title="Информация о враче"
-                style={{ top: 20 }}
-                visible={modal1Visible}
-                onOk={() => visibleModal()}
-                onCancel={() => visibleModal()}
-                width={900}
-              >
-                <CardDoctorPage />
-              </Modal>
-            </>
-          )}
-        />
-      </Col>
-
-
-      <Col span={6}>
+      <Col span={6} push={18}>
         <div className={style.scrollableContainer}>
-          
-          
           <div className={style.news}>
-            <a href='https://encyclopatia.ru/wiki/%D0%A0%D0%B0%D1%81%D1%81%D1%82%D1%80%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%B5%D0%BF%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2' className={style.card} >Расстрельный список препаратов</a><br /><br />
+            <a className={style.card} href='https://encyclopatia.ru/wiki/%D0%A0%D0%B0%D1%81%D1%81%D1%82%D1%80%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%B5%D0%BF%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2' className={style.card} >Расстрельный список препаратов</a><br /><br />
             <p className={style.text}>Справочник популярных, но при этом неработающих лекарств и методов диагностики, который ведет врач-невролог Никита Жуков.</p>
           </div>
           <div className={style.news}>
@@ -104,54 +56,28 @@ export default function MainPage() {
           </div>
         </div>
       </Col>
+      <Col span={18} pull={6} className={style.colCentre}>
+        <Row justify="center">
+          <Col span={12} pull={0} justify="center">  {doctors.map(item => <li className={style.radius} id={item._id} onClick={(e) => {
+            openModal(e.target)
+          }}> {item.name} {item.spec}
+            <Modal
+              justify="center"
+              title="Информация о враче"
+              style={{ top: 20 }}
+              visible={modal1Visible}
+              onOk={(e) => openModal(e)}
+              onCancel={() => closeModal()}
+              width={900}
+            >
+              <CardDoctorPage />
+            </Modal>
+          </li>)}</Col>
+
+        </Row>
+
+      </Col>
     </Row>
-
-
-
-
-
-
-
-
-
-
-
-    // <Row>
-    //   <Col className={style.right_col} span={6} push={18}>
-    //     <List
-
-    //       itemLayout="horizontal"
-    //       dataSource={news}
-    //       renderItem={item => (
-    //         <List.Item>
-    //           <List.Item.Meta
-    //             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-    //             title={<a href="https://ant.design">{item.title}</a>}
-    //             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-    //           />
-    //         </List.Item>
-    //       )}
-    //     />
-    //   </Col>
-    //   <Col className={style.left_col} span={18} pull={6}>
-    //     <List
-    //     className={style.margin}
-    //       itemLayout="horizontal"
-    //       dataSource={data}
-    //       renderItem={item => (
-    //         <List.Item>
-    //           <List.Item.Meta
-    //             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-    //             title={<a href="https://ant.design">{item.title}</a>}
-    //             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-    //           />
-    //         </List.Item>
-    //       )}
-    //     />
-    //   </Col>
-    // </Row>
-
-
 
   )
 }

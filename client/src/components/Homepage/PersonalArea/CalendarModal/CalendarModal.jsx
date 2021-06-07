@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import style from './CalendarModal.module.css'
 import useFormModal from "../../../hooks/useForm"
 import {
   Modal,
@@ -6,28 +7,55 @@ import {
   Input,
   Button,
   DatePicker,
+  Select,
 } from 'antd';
+import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux';
+import { addEventsAxiox } from '../../../../redux/actionCreators/eventsAC';
 
-const config = {
-  rules: [
-    {
-      type: 'object',
-      required: true,
-      message: 'Please select time!',
-    },
-  ],
-};
+const { Option } = Select;
 
 
-const  CalendarModal = ({setEvent}) => {
+// const config = {
+//   rules: [
+//     {
+//       type: 'object',
+//       required: true,
+//       message: 'Please select time!',
+//     },
+//   ],
+// };
 
+
+const  CalendarModal = () => {
+
+  const user = useSelector(state => state.user)
+
+  const dispatch = useDispatch()
   const [values, changeHandler] = useFormModal()
-  
-  const submitHandler = (e) => {
-    e.preventDefault();
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   visibleModal()
+  //   console.log(values)
+  //   setEvent(values)
+  // }
+
+  // const resetFields = (values) => {
+  //   values = " "
+  // }
+
+  const onFinish = (values) => {
+    console.log(values, '<<<<<<');
+    let beforeSent;
+    if (values['dateTime']) {
+      beforeSent = { ...values, dateTime: values.dateTime.format('YYYY/MM/DD HH:mm') }
+    }
+    console.log('Success:', beforeSent);
+    
+    dispatch(addEventsAxiox(beforeSent, user.id))
     visibleModal()
-    setEvent(values)
-  }
+  };
 
   const [componentSize, setComponentSize] = useState('default');
 
@@ -41,9 +69,25 @@ const  CalendarModal = ({setEvent}) => {
     setModal1Visible(!modal1Visible)
   }
 
+  const [formData, setFormData] = useState({});
+
+  // console.log(formData);
+
+  // function onChange(value, dateString) {
+
+  //   if (value) {
+  //     console.log(value.format('YYYY/MM/DD HH:mm'), 'value');
+  //     setFormData({
+  //       ...formData,
+  //       "dateTime": value.format('YYYY/MM/DD HH:mm')
+  //     });
+  //     onFinish(formData)
+  //   }
+  // }
+
   return (
     <>
-      <Button type="primary" onClick={() => visibleModal()}>
+      <Button className={style.button} type="primary" onClick={() => visibleModal()}>
         Add for Calendar
       </Button>
       <Modal
@@ -52,7 +96,7 @@ const  CalendarModal = ({setEvent}) => {
         visible={modal1Visible}
         onOk={() => visibleModal()}
         onCancel={() => visibleModal()}
-        width={800}    
+        width={800}
       >
         <Form
           labelCol={{
@@ -68,31 +112,49 @@ const  CalendarModal = ({setEvent}) => {
           onValuesChange={onFormLayoutChange}
           size={componentSize}
           value="default"
-          // onFinish={submitHandler}
-          // onSubmit={submitHandler}
+          onFinish={onFinish}
+        // onSubmit={submitHandler}
         >
-          <Form.Item label="Клиника">
-            <Input value={values.hospital || ""} onChange={changeHandler} name="hospital" placeholder="Введите название клиники"  />
+          <Form.Item name="hospital" label="Клиника">
+            <Input placeholder="Введите название клиники" />
           </Form.Item>
-          <Form.Item label="Имя Фамилия врача">
-            <Input value={values.firstLastName || ""} onChange={changeHandler} name="firstLastName" placeholder="Имя Фамилия" />
+          <Form.Item name="firstLastName" label="Имя Фамилия врача">
+            <Input placeholder="Имя Фамилия" />
           </Form.Item>
-          <Form.Item label="Специализация врача">
-            <Input value={values.specialization || ""} onChange={changeHandler} name="specialization" placeholder="Специализация" />
+          <Form.Item name="specialization" label="Cпециализация">
+            <Select
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Специализация врача"
+              optionFilterProp="children"
+            // onChange={changeHandler}
+            >
+              <Option value="manual">Мануальный терапевт</Option>
+              <Option value="acuher">Акушер</Option>
+              <Option value="allergoloc">Аллерголог</Option>
+              <Option value="patologoanatom">Патологоанатом</Option>
+              <Option value="orthoped">Ортопед</Option>
+              <Option value="dietolog">Диетолог</Option>
+            </Select>
           </Form.Item>
-          <Form.Item label="Адрес клиники">
-            <Input value={values.address || ""} onChange={changeHandler} name="address"  placeholder="Адрес" />
+          <Form.Item name="address" label="Адрес клиники">
+            <Input placeholder="Адрес" />
           </Form.Item>
-          <Form.Item label="Комментарий к записи">
-            <Input.TextArea value={values.comment || ""} onChange={changeHandler} name="comment" placeholder="Комментарий" />
+          <Form.Item name="comment" label="Комментарий к записи">
+            <Input.TextArea placeholder="Комментарий" />
           </Form.Item>
-          <Form.Item  label="Дата и время посещения" >
+          <Form.Item name="dateTime" label="Дата и время посещения" >
             {/* <DatePicker value={values.dateTime || ""} onChange={changeHandler} name="dateTime" showTime format="YYYY-MM-DD HH:mm" /> */}
-            <input type="datetime-local" value={values.dateTime || ""} onChange={changeHandler} name="dateTime" />
+            {/* <input type="datetime-local" value={values.dateTime || ""} onChange={changeHandler} name="dateTime" /> */}
+            <DatePicker
+              format={"YYYY/MM/DD HH:mm"}
+              showTime
+              // defaultValue={moment([])}
+              // onChange={onChange}
+              showNow={true}
+            />
           </Form.Item>
-          
-          {/* onClick={submitHandler} */}
-          <Button onClick={submitHandler}  type="primary" htmlType="submit" >
+          <Button type="primary" htmlType="submit" >
             Добавить в календарь
           </Button>
         </Form>
