@@ -29,11 +29,11 @@ const FormDoctor = () => {
       range: '${label} must be between ${min} and ${max}',
     },
   };
-  /* eslint-enable no-template-curly-in-string */
+  
   const { Option } = Select;
   const onFinish = (values) => {
     dispatch(updateDoctorThunk(values, id))
-    // console.log('VAAAAAAAAAAAAAAALLLUUES',values);
+
 
   }
   const prefixSelector = (

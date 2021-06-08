@@ -2,6 +2,10 @@ const { model, Schema, pluralize } = require('mongoose');
 pluralize(null);
 
 const userSchema = new Schema({
+  googleId: {
+    required: false,
+    type: String
+  },
   name: {
     type: String,
     required: true,
@@ -15,7 +19,7 @@ const userSchema = new Schema({
   },
   pass: {
     type: String,
-    required: true,
+    required: false,
     min: 8,
   },
   role: String,
@@ -26,7 +30,7 @@ const userSchema = new Schema({
   metro: String,
   price: Number,
   stars: Number,
-  feedback: [{
+  feedBack: [{
     author: String,
     text: String,
     stars: Number

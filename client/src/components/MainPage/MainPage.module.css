@@ -1,7 +1,12 @@
 .card {
   color: black;
 }
+.card_doc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+}
 .news {
   padding: 20px;
   /* display: flex; */
@@ -11,39 +16,32 @@
    text-align: justify;
  }
 
- .colCentre{
-   /* background-color: white; */
-   /* display: f
-   balex;
-   flex-direction: column; */
-   /* margin-left: 10px; */
- }
-
-.radius {
-  
-  border-radius: 20px;
-  margin: 20px;
-  border: 1px solid black;
-  background: white;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  padding: 10px;
-  width: 500px;
-  align-self: center;
-
-}
-
-.radius:hover {
-  /* color: rgb(255, 127, 127); */
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-  /* transition: top 1s ease-out 1.5s; */
-}
-
-
 .scrollableContainer {
   overflow-y:scroll;
   width: 100%;
   height: 100vh;
   /* border: solid 1px black; */
+}
+
+/*
+Для карточки новостной 
+*/
+.cardNews{
+  width: 100%;
+  border: solid 1px white;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.cardImg{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.link {
+  font-weight: bold;
+}
+
+.title{
+  font-weight: bold;
 }

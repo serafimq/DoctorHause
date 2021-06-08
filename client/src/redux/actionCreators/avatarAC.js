@@ -1,5 +1,5 @@
 
-import { SET_AVATAR, ADD_AVATAR, UPLOAD_AVATAR } from '../types/avatarTypes';
+import { SET_AVATAR, ADD_AVATAR, UPLOAD_AVATAR, CLEAR_AVATAR } from '../types/avatarTypes';
 import axios from 'axios'
 
 const setAvatarAxios = (id) => async (dispatch) => {
@@ -7,14 +7,14 @@ const setAvatarAxios = (id) => async (dispatch) => {
   dispatch(setAvatar(response.data))
 }
 
-const setAvatar = (avatar) => {
+const uploadAvatar = (avatar) => {
   return {
     type: UPLOAD_AVATAR,
     payload: avatar
   }
 }
 
-const uploadAvatar = (avatar) => {
+const setAvatar = (avatar) => {
   return {
     type: SET_AVATAR,
     payload: avatar
@@ -22,13 +22,13 @@ const uploadAvatar = (avatar) => {
 }
 
 const addNewAvatarAxios = (avatar, id) => async (dispatch) => {
-  const fd = new FormData()
 
+  const fd = new FormData()
   fd.append('image', avatar, avatar.name)
 
   const response = await axios.post(`http://localhost:3006/api/v1/homepage/${id}`, fd)
   console.log('response.data', response.data);
-  // dispatch(addNewAvatar(response.data))
+  dispatch(addNewAvatar(response.data))
 }
 
 const addNewAvatar = (avatar) => {
@@ -38,11 +38,18 @@ const addNewAvatar = (avatar) => {
   }
 }
 
+const clearAvatar = () => {
+  return {
+    type: CLEAR_AVATAR,
+    payload: null,
+  }
+}
 
 export {
   setAvatarAxios,
   setAvatar,
   addNewAvatarAxios,
   addNewAvatar,
-  uploadAvatar
+  uploadAvatar,
+  clearAvatar,
 }
