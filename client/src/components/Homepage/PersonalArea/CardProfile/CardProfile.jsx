@@ -4,11 +4,11 @@ import style from './CardProfile.module.css'
 import Foto from './Foto/Foto'
 import NavProfile from './NavProfile/NavProfile'
 
-const CardProfile = () => {
+const CardProfile = ({setVisibleComponents}) => {
   return (
     <div>
         <Foto />
-        <NavProfile />
+        <NavProfile setVisibleComponents={setVisibleComponents}/>
     </div>
   )
 }

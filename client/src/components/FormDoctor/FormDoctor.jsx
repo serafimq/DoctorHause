@@ -7,6 +7,7 @@ import { updateDoctorThunk } from '../../redux/actionCreators/doctorAC';
 const FormDoctor = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
+  console.log(id,'id');
 
   const layout = {
     labelCol: {

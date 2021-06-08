@@ -4,6 +4,11 @@ import { Layout, Menu } from 'antd';
 import {Link} from 'react-router-dom'
 import { signout } from '../../redux/actionCreators/userAC';
 import { useDispatch, useSelector } from 'react-redux';
+import { clearAvatar } from '../../redux/actionCreators/avatarAC';
+import { clearHistory } from '../../redux/actionCreators/historyAC';
+import { clearEvents } from '../../redux/actionCreators/eventsAC';
+import { clearDoctor } from '../../redux/actionCreators/doctorAC';
+
 
 export default function NavBar() {
   const { Header } = Layout;
@@ -13,6 +18,10 @@ export default function NavBar() {
 
   const deleteHandler = async (id) => {
     dispatch(signout(id))
+    dispatch(clearEvents())
+    dispatch(clearAvatar())
+    dispatch(clearHistory())
+    dispatch(clearDoctor())
   }
 
   const isAuth = useSelector(state => state.user.isAuth)
@@ -35,12 +44,16 @@ export default function NavBar() {
     </Layout>
     :
     <Layout className="layout">
-      <Header>
-        <div className="logo" />
+      <Header className={style.header}>
+        <div className={style.logo} >
+        <Link to='/'>DHouse</Link>
+      </div >
+        <div className="menu" />
         <Menu mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link to='/signup'>Регистрация</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/signin'>Авторизация </Link></Menu.Item>
+          <Menu.Item key="3"><Link to={`/login`}>Login</Link></Menu.Item>
         </Menu>
       </Header>
     </Layout>

@@ -1,6 +1,6 @@
-import {SET_DOCTORS} from '../types/doctorTypes'
+import { SET_DOCTORS } from '../types/doctorsTypes'
 
-export default function doctorsReducer (state = [], action) {
+export default function doctorsReducer(state = [], action) {
   switch (action.type) {
 
     case SET_DOCTORS:

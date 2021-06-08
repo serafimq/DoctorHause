@@ -1,0 +1,6 @@
+.maps_orientation {
+  display: flex;
+  align-content: stretch;
+  justify-content: center;
+  margin-top: 20px;
+}

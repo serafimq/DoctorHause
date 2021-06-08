@@ -1,21 +1,21 @@
-import { ADD_HISTORY, SET_HISTORY } from '../types/historyTypes'
+import { ADD_HISTORY, SET_HISTORY, CLEAR_HISTORY } from '../types/historyTypes'
 import axios from 'axios'
 
-// const setAllHistoryThunk = (id) => async (dispatch) => {
-//   const response = await axios(`http://localhost:3006/api/v1/history/${id}`)
-//   console.log('response.data', response.data);
-//   dispatch(setAllHistory(response.data))
-// }
+const setAllHistoryThunk = (id) => async (dispatch) => {
+  const response = await axios(`http://localhost:3006/api/v1/history/${id}`)
+  console.log('response.dataGETHISTORY', response.data);
+  dispatch(setAllHistory(response.data))
+}
 
-// const setAllHistory = (history) => {
-//   return {
-//     type: SET_HISTORY,
-//     payload: history
-//   }
-// }
+const setAllHistory = (history) => {
+  return {
+    type: SET_HISTORY,
+    payload: history
+  }
+}
 
-const addOneHistoryThunk = (history, id, idEvent) => async (dispatch) => {
-  const response = await axios.post(`http://localhost:3006/api/v1/history/${id}`, { history, idEvent })
+const addOneHistoryThunk = (history, id, idEvent, imagePath) => async (dispatch) => {
+  const response = await axios.post(`http://localhost:3006/api/v1/history/${id}`, { history, idEvent, imagePath })
   dispatch(addOneHistory(response.data))
 }
 
@@ -26,7 +26,17 @@ const addOneHistory = (history) => {
   }
 }
 
+const clearHistory = () => {
+  return {
+    type: CLEAR_HISTORY,
+    payload: []
+  }
+}
+
 export {
   addOneHistoryThunk,
-  addOneHistory
+  addOneHistory,
+  clearHistory,
+  setAllHistoryThunk,
+  setAllHistory
 }

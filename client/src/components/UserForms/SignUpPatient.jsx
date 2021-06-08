@@ -1,8 +1,10 @@
-import { Form, Input, Button, Select, Row, Col } from 'antd';
+import { Form, Input, Button, Select, Row, Divider } from 'antd';
 import { Typography } from 'antd';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router';
-import { signup } from '../../redux/actionCreators/userAC';
+import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
+import GoogleLogin from 'react-google-login'
+
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -21,12 +23,12 @@ const tailLayout = {
   },
 };
 
-const SignUp = () => {
+const SignUpPatient = () => {
 
   const dispatch = useDispatch()
 
   const onFinish = (values) => {
-    console.log('Success:', values);
+    values.role = 'patient'
     dispatch(signup(values))
   };
 
@@ -36,22 +38,16 @@ const SignUp = () => {
 
   const [form] = Form.useForm();
 
-  const onGenderChange = (value) => {
-    switch (value) {
-      case 'doctor':
-        form.setFieldsValue({
-          note: 'Привет врач!',
-        });
-        return;
 
-      case 'patient':
-        form.setFieldsValue({
-          note: 'Привет пациент!',
-        });
-        return;
-    }
-  };
   const isAuth = useSelector(state => state.user.isAuth) 
+
+  const responseSuccesGoogle = async (response) => {
+    dispatch(succesGoogle({tokenId: response.tokenId, role: 'patient'}))
+  }
+
+  const responseErrorGoogle = (response) => {
+    console.log(response);
+  }
 
   return (
     isAuth ?
@@ -59,9 +55,22 @@ const SignUp = () => {
     :
     <>
     <Row justify="center">
-      <Title>Форма регистрации</Title>
+      <Title>Регистрация пациента</Title>
     </Row>
-    <Row justify="center" align='bottom'>
+
+    <Row justify="center">
+      <GoogleLogin
+        clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
+        buttonText="Через Google Email"
+        onSuccess={responseSuccesGoogle}
+        onFailure={responseErrorGoogle}
+        cookiePolicy={'single_host_origin'}
+      />,
+    </Row>
+
+    <Divider/>
+    
+    <Row justify="center">
     <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
 
       <Form.Item
@@ -74,25 +83,6 @@ const SignUp = () => {
         ]}
       >
         <Input />
-      </Form.Item>
-
-      <Form.Item
-        name="role"
-        label="Кто Вы?"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Select
-          placeholder="Выберите из списка"
-          onChange={onGenderChange}
-          allowClear
-        >
-          <Option value="doctor">Врач</Option>
-          <Option value="patient">Пациент</Option>
-        </Select>
       </Form.Item>
 
       <Form.Item
@@ -133,4 +123,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp
+export default SignUpPatient
