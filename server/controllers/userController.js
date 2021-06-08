@@ -13,7 +13,8 @@ const userSignup = async (req, res) => {
       pass,
       name,
       role,
-      avatar: 'http://cs319323.vk.me/v319323049/70e1/2gddfIt0mvc.jpg'
+      avatar: 'http://cs319323.vk.me/v319323049/70e1/2gddfIt0mvc.jpg',
+      approved: false
     })
 
     req.session.user = {
@@ -39,6 +40,7 @@ const signUpGoogle = async (req, res) => {
       email,
       name,
       role,
+      approved: false
     })
     req.session.user = {
       id: newUser._id,

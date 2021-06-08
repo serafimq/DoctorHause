@@ -35,7 +35,8 @@ const userSchema = new Schema({
     author: String,
     text: String,
     stars: Number
-  }]
+  }],
+  approved: Boolean
 })
 
 const User = model('User', userSchema)

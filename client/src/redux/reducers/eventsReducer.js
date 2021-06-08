@@ -2,7 +2,6 @@ import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT } from '../types/even
 
 
 function eventsReducer(state = [], action) {
-  console.log(action, 'events action')
 
   switch (action.type) {
     case SET_EVENTS:

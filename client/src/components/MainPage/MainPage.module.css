@@ -29,6 +29,7 @@
  }
 .doctors {
   display: flex;
+  flex-wrap: wrap;
 }
 .scrollableContainer {
   overflow-y:scroll;

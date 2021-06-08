@@ -1,5 +1,5 @@
 const apiRouterDoctor = require('express').Router();
-const { addDoctors, setDoctor, setAllDoctors } = require('../controllers/doctorController')
+const { addDoctors, setDoctor, setAllDoctors, addFeedBack, } = require('../controllers/doctorController')
 
 
 apiRouterDoctor.route('/')
@@ -8,6 +8,8 @@ apiRouterDoctor.route('/')
 apiRouterDoctor.route('/:id')
   .post(addDoctors)
   .get(setDoctor)
+  .put(addFeedBack)
+
 
 
 
