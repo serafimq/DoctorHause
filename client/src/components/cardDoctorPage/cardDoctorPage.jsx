@@ -14,10 +14,10 @@ const CardDoctorPage = () => {
   const doctor = useSelector(state => state.doctor)
   // const [feedBack, setFeedBack] = useState ({})
 
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch(setOneDoctorThunk(user.id))
-  // }, [])
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(setOneDoctorThunk(user.id))
+  }, [])
 
   // const { id } = useParams()
   // useEffect(() => {

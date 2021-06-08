@@ -4,6 +4,8 @@ import axios from 'axios'
 
 
 export const setOneDoctorThunk = (id) => async (dispatch) => {
+  console.log(id, 'dadadad')
+
   const result = await axios(`http://localhost:3006/api/v1/doctors/${id}`);
   dispatch({
     type: SET_ONEDOCTOR,

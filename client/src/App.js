@@ -10,6 +10,7 @@ import MapPage from './components/MapPage/MapPage';
 
 import SignUpDoctor from './components/UserForms/SignUpDoctor';
 import SignUpPatient from './components/UserForms/SignUpPatient';
+import Login from './components/UserForms/Login/Login';
 
 function App() {
 
@@ -42,7 +43,8 @@ function App() {
           <Route exact path="/homepage/:id">
             <Homepage />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/login">
+            <Login />
           </Route>
           <Route exact path="/">
           </Route>
