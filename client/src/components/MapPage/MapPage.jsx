@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
+// import pic from '../../../public/plas.svg'
 
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import style from './mapPage.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { setAllUserAddressThunk } from '../../redux/actionCreators/addressAC';
+import { EnvironmentOutlined } from '@ant-design/icons';
+import mapStyle from "./mapStyle"
 
 const containerStyle = {
   width: '700px',
@@ -65,6 +68,12 @@ const MapPage = () => {
     setMap(null)
   }, [])
 
+  const options = {
+    styles: mapStyle,
+    disableDefaultUI: true,
+    zoomControl: true,
+  }
+
   return isLoaded ? (
     <div className={style.maps_orientation} >
       <GoogleMap
@@ -76,11 +85,25 @@ const MapPage = () => {
         zoom={13}
         onLoad={onLoad}
         onUnmount={onUnmount}
+        // options={options}
       >
         {
-          address ? address.map(el => <Marker position={{ lat: el.location.lat, lng: el.location.lng }} label={el.hospital} title={el.address}></Marker>) : null
+          address ? address.map(el =>
+            <Marker
+              position={{ lat: el.location.lat, lng: el.location.lng }}
+              label={el.hospital}
+              title={el.address + "\n" + el.date}
+              icon={{
+                url: '/hos.svg',
+                scaledSize: new window.google.maps.Size(30,30)
+                // size: 1
+              }}
+            >
+
+            </Marker>)
+            : null
         }
-      <></>
+        <></>
       </GoogleMap>
     </div >
   ) : <></>

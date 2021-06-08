@@ -1,14 +1,14 @@
 import { SIGNIN, SIGNOUT, SIGNUP, SIGNUP_GOOGLE, SIGNIN_GOOGLE } from "../types/userTypes"
 import axios from 'axios'
 
-export const signup = ({ name, role, email, pass }) => async (dispatch) => {
+export const signup = ({ name, role, avatar, email, pass }) => async (dispatch) => {
   const response = await fetch('http://localhost:3006/api/v1/user/signup', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     credentials: 'include',
-    body: JSON.stringify({ name, role, email, pass })
+    body: JSON.stringify({ name, role, avatar, email, pass })
   })
   const newUser = await response.json()
   dispatch(signupAC(newUser))
@@ -21,6 +21,7 @@ export const signupAC = (newUser) => {
       id: newUser._id,
       email: newUser.email,
       name: newUser.name,
+      avatar: newUser.avatar,
       role: newUser.role,
       isAuth: true
     }

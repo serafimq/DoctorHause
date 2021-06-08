@@ -1,7 +1,9 @@
 .info {
   text-align:left;
 }
-
+.input {
+  display: none;
+}
 .lishka {
 margin-top: 5px;
 }
@@ -16,4 +18,9 @@ margin-top: 5px;
   display: flex;
   flex-direction: column;
   
+}
+.avatar {
+
+  object-fit: cover;
+  width: 100%;
 }

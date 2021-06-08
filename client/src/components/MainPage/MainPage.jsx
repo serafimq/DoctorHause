@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Row, Modal, Col  } from 'antd';
+import React, { useEffect } from 'react'
+import { Row, Col  } from 'antd';
 import style from './MainPage.module.css'
-import CardDoctorPage from '../cardDoctorPage/cardDoctorPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
+
 import { setAllDoctorThunk } from '../../redux/actionCreators/doctorsAC'
 import CardsDoctor from './CardsDoctor/CardsDoctor';
 
@@ -40,16 +39,13 @@ export default function MainPage() {
         </div>
       </Col>
       <Col span={18} pull={6} className={style.colCentre}>
-        <Row  justify="center">
-          <Col className={style.card_doc} span={12} pull={0} justify="center"> 
+          
            {doctors.map(item => <CardsDoctor 
            id={item._id} 
            key={item._id}
            item={item}
            />)}
-          </Col>
-        </Row>
-        
+          
       </Col>
     </Row>
 

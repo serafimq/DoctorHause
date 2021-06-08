@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
-const {OAuth2Client} = require('google-auth-library')
+const { OAuth2Client } = require('google-auth-library')
 
 const saltRound = 10
 
@@ -13,12 +13,15 @@ const userSignup = async (req, res) => {
       pass,
       name,
       role,
+      avatar: 'http://cs319323.vk.me/v319323049/70e1/2gddfIt0mvc.jpg'
     })
+
     req.session.user = {
       id: newUser._id,
       name: newUser.name,
       email: newUser.email,
       role: newUser.role,
+      avatar: newUser.avatar,
     }
     return res.json(newUser)
   }
@@ -29,39 +32,39 @@ const client = new OAuth2Client('841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.a
 
 const signUpGoogle = async (req, res) => {
   const { tokenId, role } = req.body;
-  const response = await client.verifyIdToken({idToken: tokenId, audience: '841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com'})
-  const {email_verified, name, email} = response.payload
-    if (email_verified) {
-      const newUser = await User.create({
-        email,
-        name,
-        role,
-      })
-      req.session.user = {
-        id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-      }
-      return res.json(newUser)
+  const response = await client.verifyIdToken({ idToken: tokenId, audience: '841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com' })
+  const { email_verified, name, email } = response.payload
+  if (email_verified) {
+    const newUser = await User.create({
+      email,
+      name,
+      role,
+    })
+    req.session.user = {
+      id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
     }
+    return res.json(newUser)
+  }
   return res.sendStatus(418)
 }
 
 const signInGoogle = async (req, res) => {
   const { tokenId } = req.body;
-  const response = await client.verifyIdToken({idToken: tokenId, audience: '841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com'})
-  const {email_verified, name, email} = response.payload
-    if (email_verified) {
-      const newUser = await User.findOne({
-        email,
-      })
-      req.session.user = {
-        id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-      }
-      return res.json(newUser)
+  const response = await client.verifyIdToken({ idToken: tokenId, audience: '841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com' })
+  const { email_verified, name, email } = response.payload
+  if (email_verified) {
+    const newUser = await User.findOne({
+      email,
+    })
+    req.session.user = {
+      id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
     }
+    return res.json(newUser)
+  }
   return res.sendStatus(418)
 }
 
