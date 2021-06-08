@@ -57,8 +57,14 @@ export default function MainPage() {
         </div>
       </Col>
       <Col span={18} pull={6} className={style.colCentre}>
+        <select className="form-select" aria-label="Default select example">
+          <option selected>Сортировка</option>
+          <option value="1">По рейтингу</option>
+          <option value="2">По специализации</option>
+          <option value="3">По стоимости</option>
+        </select>
         <Row justify="center">
-          <Col span={12} pull={0} justify="center">  {doctors.map(item => <li className={style.radius} id={item._id} onClick={(e) => {
+          <Col span={12} pull={0} justify="center">  {doctors.map(item => <li className={style.radius} key={item.id} id={item.id} onClick={(e) => {
             openModal(e.target)
           }}> {item.name} {item.spec}
             <Modal
