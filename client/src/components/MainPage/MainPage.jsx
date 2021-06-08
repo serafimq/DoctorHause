@@ -14,8 +14,6 @@ export default function MainPage() {
 
   const doctors = useSelector(state => state.doctors)
 
-  
-
   return (
     <Row>
       <Col span={6} push={18}>

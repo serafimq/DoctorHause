@@ -30,9 +30,47 @@
 
 
 .name {
+  margin-top: 10px;
   font-weight: 900;
   text-align: left;
 }
 .name span{
  font-weight: normal;
+ font-size: 18px;
+}
+.header {
+  
+}
+.body{
+  
+  border-top: 1px solid #a571f35e;
+  display: flex;
+}
+
+.specialist {
+  font-size: 14px;
+  margin-top: 10px;
+  flex: 1 1 75%;
+}
+
+
+.ask_img {
+      position: relative;
+    height: 30px;
+    top: 14px;
+    right: -30px;
+}
+.callMe {
+  position: relative;
+  top: 18px;
+  border-radius: 10px;
+  background: #b9c7fc;
+  box-shadow: inset -11px 11px 39px #98a3cf,
+            inset 11px -11px 39px #daebff;
+}
+.ask {
+  position: relative;
+    padding-left: 10px;
+    margin-top: 5px;
+    border-left: 1px solid #a571f35e;
 }
