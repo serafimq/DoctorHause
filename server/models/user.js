@@ -24,6 +24,7 @@ const userSchema = new Schema({
   },
   role: String,
   isAuth: Boolean,
+  avatar: String,
   spec: String,
   stage: Number,
   phone: Number,

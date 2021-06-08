@@ -19,3 +19,8 @@ margin-top: 5px;
   flex-direction: column;
   
 }
+.avatar {
+
+  object-fit: cover;
+  width: 100%;
+}

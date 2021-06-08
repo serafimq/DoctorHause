@@ -20,8 +20,11 @@ const CardDoctorPage = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(setOneDoctorThunk(user.id))
-    dispatch(setAvatarAxios(user.id))
+    if (user.role === 'doctor' ) {
+      console.log('я доктор');
+      dispatch(setOneDoctorThunk(user.id))
+      dispatch(setAvatarAxios(user.id))
+    }
   }, [])
 
    const fileSelectedHandler = e => {
@@ -48,8 +51,8 @@ const CardDoctorPage = () => {
       <Card align="middle" justify="center" title={doctor.name} bordered={false}>
         <Col span={6}>
         <figure>
-          <img 
-          
+          <img  
+          className={style.avatar} 
           onClick={ user.id === doctor._id ?
              () => {inputFile.current.click()} 
              : 
@@ -59,7 +62,7 @@ const CardDoctorPage = () => {
             `http://localhost:3006/${avatar.avatar}` 
             :
             'http://cs319323.vk.me/v319323049/70e1/2gddfIt0mvc.jpg'
-            } className="" alt="Card image"/>
+            } alt="Card image"/>
         </figure>
               <input className={style.input} type='file' name='image'  
               ref={inputFile } onChange={(e) => fileSelectedHandler(e)}/>
