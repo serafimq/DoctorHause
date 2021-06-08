@@ -1,4 +1,4 @@
-import { ADD_DOCTOR, CLEAR_DOCTOR, SET_ONEDOCTOR, ADD_FEEDBACK } from '../types/doctorTypes'
+import { ADD_DOCTOR, CLEAR_DOCTOR, SET_ONEDOCTOR, ADD_FEEDBACK, CHANGE_ACCESS } from '../types/doctorTypes'
 
 export default function doctorReducer(state = {}, action) {
   switch (action.type) {
@@ -14,6 +14,9 @@ export default function doctorReducer(state = {}, action) {
 
       case ADD_FEEDBACK:
         return action.payload
+
+        case CHANGE_ACCESS:
+          return action.payload
 
     default:
       return state

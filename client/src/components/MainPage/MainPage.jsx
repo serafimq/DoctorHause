@@ -40,11 +40,14 @@ export default function MainPage() {
       </Col>
       <Col span={18} pull={6} className={style.colCentre}>
           
-           {doctors.map(item => <CardsDoctor 
+           {doctors.map(item => item.approved ? <CardsDoctor 
            id={item._id} 
            key={item._id}
            item={item}
-           />)}
+           />
+           :
+           ''
+           )}
           
       </Col>
     </Row>

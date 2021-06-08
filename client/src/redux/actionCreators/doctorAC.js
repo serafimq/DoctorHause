@@ -1,4 +1,4 @@
-import { ADD_DOCTOR, CLEAR_DOCTOR, SET_ONEDOCTOR, ADD_FEEDBACK } from '../types/doctorTypes'
+import { ADD_DOCTOR, CLEAR_DOCTOR, SET_ONEDOCTOR, ADD_FEEDBACK, CHANGE_ACCESS } from '../types/doctorTypes'
 import axios from 'axios'
 
 
@@ -32,5 +32,14 @@ export const addFeedBackThunk = (feedBack, id) => async (dispatch) => {
   dispatch({
     type: ADD_FEEDBACK,
     payload: result
+  })
+}
+
+export const changeAccessThunk = (id) => async (dispatch) => {
+  console.log(id);
+  const result = await axios.patch(`http://localhost:3006/api/v1/homepage/${id}`, {id});
+  dispatch({
+    type: SET_ONEDOCTOR,
+    payload: result.data
   })
 }

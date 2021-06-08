@@ -29,6 +29,23 @@ const addFeedBack = async (req, res) => {
   return res.sendStatus(200)
 }
 
+const changeAccess = async (req, res) => {
+  
+  const { id } = req.body
+  console.log(req.body, 'req.body.id');
+  const currentUser = await User.findById(id)
+  if (currentUser.approved === true){
+    const updateUser = await currentUser.updateOne({
+  approved: false
+})
+}  else {
+  const updateUser = await currentUser.updateOne({
+    approved: true
+  })
+}
+  return res.sendStatus(200)
+}
+
 module.exports = {
-  addDoctors, setDoctor, setAllDoctors, addFeedBack
+  addDoctors, setDoctor, setAllDoctors, addFeedBack, changeAccess
 }
