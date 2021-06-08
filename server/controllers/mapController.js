@@ -18,7 +18,7 @@ const setEventForMapAxios = async (req, res) => {
     )
     const response = await fetch(newAddress)
     const result = await response.json()
-    newArrWithPlaces.push({location: result.results[0].geometry.location, hospital: filterUserEvent[i].hospital, address: filterUserEvent[i].address})
+    newArrWithPlaces.push({location: result.results[0].geometry.location, hospital: filterUserEvent[i].hospital, address: filterUserEvent[i].address, date: filterUserEvent[i].dateTime.toISOString().replace('-','/').replace('-','/').replace('T',' ').substring(0,16)})
   }
   console.log('newArrWithPlaces', newArrWithPlaces);
 

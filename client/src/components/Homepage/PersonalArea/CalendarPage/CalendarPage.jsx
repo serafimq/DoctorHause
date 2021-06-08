@@ -19,21 +19,21 @@ const CalendarPage = () => {
 
   function dateCellRender(value) {
     const listData = events.filter(i => i.date === value.format('YYYY-MM-DD'));
-    
+
     return (
-      <ul  className={style.events}>
-        
+      <ul className={style.events}>
+
         {listData.map(item => (
-          <li  key={item._id}>
+          <li key={item._id}>
             <div>
-            <Badge status={item.hospital} text={item.hospital} />
+              <Badge status={item.hospital} text={item.hospital} />
             </div>
             <div>
               <Badge status={item.hospital} text={item.specialization} />
             </div>
           </li>
         ))}
-       
+
       </ul>
     );
   }
@@ -116,7 +116,7 @@ const CalendarPage = () => {
                       <p>Имя и Фамилия врача: {el.firstLastName}</p>
                       <p>Специализация: {el.specialization}</p>
                       <p>Адрес: {el.address}</p>
-                      <ResultModal idEvent={el._id}/>
+                      <ResultModal idEvent={el._id} />
                     </Card>
 
                   </>)

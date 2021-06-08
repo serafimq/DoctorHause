@@ -1,14 +1,31 @@
-.list {
+/* .list {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .switch_right {
   margin-top: 20px;
-  display: flex;
-  align-content: stretch;
-  justify-content: flex-end;
   margin-right: 20px;
+  text-align: end;
+}
+
+.date_description {
+  text-align: end;
+  margin-top: 10px;
+  
+}
+
+.row {
+  row-gap: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around
+}
+
+.historyBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
