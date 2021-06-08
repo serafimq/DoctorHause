@@ -1,7 +1,6 @@
 import React from 'react'
 // import style from './Homepage.model.css'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import CardDoctorPage from '../cardDoctorPage/cardDoctorPage'
 
 import PersonalArea from './PersonalArea/PersonalArea'

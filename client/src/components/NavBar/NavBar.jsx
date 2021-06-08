@@ -4,7 +4,6 @@ import { Layout, Menu } from 'antd';
 import {Link} from 'react-router-dom'
 import { signout } from '../../redux/actionCreators/userAC';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC';
 
 export default function NavBar() {
   const { Header } = Layout;
