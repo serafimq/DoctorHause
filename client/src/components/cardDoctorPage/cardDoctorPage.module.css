@@ -1,7 +1,9 @@
 .info {
   text-align:left;
 }
-
+.input {
+  display: none;
+}
 .lishka {
 margin-top: 5px;
 }

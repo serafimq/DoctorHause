@@ -1,7 +1,8 @@
 import Modal from 'antd/lib/modal/Modal'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { clearDoctor, setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
+import { setAvatarAxios } from '../../../redux/actionCreators/avatarAC'
+import { setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import CardDoctorPage from '../../cardDoctorPage/cardDoctorPage'
 import style from './CardsDoctor.module.css'
 
@@ -17,9 +18,10 @@ const CardsDoctor = ({item, id}) => {
   const openModal = (e) => {
     console.log(e);
     dispatch(setOneDoctorThunk(e.id))
+    dispatch(setAvatarAxios(e.id))
     visibleModal()
   }
-
+  
   const closeModal = () => {
     visibleModal()
   }

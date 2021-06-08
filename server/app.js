@@ -35,7 +35,6 @@ app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags:
 app.use(fileUpload())
 
 
-
 app.post('/api/v1/homepage/:id', async (req, res) => {
   console.log('Start foto3');
 

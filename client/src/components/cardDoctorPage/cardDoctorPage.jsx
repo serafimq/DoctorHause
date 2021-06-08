@@ -1,23 +1,33 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { Card, Modal, Col, Row, Rate, Button, Form, Input, List } from 'antd';
-import Avatar from 'antd/lib/avatar/avatar';
 import style from './cardDoctorPage.module.css'
-import { UserOutlined } from '@ant-design/icons'
-import { useEffect, useState } from 'react'
+
+import { useEffect, useRef, useState } from 'react'
 import FormDoctor from '../FormDoctor/FormDoctor';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 import { FeedBack } from './FeedBack/FeedBack';
-import { useParams } from 'react-router';
+
+import { addNewAvatarAxios, setAvatarAxios } from '../../redux/actionCreators/avatarAC';
 
 const CardDoctorPage = () => {
   const user = useSelector(state => state.user)
   const doctor = useSelector(state => state.doctor)
+  const avatar = useSelector(state => state.avatar)
   // const [feedBack, setFeedBack] = useState ({})
+
+  const inputFile = useRef(null) 
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setOneDoctorThunk(user.id))
+    dispatch(setAvatarAxios(user.id))
   }, [])
+
+   const fileSelectedHandler = e => {
+    console.log('Start foto');
+    dispatch(addNewAvatarAxios(e.target.files[0], user.id))
+  }
 
   // const { id } = useParams()
   // useEffect(() => {
@@ -37,7 +47,22 @@ const CardDoctorPage = () => {
 
       <Card align="middle" justify="center" title={doctor.name} bordered={false}>
         <Col span={6}>
-          <Avatar src='http://cdn.fishki.net/upload/post/2019/07/15/3032379/tn/5823b4c01cefdd7191cb68ad0ec11dca.jpg' size={150} icon={<UserOutlined />} />
+        <figure>
+          <img 
+          
+          onClick={ user.id === doctor._id ?
+             () => {inputFile.current.click()} 
+             : 
+             (e) => {console.log(e);} 
+            } 
+          src={avatar?.avatar ?
+            `http://localhost:3006/${avatar.avatar}` 
+            :
+            'http://cs319323.vk.me/v319323049/70e1/2gddfIt0mvc.jpg'
+            } className="" alt="Card image"/>
+        </figure>
+              <input className={style.input} type='file' name='image'  
+              ref={inputFile } onChange={(e) => fileSelectedHandler(e)}/>
           <Row></Row>
           <Rate allowHalf defaultValue={2.5} />
         </Col>
