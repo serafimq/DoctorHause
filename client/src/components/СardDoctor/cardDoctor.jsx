@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addDoctorThunk } from '../../redux/actionCreators/doctorAC'
 
 
-export const cardDoctor = () => {
+export const СardDoctor = () => {
   const [modal1Visible, setModal1Visible] = useState(false)
   const dispatch = useDispatch()
 
@@ -20,6 +20,7 @@ export const cardDoctor = () => {
     setModal1Visible(!modal1Visible)
   }
   return(
+    <>
 <Col span={6}>
           <Card title="Абрамсон Сара Вениаминовна" bordered={false}>
             <Avatar src='http://cdn.fishki.net/upload/post/2019/07/15/3032379/tn/5823b4c01cefdd7191cb68ad0ec11dca.jpg' size={150} icon={<UserOutlined />} />
@@ -107,7 +108,7 @@ export const cardDoctor = () => {
             </Modal>
           </Card>
         </Col>
-
+    </>
 
 
 

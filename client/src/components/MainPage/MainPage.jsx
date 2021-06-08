@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
-import { Row, Col  } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Row, Modal, Col, Card } from 'antd';
 import style from './MainPage.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-
-import { setAllDoctorThunk } from '../../redux/actionCreators/doctorsAC'
+import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
+import { setAllDoctorThunk, sortDoctors } from '../../redux/actionCreators/doctorsAC'
 import CardsDoctor from './CardsDoctor/CardsDoctor';
+
+const { Meta } = Card;
 
 export default function MainPage() {
   const dispatch = useDispatch()
@@ -14,35 +16,74 @@ export default function MainPage() {
 
   const doctors = useSelector(state => state.doctors)
 
+  //для сортировки
+
+  const [sortedField, setSortedField] = useState(false)
+  console.log(sortDoctors, 'sortdoctors');
+  const handleSort = (e, sorted) => {
+    dispatch(sortDoctors(e, sorted))
+    setSortedField(!sortedField);
+  }
+  // console.log(sortedField, 'sorted');
+
+
   return (
     <Row>
       <Col span={6} push={18}>
         <div className={style.scrollableContainer}>
-          <div className={style.news}>
-            <a className={style.card} href='https://encyclopatia.ru/wiki/%D0%A0%D0%B0%D1%81%D1%81%D1%82%D1%80%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%B5%D0%BF%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2' className={style.card} >Расстрельный список препаратов</a><br /><br />
-            <p className={style.text}>Справочник популярных, но при этом неработающих лекарств и методов диагностики, который ведет врач-невролог Никита Жуков.</p>
+          <p></p>
+          <div className={style.cardNews}>
+            <img className={style.cardImg} src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" ></img>
+            <div className="card-body">
+              <h5 className={style.title}>Справочник популярных, неработающих лекарств.</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="https://encyclopatia.ru/wiki/%D0%A0%D0%B0%D1%81%D1%81%D1%82%D1%80%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%B5%D0%BF%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2" className={style.link}>READ MORE</a>
+            </div>
           </div>
-          <div className={style.news}>
-            <a href='https://www.msdmanuals.com/ru/%D0%B4%D0%BE%D0%BC%D0%B0' className={style.card} >Справочник MSD</a><br /><br />
-            <p className={style.text}>Международный медицинский справочник, версия которого существует в том числе и на русском языке. Проект финансирует американская фармацевтическая компания Merck, однако справочник составляют независимые эксперты, которые не имеют права работать на фармкорпорацию и рекламировать ее продукты.</p>
+          
+          <div className={style.cardNews}>
+            <img className={style.cardImg} src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" ></img>
+            <div className="card-body">
+              <h5 className={style.title}>Некоммерческий проект медицинских знаний.</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="https://medspecial.ru/" className={style.link}>READ MORE</a>
+            </div>
           </div>
-          <div className={style.news}>
-            <a href='https://medspecial.ru/' className={style.card}>Medspecial</a><br /><br />
-            <p className={style.text}>Некоммерческий проект по популяризации медицинских знаний. Его создали российские врачи, которые придерживаются принципов доказательной медицины. В разделе «Для пациентов» есть грамотные и понятные статьи про наше здоровье: с какого возраста начинать говорить с детьми о вреде алкоголя, зачем нужны прививки и как развивается пневмония.</p>
+          <div className={style.cardNews}>
+            <img className={style.cardImg} src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" ></img>
+            <div className="card-body">
+              <h5 className={style.title}>Самый авторитетный англоязычный международный справочник для врачей.</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="https://www.wolterskluwer.com/en/solutions/uptodate" className={style.link}>READ MORE</a>
+            </div>
           </div>
-          <div className={style.news}>
-            <a href='https://www.wolterskluwer.com/en/solutions/uptodate' className={style.card} >UpToDate</a><br /><br />
-            <p className={style.text}>Самый авторитетный англоязычный международный справочник для врачей. Его составляют медицинские специалисты на основе статей из научных журналов. Большая часть «врачебных» статей доступна только за деньги. «Пациентский» раздел бесплатный. Чтобы узнать главное о болезнях и методах их лечения. В каждой пациентской статье есть советы по профилактике болезни и рекомендации по здоровому образу жизни.</p>
+          <div className={style.cardNews}>
+            <img className={style.cardImg} src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" ></img>
+            <div className="card-body">
+              <h5 className={style.title}>Международный медицинский справочник.</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="https://www.msdmanuals.com/ru/%D0%B4%D0%BE%D0%BC%D0%B0" className={style.link}>READ MORE</a>
+            </div>
           </div>
         </div>
       </Col>
+      
       <Col span={18} pull={6} className={style.colCentre}>
-          
+         <div className={style.input_sort}>
+         <select onChange={(e) => handleSort(e, sortedField)} class="form-select" aria-label="Default select example">
+          <option selected>Sort By:</option>
+          <option value="spec">По специализации</option>
+          <option value="rating">По рейтингу</option>
+          <option value="price">По стоимости</option>
+        </select>
+        </div> 
+        <div className={style.doctors}>
            {doctors.map(item => <CardsDoctor 
            id={item._id} 
            key={item._id}
            item={item}
            />)}
+        </div>
           
       </Col>
     </Row>

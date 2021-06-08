@@ -1,5 +1,7 @@
 const SET_DOCTORS = 'SET_DOCTORS'
+const SORT_DOCTORS = 'SORT_DOCTORS'
 
 export {
   SET_DOCTORS,
+  SORT_DOCTORS,
 }

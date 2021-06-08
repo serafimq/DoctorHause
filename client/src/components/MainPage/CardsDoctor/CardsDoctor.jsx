@@ -26,7 +26,8 @@ const CardsDoctor = ({item, id}) => {
   const closeModal = () => {
     visibleModal()
   }
-
+  console.log(item.spec,'spec');
+  console.log(item.rating, 'rating');
   return (
     <div className={style.one_card}>
 
@@ -44,9 +45,9 @@ const CardsDoctor = ({item, id}) => {
         <div className={style.body}>
           <div>
           <div className={style.specialist}>
-            <h3>Специальность: <br /> <span>Тут специальность</span></h3> </div>
+            <h3>Специальность: <br /> <span> {item.spec}</span></h3> </div>
             <div className={style.price}>
-            <h3>Стоимость приема: <span> 100 руб/ч</span></h3> </div>
+            <h3>Стоимость приема: <span> {item.price} руб</span></h3> </div>
           </div>
           <div className={style.ask}>
             <img className={style.ask_img} src="http://localhost:3006/public/logo/comments.svg" alt="" />
