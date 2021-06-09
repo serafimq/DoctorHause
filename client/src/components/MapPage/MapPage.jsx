@@ -23,7 +23,6 @@ const MapPage = () => {
   const id = useSelector(state => state.user.id)
   const dispatch = useDispatch()
   const address = useSelector(state => state.address)
-  console.log('address', address);
   // let map;
   // const maps1 = document.querySelector('.maps')
   // console.log(resultCoordination)

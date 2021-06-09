@@ -39,7 +39,7 @@ export const changeAccessThunk = (id) => async (dispatch) => {
   console.log(id);
   const result = await axios.patch(`http://localhost:3006/api/v1/homepage/${id}`, {id});
   dispatch({
-    type: SET_ONEDOCTOR,
+    type: CHANGE_ACCESS,
     payload: result.data
   })
 }

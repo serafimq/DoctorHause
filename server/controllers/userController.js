@@ -102,6 +102,11 @@ const userInfo = async (req, res) => {
   )
 }
 
+const deleteUser = async (req, res) => {
+  await User.deleteOne({_id: req.params.id})
+  res.json(200)
+}
+
 const checkUser = (req, res) => (req.session?.user?.id ? res.sendStatus(200) : res.sendStatus(401))
 
 module.exports = {
@@ -112,4 +117,5 @@ module.exports = {
   userSignout,
   userInfo,
   checkUser,
+  deleteUser
 }

@@ -1,4 +1,4 @@
-import { SIGNIN, SIGNOUT, SIGNUP, SIGNUP_GOOGLE, SIGNIN_GOOGLE } from "../types/userTypes"
+import { SIGNIN, SIGNOUT, SIGNUP, SIGNUP_GOOGLE, SIGNIN_GOOGLE, DELETE } from "../types/userTypes"
 import axios from 'axios'
 
 export const signup = ({ name, role, avatar, email, pass }) => async (dispatch) => {
@@ -117,4 +117,13 @@ export const signoutAC = () => {
 
     }
   }
+}
+
+export const deleteUserThunk = (id) => async (dispatch) => {
+  console.log(id);
+  const result = await axios.delete(`http://localhost:3006/api/v1/homepage/${id}`, {id:id});
+  dispatch({
+    type: DELETE,
+    payload: result.data
+  })
 }

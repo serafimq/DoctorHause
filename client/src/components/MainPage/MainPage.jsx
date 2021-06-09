@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Row, Col  } from 'antd';
+import { Row, Col } from 'antd';
 import style from './MainPage.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,8 +13,6 @@ export default function MainPage() {
   }, [])
 
   const doctors = useSelector(state => state.doctors)
-
-  
 
   return (
     <Row>
@@ -39,16 +37,16 @@ export default function MainPage() {
         </div>
       </Col>
       <Col span={18} pull={6} className={style.colCentre}>
-          
-           {doctors.map(item => item.approved ? <CardsDoctor 
-           id={item._id} 
-           key={item._id}
-           item={item}
-           />
-           :
-           ''
-           )}
-          
+
+        {doctors.map(item => item.approved ? <CardsDoctor
+          id={item._id}
+          key={item._id}
+          item={item}
+        />
+          :
+          ''
+        )}
+
       </Col>
     </Row>
 
