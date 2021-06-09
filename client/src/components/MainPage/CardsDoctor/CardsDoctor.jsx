@@ -26,21 +26,23 @@ const CardsDoctor = ({item, id}) => {
   const closeModal = () => {
     visibleModal()
   }
-  console.log(item.spec,'spec');
-  console.log(item.rating, 'rating');
+  const currentRating = item.feedBack?.reduce((acc, cur) => acc+cur.stars,0)
+  console.log(currentRating);
+  console.log(item);
   return (
     <div className={style.one_card}>
-
-      <div className={style.radius} id={id} onClick={(e) => {openModal(e.target)}} > 
-        <div className={style.header}>
+      <div className={style.radius} id={id} > 
+        <div onClick={(e) => {openModal(e.target)}} className={style.header}>
           <div className={style.avatar}> 
               <img src={`http://localhost:3006/${item.avatar}`}
               className={style.img} 
               alt="Card image"/>
           </div>
+          <div className={style.about}>
           <h2 className={style.name}>Доктор: <span>{item.name}</span> </h2>
-          <Rate disabled defaultValue={4}  /> 
-          <span>4.1</span>
+          <Rate disabled defaultValue={currentRating}  /> 
+          <span>{currentRating}</span>
+          </div>
         </div>
         <div className={style.body}>
           <div>

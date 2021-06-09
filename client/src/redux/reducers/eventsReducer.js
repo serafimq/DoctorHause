@@ -2,10 +2,6 @@ import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT, DELETE_EVENT } from 
 
 
 function eventsReducer(state = [], action) {
-<<<<<<< HEAD
-=======
-  console.log(action.payload, 'events action')
->>>>>>> origin/history-page
 
   switch (action.type) {
     case SET_EVENTS:
