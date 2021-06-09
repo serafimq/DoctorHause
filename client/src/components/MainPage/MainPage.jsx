@@ -75,6 +75,9 @@ export default function MainPage() {
           <option value="rating">По рейтингу</option>
           <option value="price">По стоимости</option>
         </select>
+        <p><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='spec' ></input> По специализации </p>
+        <p><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='rating' ></input> По рейтингу</p>
+        <p><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='price' ></input> По стоимости </p>
         <Row justify="center">
           <Col className={style.card_doc} span={12} pull={0} justify="center">
             {doctors.map(item => <CardsDoctor
