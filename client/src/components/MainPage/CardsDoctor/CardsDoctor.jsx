@@ -16,6 +16,7 @@ const CardsDoctor = ({item, id}) => {
   function visibleModal(id) {
     setModal1Visible(!modal1Visible)
   }
+  
   const dispatch = useDispatch()
 
   const openModal = (e) => {

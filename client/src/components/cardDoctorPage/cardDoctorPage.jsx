@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 import { FeedBack } from './FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../redux/actionCreators/avatarAC';
-import { RegistrationForm } from './Mail';
 
 const CardDoctorPage = () => {
   const user = useSelector(state => state.user)
@@ -49,7 +48,8 @@ const CardDoctorPage = () => {
   const [modal1Visible, setModal1Visible] = useState(false)
 
   function visibleModal() {
-    setModal1Visible(modal1Visible)
+    
+    setModal1Visible(!modal1Visible)
   }
 
   //stars
@@ -122,7 +122,9 @@ const CardDoctorPage = () => {
           </Row>
           {user.id === doctor._id
             ?
-            <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
+            <Button type="primary" htmlType="submit" onClick={() => {
+              visibleModal()
+            }}>Редактировать</Button>
             :
             <>
               <hr />
@@ -140,9 +142,15 @@ const CardDoctorPage = () => {
             title="Редактировать данные"
             style={{ top: 20 }}
             visible={modal1Visible}
-            onClick={(e) => console.log(e)}
-            onOk={() => visibleModal()}
-            onCancel={() => visibleModal()}
+            
+            onOk={() => {
+              visibleModal()
+              dispatch(setOneDoctorThunk(user.id))
+            }}
+            onCancel={() => {
+              visibleModal()
+              dispatch(setOneDoctorThunk(user.id))
+            }}
           >
             <FormDoctor />
           </Modal>
