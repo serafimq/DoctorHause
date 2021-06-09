@@ -11,6 +11,7 @@ import MapPage from './components/MapPage/MapPage';
 import SignUpDoctor from './components/UserForms/SignUpDoctor';
 import SignUpPatient from './components/UserForms/SignUpPatient';
 import Login from './components/UserForms/Login/Login';
+import 'antd-button-color/dist/css/style.css';
 
 function App() {
 
