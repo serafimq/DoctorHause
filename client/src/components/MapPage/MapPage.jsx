@@ -70,11 +70,16 @@ const MapPage = () => {
 
   const options = {
     styles: mapStyle,
-    disableDefaultUI: true,
+    // disableDefaultUI: true,
     zoomControl: true,
   }
 
   return isLoaded ? (
+    <>
+    <div>
+    Выберете количество последних посещений
+    <input placeholder="Введите количество дней"></input>
+    </div>
     <div className={style.maps_orientation} >
       <GoogleMap
         mapContainerStyle={containerStyle}
@@ -85,17 +90,17 @@ const MapPage = () => {
         zoom={13}
         onLoad={onLoad}
         onUnmount={onUnmount}
-        // options={options}
+        options={options}
       >
         {
           address ? address.map(el =>
             <Marker
               position={{ lat: el.location.lat, lng: el.location.lng }}
-              label={el.hospital}
+              // label={el.hospital}
               title={el.address + "\n" + el.date}
               icon={{
-                url: '/hos.svg',
-                scaledSize: new window.google.maps.Size(30,30)
+                url: '/medical.png',
+                scaledSize: new window.google.maps.Size(37,37)
                 // size: 1
               }}
             >
@@ -106,8 +111,8 @@ const MapPage = () => {
         <></>
       </GoogleMap>
     </div >
+    </>
   ) : <></>
-
 }
 
 export default React.memo(MapPage)

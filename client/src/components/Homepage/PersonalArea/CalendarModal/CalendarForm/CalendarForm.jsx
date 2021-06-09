@@ -6,6 +6,7 @@ import {
   Button,
   DatePicker,
   Select,
+  Checkbox
 } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +29,16 @@ function CalendarForm({ visibleModal }) {
     }
     console.log('Success:', beforeSent);
 
+    // if (checkNick === true) {
+    //   const response = await fetch(`https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=${beforeSent.problem}&amp;date=${beforeSent.dateTime}&amp;details=${beforeSent.problem}&amp;location=${appointment[0]['branch_name']}`)
+    // }
+
+    // https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=CarPrice.+Аукцион.&amp;dates=${app_time}&amp;details=Не+забудьте+взять+с+собой+полный+пакет+документов,+второй+комплект+ключей,+комплект+сменной+резины,+а+также+помыть+авто+перед+продажей.&amp;src=qmindhd%40gmail.com;
+    // https://calendar.google.com/calendar/render?action=TEMPLATE&amp;location=г.Москва,+Шоссе+Энтузисастов,д.+100,+к.+1`
+    // https://calendar.google.com/calendar/u/0/r/eventedit&amp;dates=20210608T224000Z/20210609T221500Z
+
+
+    
     dispatch(addEventsAxiox(beforeSent, user.id))
     visibleModal()
   };
@@ -37,6 +48,7 @@ function CalendarForm({ visibleModal }) {
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
+  
 
   return (
     <Form
@@ -56,8 +68,8 @@ function CalendarForm({ visibleModal }) {
       onFinish={onFinish}
     // onSubmit={submitHandler}
     >
-      <Form.Item name="problem" label="Жалоба">
-        <Input placeholder="Жалоба" />
+      <Form.Item name="problem" label="Причина обращения">
+        <Input placeholder="Причина обращения" />
       </Form.Item>
       <Form.Item name="hospital" label="Клиника">
         <Input placeholder="Введите название клиники" />
