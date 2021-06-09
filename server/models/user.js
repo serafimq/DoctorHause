@@ -6,6 +6,7 @@ const userSchema = new Schema({
     required: false,
     type: String
   },
+  messages: [],
   name: {
     type: String,
     required: true,
@@ -24,6 +25,17 @@ const userSchema = new Schema({
   },
   role: String,
   isAuth: Boolean,
+  spec: String,
+  stage: Number,
+  phone: Number,
+  metro: String,
+  price: Number,
+  stars: Number,
+  feedBack: [{
+    author: String,
+    text: String,
+    stars: Number
+  }]
 })
 
 const User = model('User', userSchema)

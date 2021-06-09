@@ -1,7 +1,114 @@
+/* b9c7fc */
+
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .ant-radio-button-wrapper {
   display:none;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-content {
+  height: 65px;
+}
+
+
+.ant-layout, .ant-layout * {
+  background-color: #f6eafd ;
+  
+}
+
+.ant-picker-calendar-header {
+  background-color: #fff;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #b9c7fc;
+  height: 75px;
+  box-shadow: -8px 20px 26px #96a1cc, -22px -22px 52px #dcedff;
+  color: #fff;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected a{
+  color: #fff;
+}
+.ant-layout-header {
+    height: 65px;
+    background: #f6eafd;
+}
+
+.ant-menu-vertical .ant-menu-item::after, .ant-menu-vertical-left .ant-menu-item::after, .ant-menu-vertical-right .ant-menu-item::after, .ant-menu-inline .ant-menu-item::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  
+  transform: scaleY(0.0001);
+  opacity: 0;
+  transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+  content: '';
+}
+.ant-menu-vertical .ant-menu-item, .ant-menu-vertical-left .ant-menu-item, .ant-menu-vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-submenu-title, .ant-menu-vertical-left .ant-menu-submenu-title, .ant-menu-vertical-right .ant-menu-submenu-title, .ant-menu-inline .ant-menu-submenu-title {
+  
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  height: 75px;
+
+}
+
+input.fab {
+	display: none
+}
+
+figure {
+  overflow: hidden;
+  height: 350px;
+}
+
+.img-profile {
+    -webkit-clip-path: circle(41% at 70% 25%);
+    -moz-clip-path: circle(41% at 70% 25%);
+    clip-path: circle(41% at 70% 25%);
+    transform: translatez(0);
+    transition: all .3s linear;
+    max-width: 100%;
+}
+.img-profile:hover {
+    -webkit-clip-path: circle(25% at 50% 35%);
+    clip-path: circle(25% at 50% 35%);
+    transform: scale(1.07) rotate(2deg) translatez(0);
+}
+.profile-card .fab+.toggle {
+	top: 63%;
+	z-index: 10;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	font-size: 60px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 50%;
+	position: absolute;
+	color: #fff;
+	background: #F44336;
+	box-shadow: 0 4px 4px #666;
+	transition: all 0.3s ease-in-out 0s;
+}
+
+.ant-picker-calendar {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum', "tnum";
+  background: #fff;
+  border: 12px solid #fff;
+  border-radius: 35px;
+  background: #b9c7fc;
+  box-shadow: -25px 25px 50px #8e99c2, 25px -25px 50px #e4f5ff;
 }

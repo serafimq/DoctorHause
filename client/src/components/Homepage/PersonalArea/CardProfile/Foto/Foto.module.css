@@ -1,0 +1,17 @@
+.user_profile {
+  
+}
+
+.user_name {
+  font-weight: 900;
+  font-size: 25px;
+}
+
+.user_email {
+  font-weight: 200;
+  font-size: 16px;
+}
+
+ .input {
+  display: none;
+} 

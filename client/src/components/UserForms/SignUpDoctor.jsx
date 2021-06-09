@@ -55,7 +55,6 @@ const SignUpDoctor = () => {
     <Row justify="center">
       <Title>Регистрация врача</Title>
     </Row>
-
     <Row justify="center">
       <GoogleLogin
         clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"

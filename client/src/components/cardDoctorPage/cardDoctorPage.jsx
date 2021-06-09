@@ -1,114 +1,158 @@
-import { Card, Modal, Col, Row, Rate, Button, Form, Input } from 'antd';
+import { Card, Modal, Col, Row, Rate, Button, Form, Input, List, Divider } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import style from './cardDoctorPage.module.css'
 import { UserOutlined } from '@ant-design/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormDoctor from '../FormDoctor/FormDoctor';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
+import { FeedBack } from './FeedBack/FeedBack';
+import { useParams } from 'react-router';
+import { RegistrationForm } from './Mail';
+const nodemailer = require('nodemailer');
 
 const CardDoctorPage = () => {
+  const user = useSelector(state => state.user)
+  const doctor = useSelector(state => state.doctor)
+  // const [feedBack, setFeedBack] = useState ({})
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(setOneDoctorThunk(user.id))
+  }, [])
+
+  // const { id } = useParams()
+  // useEffect(() => {
+    
+  //   dispatch(setOneDoctorThunk(feedBack))
+  // }, [])
+
 
   const [modal1Visible, setModal1Visible] = useState(false)
-
   function visibleModal() {
-    setModal1Visible(!modal1Visible)
+    setModal1Visible(modal1Visible)
   }
+
+  const output = `
+  <p>Срочно регистрируйся! 🤓</p>
+  <label>Вот тебе ссылка</label>
+  
+  `;
+  
+  // Опции отправки почты
+  let mailOptions = {
+      from: 'example@yandex.ru', // почта отправителя
+      to: 'example@yandex.ru', // лист адресов получателей через запятую
+      subject: 'Срочное оповещение', // Заголовок письма
+      text: 'Срочно регистрируйся! 😨', // Текст письма если нет тела письма в html
+      html: output // html тело письма
+  };
+  
+// Отправляет письмо
+function sendMail(mailOptions) {
+  // Создаем обьект транспортера
+  // Авторизируемся
+  let smtpTransport;
+  try {
+    smtpTransport = nodemailer.createTransport({
+      host: 'smtp.yandex.ru',
+      port: 465,
+      secure: true, // true для 465, false для других портов 587
+      auth: {
+        user: "example@yandex.ru", // почта пользователя для авторизации
+        pass: "secretPassword" // пароль пользователя
+      }
+    });
+  }catch (e) {
+    return console.log('Ошибка: ' + e.name + ":" + e.message);
+  }
+  
+  // Отправляем письмо
+  smtpTransport.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log('Ошибка');
+    }else {
+      console.log('Сообщение отправлено: %s', info.messageId);
+    }
+  });
+}
+
+const maleSubmit =(e) => {
+  console.log('Привет');
+  e.preventDefault();
+  sendMail(mailOptions);
+}
+
+
 
   return (
     <div className="site-card-wrapper">
-      <Row align="middle" justify="center" gutter={1}>
+      <Card align="middle" justify="center" title={doctor.name} bordered={false}>
         <Col span={6}>
-          <Card title="Абрамсон Сара Вениаминовна" bordered={false}>
-            <Avatar src='http://cdn.fishki.net/upload/post/2019/07/15/3032379/tn/5823b4c01cefdd7191cb68ad0ec11dca.jpg' size={150} icon={<UserOutlined />} />
-            <Row></Row>
-            <Rate allowHalf defaultValue={2.5} />
-          </Card>
+          <Avatar src='http://cdn.fishki.net/upload/post/2019/07/15/3032379/tn/5823b4c01cefdd7191cb68ad0ec11dca.jpg' size={150} icon={<UserOutlined />} />
+          <Row></Row>
+          <Rate allowHalf defaultValue={2.5} />
         </Col>
         <Col span={12}>
-          <Card title="Информация" bordered={false}>
-            <ul >
-              <li className={style.lishka}>
-                Специализация: Акушер
-            </li >
-              <li className={style.lishka}>
-                Стаж: Высшая категория
-            </li>
-              <li className={style.lishka}>
-                Телефон для записи: +7-926-345-56-77
-            </li>
-              <li className={style.lishka}>
-                email: sara1997@mail.ru
-            </li>
-              <li className={style.lishka}>
-                Метро: Новокузнецкая
-            </li>
-            <li className={style.lishka}>
-                Стоимость приемы: 100$
-            </li>
-            </ul>
+          <List >
+            <List.Item className={style.lishka}>
+              Специализация: {doctor.spec}
+            </List.Item>
+            <List.Item className={style.lishka}>
+              Стаж: {doctor.stage}
+            </List.Item>
+            <List.Item className={style.lishka}>
+              Телефон для записи: +7 {doctor.phone}
+            </List.Item>
+            <List.Item className={style.lishka}>
+              email: {doctor.email}
+            </List.Item>
+            <List.Item className={style.lishka}>
+              Метро: {doctor.metro}
+            </List.Item>
+            <List.Item className={style.lishka}>
+              Стоимость приемa: {doctor.price} p.
+            </List.Item>
+          </List>
+          <Divider/>          
+          <Row className={style.lishka}>
+            <RegistrationForm/>
+          </Row>
+          <Divider/>
+          <Row className={style.feedBack}>
+            {doctor.feedBack?.length > 0 
+              ? 
+              doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+              : <p>Отзывы об этом враче отсутствуют</p>}
+          </Row>
+          {user.id === doctor._id
+            ?
             <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
-            <Card title="Отзывы о враче" bordered={false}>
-              <Row className={style.feedback}>
-                <Col>
-                  <Col>
-                    Зайцева Марина Сергеевна
-                </Col>
-                  <Col>
-                    <Rate allowHalf defaultValue={5.0} />
-                  </Col>
-                  Почему ребенок чёрный?
-              </Col>
-              </Row>
-
-              <Row className={style.feedback}>
-                <Col>
-                  <Col>
-                    Второй пациент
-                </Col>
-                  <Col>
-                    <Rate allowHalf defaultValue={5.0} />
-                  </Col>
-              Приняла роды у жены и сделала мне массаж простаты!
-              </Col>
-              </Row>
-
-              <Row className={style.feedback}>
-                <Col>
-                  <Col>
-                    Третий пациент
-                </Col>
-                  <Col>
-                    <Rate allowHalf defaultValue={5.0} />
-                  </Col>
-                  С врачом не общалась - рожала в электричке Москва - Мытищи.
-              </Col>
-              </Row>
-              <hr/>
+            :
+            <>
+              <hr />
               <Row className={style.feedback}>
                 <Form >
-                <Input placeholder="Оставить новый отзыв"></Input>
-                <Rate allowHalf defaultValue={0.0} /> <br /> <br />
-                <Button type="primary" htmlType="submit">Отправить отзыв</Button>
+                  <Input name='feedBack' rules={[{ required: true }]} placeholder="Оставить новый отзыв"></Input>
+                  <Rate name='stars' rules={[{ required: true }]} allowHalf defaultValue={0.0} /> <br /> <br />
+                  <Button type="primary" htmlType="submit">Отправить отзыв</Button>
                 </Form>
               </Row>
-
-            </Card>
-            <Modal
-              title="Редактировать данные"
-              style={{ top: 20 }}
-              visible={modal1Visible}
-              onOk={() => visibleModal()}
-              onCancel={() => visibleModal()}
-            >
-              <FormDoctor />
-            </Modal>
-          </Card>
+            </>
+          }
+          <Modal
+            title="Редактировать данные"
+            style={{ top: 20 }}
+            visible={modal1Visible}
+            onOk={() => visibleModal()}
+            onCancel={() => visibleModal()}
+          >
+            <FormDoctor />
+          </Modal>
         </Col>
-      </Row>
+      </Card>
     </div>
-
   )
 }
 
 export default CardDoctorPage;
-

@@ -113,7 +113,7 @@ const SignIn = () => {
 
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Зарегестрироваться
+          Зарегистрироваться
         </Button>
       </Form.Item>
 
