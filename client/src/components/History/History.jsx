@@ -18,6 +18,7 @@ const History = () => {
   console.log(history, 'history');
   console.log(events, 'events');
 
+  
   useEffect(() => {
     dispatch(setAllHistoryThunk(id))
     dispatch(setAllEvents(id))
@@ -82,7 +83,7 @@ const History = () => {
                       style={{ marginTop: 16, width: 600 }}
                       type="inner"
                       //
-                      title={`Жалоба: ${el.problem}`}
+                      title={`Причина обращения: ${el.problem}`}
                     >
 
                       <div>Поликлинника: {el.hospital}</div>
@@ -93,7 +94,7 @@ const History = () => {
                   </div>
                 )
                   :
-                  <p> Никаких запесей в календаре нет</p>
+                  <p> Никаких записей в календаре нет</p>
 
               }
             </div>
@@ -109,12 +110,12 @@ const History = () => {
                     type="inner"
                     // 
                     style={{ marginTop: 16, width: 600 }}
-                    title={`Жалоба:${el.events[0].problem}`}
+                    title={el?.events[0]?.problem ? `Причина обращения:${el?.events[0]?.problem}`: `Причина обращения: Болит`}
                     extra={<a href="#">More</a>}
                   >
                     <div >Выписанные рецепты: {el.prescription}  </div>
                     <div >Требуемые анализы: {el.analyzes}</div>
-                    <div >{el.prescription}</div>
+                    <Meta className={styleHistory.date_description} description={`Дата следующего приема: ${el.nextDateTime.replace('-', '/').replace('-', '/').replace('T', ' ').substring(0, 16)}`} />
                     {
                       el.imagePath && el.imagePath.map(imgP => <Skeleton loading={loading}><Avatar shape="square" loading={loading} style={{ marginTop: 5, width: 500, height: 500 }} src={`/img/${imgP}`} alt="FOTO NE OTOBRACHAETSYA"></Avatar></Skeleton>)
                     }

@@ -42,6 +42,20 @@ const addEvent = async (req, res) => {
   }
 }
 
+const deleteOneEvent = async (req, res) => {
+  // const { id } = req.params
+  console.log(req.body, 'req.body');
+  const { idEvent } = req.body
+  console.log(idEvent, 'idEvent');
+  try {
+    const deleteEvent = await Events.findByIdAndDelete(idEvent)
+    console.log(deleteEvent, 'deleteEvent');
+    return res.json(deleteEvent._id)
+  } catch (error) {
+    console.log('Ошибка в удалении конкретных записей', error);
+  }
+}
+
 const findOneEvent = async (req, res) => {
   const { id } = req.params
   const { date } = req.body
@@ -55,15 +69,13 @@ const findOneEvent = async (req, res) => {
   } catch (error) {
     console.log('Ошибка в загрузке конкретных записей', error);
   }
-
-
-
 }
 
 module.exports = {
   setAllEvents,
   addEvent,
-  findOneEvent
+  findOneEvent,
+  deleteOneEvent
 }
 
 

@@ -1,5 +1,6 @@
-import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT } from '../types/eventsTypes';
+import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT, DELETE_EVENT } from '../types/eventsTypes';
 import axios from 'axios'
+import Login from '../../components/UserForms/Login/Login';
 
 const setAllEvents = (id) => async (dispatch) => {
   const response = await axios(`http://localhost:3006/api/v1/events/${id}`)
@@ -22,6 +23,20 @@ const addEvents = (events) => {
   return {
     type: ADD_EVENT,
     payload: events
+  }
+}
+
+const deleteEventAxios = (id, idEvent) => async (dispatch) => {
+  console.log(idEvent, 'idEvent')
+  const response = await axios.delete(`http://localhost:3006/api/v1/events/${id}`, {data: {idEvent} })
+  dispatch(deleteEvents(response.data))
+}
+
+const deleteEvents = (id) => {
+  console.log(123);
+  return {
+    type: DELETE_EVENT,
+    payload: id
   }
 }
 
@@ -54,4 +69,5 @@ export {
   addEvents,
   getOneEventThunk,
   clearEvents,
+  deleteEventAxios
 }

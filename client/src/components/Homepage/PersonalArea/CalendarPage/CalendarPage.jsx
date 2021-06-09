@@ -40,8 +40,6 @@ const CalendarPage = () => {
 
   const [showModal, setShowModal] = useState(false)
 
-  console.log(showModal, 'showModal');
-
   const modalCardOpen = () => {
     setShowModal(!showModal)
   }
@@ -85,8 +83,8 @@ const CalendarPage = () => {
       <div className={style.calendar_box}>
         <Calendar
           dateCellRender={dateCellRender}
-          onChange={clickDate}
-          onClick={modalCardOpen}
+          // onClick={modalCardOpen}
+          onSelect={clickDate}
         />
         <Row >
           <Col className={style.button_form} span={6} >
@@ -111,12 +109,12 @@ const CalendarPage = () => {
                 ?
                 events.map(el =>
                   <>
-                    <Card title={el.dateTime.toString().slice(0, 10).replace('-', '/').replace('-', '/') + ' ' + el.dateTime.toString().slice(11)} extra={<a href="#">More</a>} style={{ width: 500 }}>
+                    <Card title={el.dateTime.toString().replace('-', '/').replace('-', '/').replace('T', ' ').substring(0,16)} extra={<a href="#">More</a>} style={{ width: 500 }}>
                       <p>Клиника: {el.hospital}</p>
                       <p>Имя и Фамилия врача: {el.firstLastName}</p>
                       <p>Специализация: {el.specialization}</p>
                       <p>Адрес: {el.address}</p>
-                      <ResultModal idEvent={el._id} />
+                      <ResultModal modalCardClose={modalCardClose} idEvent={el._id} />
                     </Card>
 
                   </>)

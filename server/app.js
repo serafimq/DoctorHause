@@ -79,16 +79,17 @@ app.post('/file', (req, res) => {
 
   const { image } = req.files
   console.log('image', image);
+  const location = `${__dirname}/client/public/img/${image.name}`.replace("/server", "")
+  const location2 = `${__dirname}/public/img/${image.name}`
 
-  if (!fs.existsSync(`${__dirname}/client/public/img/${image.name}`.replace("/server", ""))) {
-    const location = `${__dirname}/client/public/img/${image.name}`.replace("/server", "")
-    const location2 = `${__dirname}/public/img/${image.name}`
+  if (!fs.existsSync(location)) {
     image.mv(location)
     image.mv(location2)
-
+    return res.sendStatus(200)
+  } else {
+    res.sendStatus(418)
   }
   // res.json({imagePath: image.name})
-  return res.sendStatus(200)
 })
 
 app.use(createErr, cathErrAndSendAnswer);
