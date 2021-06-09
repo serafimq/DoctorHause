@@ -12,4 +12,3 @@ apiRouterHomepage.route('/oneEvent')
   .post()
 
 module.exports = apiRouterHomepage
-

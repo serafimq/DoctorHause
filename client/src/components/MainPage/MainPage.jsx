@@ -56,6 +56,7 @@ export default function MainPage() {
         </div>
           
       </Col>
+      
     </Row>
 
   )

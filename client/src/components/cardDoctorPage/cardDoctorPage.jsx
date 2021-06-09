@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { Card, Modal, Col, Row, Rate, Button, Form, Input, List } from 'antd';
+import { Card, Modal, Col, Row, Rate, Button, Form, Input, List, Divider } from 'antd';
 import style from './cardDoctorPage.module.css'
 
 import { useEffect, useRef, useState } from 'react'
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 import { FeedBack } from './FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../redux/actionCreators/avatarAC';
+import { RegistrationForm } from './Mail';
 
 const CardDoctorPage = () => {
   const user = useSelector(state => state.user)
@@ -48,7 +49,7 @@ const CardDoctorPage = () => {
   const [modal1Visible, setModal1Visible] = useState(false)
 
   function visibleModal() {
-    setModal1Visible(!modal1Visible)
+    setModal1Visible(modal1Visible)
   }
 
   //stars
@@ -59,9 +60,13 @@ const CardDoctorPage = () => {
   const { value } = stars;
 
     const currentRating = doctor.feedBack?.reduce((acc, cur) => acc+cur.stars,0)
+
+
+
+  
+
   return (
     <div className="site-card-wrapper">
-
       <Card align="middle" justify="center" title={doctor.name} bordered={false}>
         <Col span={6}>
         <figure>
@@ -104,11 +109,19 @@ const CardDoctorPage = () => {
               Стоимость приемa: {doctor.price} p.
             </List.Item>
           </List>
+          <Divider/>          
+          <Row className={style.lishka}>
+            
+          </Row>
+          <Divider/>
           <Row className={style.feedBack}>
-            {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+            {doctor.feedBack?.length > 0 
+              ? 
+              doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
               : <p>Отзывы об этом враче отсутствуют</p>}
           </Row>
-          {user.id === doctor._id ?
+          {user.id === doctor._id
+            ?
             <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
             :
             <>
@@ -134,12 +147,16 @@ const CardDoctorPage = () => {
             <FormDoctor />
           </Modal>
         </Col>
+      
       </Card>
-
     </div>
-
   )
 }
 
 export default CardDoctorPage;
+
+
+
+
+
 

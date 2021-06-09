@@ -5,7 +5,6 @@ import { Redirect } from 'react-router';
 import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
 import GoogleLogin from 'react-google-login'
 
-
 const { Title } = Typography;
 const { Option } = Select;
 const layout = {
@@ -37,7 +36,6 @@ const SignUpPatient = () => {
   };
 
   const [form] = Form.useForm();
-
 
   const isAuth = useSelector(state => state.user.isAuth) 
 

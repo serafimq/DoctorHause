@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router';
 import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
 import GoogleLogin from 'react-google-login';
-import Yandex from './Yandex';
 
 const { Title } = Typography;
 const { Option } = Select;

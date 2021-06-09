@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux'
 import { setAvatarAxios } from '../../../redux/actionCreators/avatarAC'
 import { setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import CardDoctorMain from '../CardDoctorMain/CardDoctorMain'
-import { Rate } from 'antd';
+import { Button, Rate } from 'antd';
 import style from './CardsDoctor.module.css'
+import { RegistrationForm } from '../../cardDoctorPage/Mail'
 
 const CardsDoctor = ({item, id}) => {
 
@@ -27,8 +28,21 @@ const CardsDoctor = ({item, id}) => {
     visibleModal()
   }
   const currentRating = item.feedBack?.reduce((acc, cur) => acc+cur.stars,0)
-  console.log(currentRating);
-  console.log(item);
+  
+  const [isModalVisible1, setIsModalVisible1] = useState(false);
+
+  const showModal1 = () => {
+    setIsModalVisible1(true);
+  };
+
+  const handleOk1 = () => {
+    setIsModalVisible1(false);
+  };
+
+  const handleCancel1 = () => {
+    setIsModalVisible1(false);
+  };
+
   return (
     <div className={style.one_card}>
       <div className={style.radius} id={id} > 
@@ -51,7 +65,7 @@ const CardsDoctor = ({item, id}) => {
             <div className={style.price}>
             <h3>Стоимость приема: <span> {item.price} руб</span></h3> </div>
           </div>
-          <div className={style.ask}>
+          <div onClick={showModal1} className={style.ask}>
             <img className={style.ask_img} src="http://localhost:3006/public/logo/comments.svg" alt="" />
            <p className={style.callMe} > Оставить заявку </p>
           </div>
@@ -69,6 +83,9 @@ const CardsDoctor = ({item, id}) => {
         >
       <CardDoctorMain />
     </Modal>
+    <Modal title="Basic Modal" visible={isModalVisible1} onOk={handleOk1} onCancel={handleCancel1}>
+       <RegistrationForm />
+     </Modal>
     </div>
   )
 }

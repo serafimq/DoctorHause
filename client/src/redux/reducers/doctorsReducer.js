@@ -2,7 +2,6 @@ import { SET_DOCTORS, SORT_DOCTORS } from '../types/doctorsTypes'
 
 export default function doctorsReducer(state = [], action) {
   switch (action.type) {
-
     case SET_DOCTORS:
       return action.payload;
 
