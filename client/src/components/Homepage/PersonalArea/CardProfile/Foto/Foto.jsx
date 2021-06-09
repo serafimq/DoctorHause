@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import style from './Foto.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewAvatarAxios, setAvatarAxios, uploadAvatar } from '../../../../../redux/actionCreators/avatarAC'
+import { Rate } from 'antd';
 
 const Foto = () => {
   
@@ -22,7 +23,7 @@ const Foto = () => {
   }
   // const fileUploadHandler = (e) => {
   // }
-
+  const currentRating = user.feedBack?.reduce((acc, cur) => acc+cur.stars,0)
   return (
       <div class="card profile-card">
               <figure>
@@ -38,6 +39,10 @@ const Foto = () => {
               <div className={style.user_profile}>
                 <div className={style.user_name}>{user.name}</div>
                 <div className={style.user_email}>{user.email}</div>
+                {user.role === 'doctor' ?
+                <Rate disabled defaultValue={currentRating} />
+                : ''
+                }
               </div>
         </div> 
     

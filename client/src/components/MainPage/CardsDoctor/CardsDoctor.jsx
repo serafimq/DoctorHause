@@ -20,7 +20,6 @@ const CardsDoctor = ({item, id}) => {
   const dispatch = useDispatch()
 
   const openModal = (e) => {
-    dispatch(setOneDoctorThunk(e.id))
     dispatch(setAvatarAxios(e.id))
     visibleModal()
   }
@@ -82,7 +81,7 @@ const CardsDoctor = ({item, id}) => {
           onCancel={() => closeModal()}
           width={900}
         >
-      <CardDoctorMain />
+      <CardDoctorMain doctor={item} />
     </Modal>
     <Modal title="Basic Modal" visible={isModalVisible1} onOk={handleOk1} onCancel={handleCancel1}>
        <RegistrationForm />

@@ -1,0 +1,38 @@
+.radius {
+  box-sizing: border-box;
+  margin: 20px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  font-feature-settings:'tnum', "tnum", "tnum";
+  background: #fff;
+  border: 12px solid #fff;
+  border-radius: 10px;
+  box-shadow: -25px 25px 50px#8e99c2, 25px -25px 50px#e4f5ff;
+  height:auto;
+  width:100%;
+}
+
+.list {
+  /* display: flex;
+  justify-content:space-around; */
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.row {
+  display: flex;
+  justify-content:space-between;
+  flex-direction: row;
+}
+
+.info {
+  font-size: 20px;
+  color: rgba(129, 48, 116, 0.85);
+  justify-content: flex-start;
+}
+
+.property {
+  font-size: 20px;
+
+}

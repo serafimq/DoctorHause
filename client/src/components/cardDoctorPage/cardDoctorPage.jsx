@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { Card, Modal, Col, Row, Rate, Button, Form, Input, List, Divider } from 'antd';
+import { Card, Modal, Col, Row, Rate, Button, Input, List, Divider } from 'antd';
 import style from './cardDoctorPage.module.css'
 
 import { useEffect, useRef, useState } from 'react'
@@ -22,7 +22,6 @@ const CardDoctorPage = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (user.role === 'doctor' ) {
-      console.log('я доктор');
       dispatch(setOneDoctorThunk(user.id))
       dispatch(setAvatarAxios(user.id))
     }

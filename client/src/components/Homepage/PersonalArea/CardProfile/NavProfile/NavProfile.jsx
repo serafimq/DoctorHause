@@ -7,7 +7,8 @@ import {
   HistoryOutlined,
   FileTextOutlined,
   CompassOutlined,
-  SettingOutlined 
+  SettingOutlined, 
+  UserOutlined,
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 
@@ -28,7 +29,9 @@ const NavProfile = ({setVisibleComponents}) => {
         defaultOpenKeys={['sub1']}
         mode={mode}
         theme={theme}
-      > {role!=='admin' ?
+      > {role!=='admin' ? 
+
+        role!=='doctor' ?
       <>
         <Menu.Item onClick={()=> setVisibleComponents(0)} className={style.item} key="1" icon={<CalendarOutlined/>}>
         <div >Календарь</div>
@@ -46,6 +49,12 @@ const NavProfile = ({setVisibleComponents}) => {
           {/* <Link to={`/homepage/map/${id}`}>Карта</Link> */}
         </Menu.Item>
         </>
+        :
+        <Menu.Item onClick={()=> setVisibleComponents(5)} className={style.item} key="6" icon={<UserOutlined/>}>
+        <div >Личный кабинет врача</div>
+        </Menu.Item>
+        
+
         :
         <Menu.Item onClick={()=> setVisibleComponents(4)} className={style.item} key="5" icon={<SettingOutlined  />}>
         <div >Админка</div>

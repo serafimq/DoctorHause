@@ -7,6 +7,7 @@ import History from '../../History/History';
 import MapPage from '../../MapPage/MapPage';
 import { AdminRoom } from './AdminRoom/AdminRoom';
 import { useSelector } from 'react-redux';
+import { DoctorRoom } from './DoctorRoom/DoctorRoom';
 
 
 
@@ -32,19 +33,39 @@ const PersonalArea = () => {
       </Row>
     </div>
     :
-      <div className={style.calendar}>
+    <>
+     { user.role === 'doctor' ? 
+     <div className={style.calendar}>
+     <Row>
+       <Col className={style.right_col} span={18} push={6}>
+        
+         {visibleComponents === 0 && <DoctorRoom /> }
+         {visibleComponents === 5 && <DoctorRoom /> }
+       </Col>
+       <Col className={style.left_col} span={6} pull={18}>
+         <CardProfile setVisibleComponents={setVisibleComponents}/>
+       </Col>
+     </Row>
+   </div>
+
+     : 
+
+     <div className={style.calendar}>
         <Row>
           <Col className={style.right_col} span={18} push={6}>
             {visibleComponents === 0 && <CalendarPage /> }
             {visibleComponents === 1 && <History /> }
             {visibleComponents === 3 && <MapPage /> }
             {visibleComponents === 4 && <AdminRoom /> }
+            {visibleComponents === 5 && <DoctorRoom /> }
           </Col>
           <Col className={style.left_col} span={6} pull={18}>
             <CardProfile setVisibleComponents={setVisibleComponents}/>
           </Col>
         </Row>
       </div>
+    }
+      </>
     } 
       
     </>
