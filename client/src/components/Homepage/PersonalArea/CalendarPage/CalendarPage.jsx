@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Calendar, Badge, Row, Col, Button, Modal, Card } from 'antd';
+import { Calendar, Badge, Row, Col, Button, Modal, Card, Switch, Skeleton, } from 'antd';
 import style from './CalendarPage.module.css'
 import CalendarModal from '../CalendarModal/CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,18 +7,21 @@ import { setAllEvents, getOneEventThunk } from '../../../../redux/actionCreators
 import { useState } from 'react';
 import ResultModal from '../../ResultModal/ResultModal'
 import { setAllHistoryThunk } from '../../../../redux/actionCreators/historyAC';
+import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
+
+
 const CalendarPage = () => {
 
   const events = useSelector(state => state.events)
   const history = useSelector(state => state.history)
   const id = useSelector(state => state.user.id)
-   
+
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setAllEvents(id))
     dispatch(setAllHistoryThunk(id))
-   }, [])
+  }, [])
 
   function dateCellRender(value) {
     const listData = events.filter(i => i.date === value.format('YYYY-MM-DD'));
@@ -29,16 +32,16 @@ const CalendarPage = () => {
         {listData.map((item, index) => (
           <li className={style.events} key={item._id}>
             <div>
-            <span className={style.doIt}>{index+1}.{item.problem} </span>
-             {/* <Badge status={item._id} text={item.problem} /> */}
+              <span className={style.doIt}>{index + 1}.{item.problem} </span>
+              {/* <Badge status={item._id} text={item.problem} /> */}
             </div>
           </li>
         ))}
         {listHistory.map((item, index) => (
           <li className={style.nextGo} key={item._id}>
             <div>
-            <span >{index+1}.{item.date} </span>
-             {/* <Badge status={item._id} text={item.problem} /> */}
+              <span >{index + 1}.{item.date} </span>
+              {/* <Badge status={item._id} text={item.problem} /> */}
             </div>
           </li>
         ))}
@@ -86,18 +89,19 @@ const CalendarPage = () => {
     modalCardOpen()
   }
 
+  const [loading, setLoading] = useState(true)
+
+  const onChangeSwitch = () => {
+    setLoading(!loading)
+  }
+
   return (
     <>
       <div className={style.calendar_box}>
         <Calendar
           dateCellRender={dateCellRender}
-<<<<<<< HEAD
-          onSelect={clickDate}
-          onClick={modalCardOpen}
-=======
           // onClick={modalCardOpen}
           onSelect={clickDate}
->>>>>>> origin/history-page
         />
         <Row >
           <Col className={style.button_form} span={6} >
@@ -110,31 +114,40 @@ const CalendarPage = () => {
         showModal ?
 
           < Modal
-            title="Введите данные в календарь"
+            title="Запись дня"
             style={{ top: 20 }}
             width={800}
             visible={showModal}
             onOk={() => modalCardClose()}
             onCancel={() => modalCardClose()}
           >
+            <><p className={style.switch_left}>Показать результаты посещений? <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked /></p></>
             {
               events
                 ?
                 events.map(el =>
-<<<<<<< HEAD
-                  <> 
-                    <Card title={el.dateTime.toString().slice(0, 10).replace('-', '/').replace('-', '/') + ' ' + el.dateTime.toString().slice(11)} 
-                    extra={<a href="#">More</a>} style={{ width: 500 }}>
-                      <p>Причина обращения: {el.problem}</p>
-=======
                   <>
-                    <Card title={el.dateTime.toString().replace('-', '/').replace('-', '/').replace('T', ' ').substring(0,16)} extra={<a href="#">More</a>} style={{ width: 500 }}>
->>>>>>> origin/history-page
+                    <Card className={style.card_styles} title={`Дата и время приема: ${el.dateTime.toString().replace('-', '/').replace('-', '/').replace('T', ' ').substring(0, 16)}`} 
+                    style={{ width: 700 }}>
+                      <h3 className={style.h3}>Причина обращения: {el.problem}</h3>
                       <p>Клиника: {el.hospital}</p>
                       <p>Имя и Фамилия врача: {el.firstLastName}</p>
                       <p>Специализация: {el.specialization}</p>
                       <p>Адрес: {el.address}</p>
                       <ResultModal modalCardClose={modalCardClose} idEvent={el._id} />
+                      {
+                        el?.history ? el?.history?.map(hist =>
+                          <><Skeleton loading={loading}>
+                            <Card className={style.cardContainer} title={'Результат посещения'}>
+                              <p>{`Дата следущуго приема: ${hist?.nextDateTime?.toString()?.replace('-', '/')?.replace('-', '/')?.replace('T', ' ')?.substring(0, 16)}`}</p>
+                              <p>{`Выписанные рецепты: ${hist?.prescription}`}</p>
+                              <p>{`Выписанные анализы: ${hist?.analyzes}`}</p>
+                              <p>{`Потраченная сумма: ${hist?.price}`}</p>
+                            </Card>
+                          </Skeleton></>)
+                          :
+                          null
+                      }
                     </Card>
                   </>)
                 :

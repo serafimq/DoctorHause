@@ -35,7 +35,7 @@ function ResultModal({ idEvent, modalCardClose }) {
   return (
     <>
       <div>
-        <Button type="primary" onClick={() => visibleModal()}>
+        <Button style={{marginRight: 10}} type="primary" onClick={() => visibleModal()}>
           Добавить результат посещения
       </Button>
         <Button type="danger" onClick={() => deleteHandler( id, idEvent)}>

@@ -68,16 +68,16 @@ function CalendarForm({ visibleModal }) {
       onFinish={onFinish}
     // onSubmit={submitHandler}
     >
-      <Form.Item name="problem" label="Причина обращения">
+      <Form.Item name="problem" label="Причина обращения" rules={[{ required: true, message: 'Укажите причину обращения' }]}>
         <Input placeholder="Причина обращения" />
       </Form.Item>
-      <Form.Item name="hospital" label="Клиника">
+      <Form.Item name="hospital" label="Клиника" rules={[{ required: true, message: 'Укажите клинику' }]}>
         <Input placeholder="Введите название клиники" />
       </Form.Item>
-      <Form.Item name="firstLastName" label="Имя Фамилия врача">
+      <Form.Item name="firstLastName" label="Имя Фамилия врача" rules={[{ required: true, message: 'Укажите имя и фамилию врача' }]}>
         <Input placeholder="Имя Фамилия" />
       </Form.Item>
-      <Form.Item name="specialization" label="Cпециализация">
+      <Form.Item name="specialization" label="Cпециализация" rules={[{ required: true, message: 'Укажите специализацию врача' }]}>
         <Select
           showSearch
           style={{ width: 200 }}
@@ -103,7 +103,7 @@ function CalendarForm({ visibleModal }) {
       <Form.Item name="comment" label="Комментарий к записи">
         <Input.TextArea placeholder="Комментарий" />
       </Form.Item>
-      <Form.Item name="dateTime" label="Дата и время посещения" >
+      <Form.Item name="dateTime" label="Дата и время посещения" rules={[{ required: true }]}>
         {/* <DatePicker value={values.dateTime || ""} onChange={changeHandler} name="dateTime" showTime format="YYYY-MM-DD HH:mm" /> */}
         {/* <input type="datetime-local" value={values.dateTime || ""} onChange={changeHandler} name="dateTime" /> */}
         <DatePicker
