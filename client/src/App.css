@@ -112,4 +112,6 @@ figure {
   background: #b9c7fc;
   box-shadow: -25px 25px 50px #8e99c2, 25px -25px 50px #e4f5ff;
 }
-
+.ant-row-center {
+  justify-content: start;
+}

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Modal, Col, Card } from 'antd';
+import { Row, Col } from 'antd';
 import style from './MainPage.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 import { setAllDoctorThunk, sortDoctors } from '../../redux/actionCreators/doctorsAC'
 import CardsDoctor from './CardsDoctor/CardsDoctor';
 import News from './News/News';
 
-const { Meta } = Card;
 
 export default function MainPage() {
   const doctors = useSelector(state => state.doctors)
@@ -24,40 +22,34 @@ export default function MainPage() {
     dispatch(sortDoctors(e, sorted))
     setSortedField(!sortedField);
   }
-  // console.log(sortedField, 'sorted');
-
 
   return (
     <Row className={style.main_page}>
       <Col span={6} push={18}>
         <News />
       </Col>
-      
       <Col span={18} pull={6} className={style.colCentre}>
-         <div className={style.input_sort}>
-         <select onChange={(e) => handleSort(e, sortedField)} class="form-select" aria-label="Default select example">
-          <option selected>Sort By:</option>
-          <option value="spec">По специализации</option>
-          <option value="rating">По рейтингу</option>
-          <option value="price">По стоимости</option>
-        </select>
-        </div> 
-        <div className={style.doctors}>
-          
-        {doctors.map(item => item.approved ? <CardsDoctor 
-           id={item._id} 
-           key={item._id}
-           item={item}
-           />
-           :
-           ''
-           )}
+        <div className={style.input_sort}>
+          <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='spec' ></input> По специализации </span>
+          <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='rating' ></input> По рейтингу</span>
+          <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='price' ></input> По стоимости приёма</span>
         </div>
-          
+        <Row justify="center">
+          <Col className={style.card_doc} span={12} pull={0} justify="center">
+            {doctors.map(item => item.approved ? <CardsDoctor
+              id={item._id}
+              key={item._id}
+              item={item}
+            />
+              :
+              ''
+            )}
+
+          </Col>
+        </Row>
       </Col>
       
     </Row>
-
   )
 }
 
