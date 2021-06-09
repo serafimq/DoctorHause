@@ -108,7 +108,7 @@ const History = () => {
 
                     type="inner"
                     // 
-                    style={{ marginTop: 16, width: 600 }}
+                    style={{ marginTop: 16, width: 400 }}
                     title={`Жалоба:${el.events[0].problem}`}
                     extra={<a href="#">More</a>}
                   >
@@ -116,7 +116,7 @@ const History = () => {
                     <div >Требуемые анализы: {el.analyzes}</div>
                     <div >{el.prescription}</div>
                     {
-                      el.imagePath && el.imagePath.map(imgP => <Skeleton loading={loading}><Avatar shape="square" loading={loading} style={{ marginTop: 5, width: 500, height: 500 }} src={`/img/${imgP}`} alt="FOTO NE OTOBRACHAETSYA"></Avatar></Skeleton>)
+                      el.imagePath && el.imagePath.map(imgP => <Skeleton loading={loading}><Avatar shape="square" loading={loading} style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/${imgP}`} alt="FOTO NE OTOBRACHAETSYA"></Avatar></Skeleton>)
                     }
                   </Card>
                 )

@@ -8,17 +8,18 @@ const historySchema = new Schema({
   analyzes: String,
   price: String,
   comment: String,
+  date: String,
   num: Number,
-  userCreator: 
+  userCreator:
   {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  events: 
-  [{
-    type: Schema.Types.ObjectId,
-    ref: 'Events'
-  }]
+  events:
+    [{
+      type: Schema.Types.ObjectId,
+      ref: 'Events'
+    }]
 })
 
 const History = model('History', historySchema)

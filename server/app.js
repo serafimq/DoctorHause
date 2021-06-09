@@ -47,9 +47,6 @@ app.post('/api/v1/homepage/:id', async (req, res) => {
   image.mv(userAvatarPath)
   const oldAvatar = await Avatar.findOne({ user: id })
 
-  console.log(oldAvatar)
-
-
   if (oldAvatar !== null) {
     await Avatar.findByIdAndDelete(oldAvatar._id)
   }

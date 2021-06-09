@@ -1,4 +1,4 @@
-import { SET_DOCTORS } from '../types/doctorsTypes'
+import { SET_DOCTORS, SORT_DOCTORS } from '../types/doctorsTypes'
 import axios from 'axios'
 
 export const setAllDoctorThunk = () => async (dispatch) => {
@@ -8,4 +8,13 @@ export const setAllDoctorThunk = () => async (dispatch) => {
     payload: result.data
 
   })
+}
+
+export const sortDoctors = (e, sorted) => {
+
+  return {
+    type: SORT_DOCTORS,
+    payload: {e, sorted}
+  }
+
 }

@@ -9,21 +9,22 @@
   width: 850px;
   
 }
-
+.nextGo {
+  font-size: 12px;
+  background-color: #00ff0d;
+  border-radius: 5px;
+}
+.events .ant-badge {
+  font-size: 8px;
+}
 .events {
-  margin: 0;
-  padding: 0;
+  margin-bottom: 1px;
   list-style: none;
   background-color: #a571f342;
   border-radius: 5px;
+  
 }
-.events .ant-badge-status {
-  width: 100%;
-  overflow: hidden;
-  font-size: 12px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+
 .notes_month {
   font-size: 28px;
   text-align: center;
@@ -34,5 +35,8 @@
 .button_form {
   margin-top: 25px;
   margin-left: 79.9%;
-  
+}
+.doIt {
+  font-size: 12px;
+  border-bottom: 1px solid black;
 }

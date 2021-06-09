@@ -7,13 +7,14 @@ import { deleteUserThunk } from '../../../../redux/actionCreators/userAC';
 
 export const AdminRoom = () => {
   const dispatch = useDispatch()
+  const doctors = useSelector(state => state.doctors)
+  const doctor = useSelector(state => state.doctor)
   useEffect(() => {
     dispatch(setAllDoctorThunk())
-  }, [])
-  const doctors = useSelector(state => state.doctors)
+  }, [doctor])
   const changeAccess = (id) => {
     dispatch(changeAccessThunk(id))
-    // dispatch(setAllDoctorThunk())
+    // dispatch(setAllDoctorThunk(doctors))
   }
   const deleteUser = (id) => {
     dispatch(deleteUserThunk(id))
