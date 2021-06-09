@@ -18,6 +18,7 @@ const History = () => {
   console.log(history, 'history');
   console.log(events, 'events');
 
+  
   useEffect(() => {
     dispatch(setAllHistoryThunk(id))
     dispatch(setAllEvents(id))
@@ -71,7 +72,6 @@ const History = () => {
       <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked />
       </div>
       <div>
-
         <Row className={styleHistory.row}>
           <Col >
             <div>
@@ -82,9 +82,8 @@ const History = () => {
                       style={{ marginTop: 16, width: 600 }}
                       type="inner"
                       //
-                      title={`Жалоба: ${el.problem}`}
+                      title={`Причина обращения: ${el.problem}`}
                     >
-
                       <div>Поликлинника: {el.hospital}</div>
                       <div>Имя и Фамилия врача: {el.firstLastName}</div>
                       <div>Специальность врача: {el.specialization}</div>
@@ -93,28 +92,23 @@ const History = () => {
                   </div>
                 )
                   :
-                  <p> Никаких запесей в календаре нет</p>
-
+                  <p> Никаких записей в календаре нет</p>
               }
             </div>
-
           </Col>
           <Col >
             <div>
               {
                 filteredHistory ? filteredHistory.map(el =>
-
                   <Card
-
                     type="inner"
-                    // 
                     style={{ marginTop: 16, width: 400 }}
-                    title={`Жалоба:${el.events[0].problem}`}
+                    title={el?.events[0]?.problem ? `Причина обращения:${el?.events[0]?.problem}`: `Причина обращения: Болит`}
                     extra={<a href="#">More</a>}
                   >
                     <div >Выписанные рецепты: {el.prescription}  </div>
                     <div >Требуемые анализы: {el.analyzes}</div>
-                    <div >{el.prescription}</div>
+                    <Meta className={styleHistory.date_description} description={`Дата следующего приема: ${el.nextDateTime.replace('-', '/').replace('-', '/').replace('T', ' ').substring(0, 16)}`} />
                     {
                       el.imagePath && el.imagePath.map(imgP => <Skeleton loading={loading}><Avatar shape="square" loading={loading} style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/${imgP}`} alt="FOTO NE OTOBRACHAETSYA"></Avatar></Skeleton>)
                     }
@@ -124,28 +118,13 @@ const History = () => {
                   <p>Истории болезней пока нет</p>
               }
             </div>
-
           </Col>
         </Row>
       </div>
-
-
-      {/* <div className={styleHistory.list}> */}
-
     </div>
   )
 }
 
-{/* <Row>
-          <Col className={style.right_col} span={18} push={6}>
-            {visibleComponents === 0 && <CalendarPage /> }
-            {visibleComponents === 1 && <History /> }
-            {visibleComponents === 3 && <MapPage /> }
-            {/* {visibleComponents === 4 && <CalendarPage /> } */}
-//   </Col>
-//   <Col className={style.left_col} span={6} pull={18}>
-//     <CardProfile setVisibleComponents={setVisibleComponents}/>
-//   </Col>
-// </Row> */}
+
 
 export default History

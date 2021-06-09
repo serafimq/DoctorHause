@@ -7,7 +7,9 @@ import {
   InputNumber,
   DatePicker,
   Progress,
-  message
+  message,
+  Checkbox,
+
 } from 'antd';
 
 import axios from 'axios'
@@ -81,6 +83,7 @@ function ResultForm({ visibleModal, idEvent }) {
       beforeSent = { ...values, nextDateTime: values.nextDateTime.format('YYYY/MM/DD HH:mm') }
     }
     console.log('Success:', beforeSent);
+    
     dispatch(addOneHistoryThunk(beforeSent, id, idEvent, imagePath))
     visibleModal()
   };
@@ -152,6 +155,8 @@ function ResultForm({ visibleModal, idEvent }) {
       setImagePath(prev => [...prev, e.file.name])
     }
   };
+
+  
 
   return (
     <Form

@@ -1,7 +1,11 @@
-import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT } from '../types/eventsTypes';
+import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT, DELETE_EVENT } from '../types/eventsTypes';
 
 
 function eventsReducer(state = [], action) {
+<<<<<<< HEAD
+=======
+  console.log(action.payload, 'events action')
+>>>>>>> origin/history-page
 
   switch (action.type) {
     case SET_EVENTS:
@@ -15,6 +19,9 @@ function eventsReducer(state = [], action) {
 
     case GET_ONE_EVENT:
       return action.payload
+
+    case DELETE_EVENT:
+      return state.filter(event => event._id !== action.payload)
 
     default:
       return state;

@@ -5,6 +5,7 @@ const setEventForMapAxios = async (req, res) => {
   console.log(req.params, 'req.params');
   const {id} = req.params
   const allEvent = await Event.find()
+  console.log(allEvent, 'allEvent');
   const filterUserEvent = allEvent.filter(el => el.creator.toString() === id)
   console.log('filterUserEvent', filterUserEvent);
   let addressArr = [];

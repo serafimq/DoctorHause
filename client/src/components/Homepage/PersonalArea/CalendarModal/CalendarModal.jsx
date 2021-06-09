@@ -34,7 +34,7 @@ const  CalendarModal = () => {
     setModal1Visible(!modal1Visible)
   }
 
-  console.log(modal1Visible, 'modal1Visible')
+  // console.log(modal1Visible, 'modal1Visible')
   // const [formData, setFormData] = useState({});
 
   // console.log(formData);
