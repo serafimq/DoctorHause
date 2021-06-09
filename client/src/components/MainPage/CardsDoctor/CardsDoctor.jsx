@@ -3,7 +3,6 @@ import Modal from 'antd/lib/modal/Modal'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAvatarAxios } from '../../../redux/actionCreators/avatarAC'
-import { setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import CardDoctorMain from '../CardDoctorMain/CardDoctorMain'
 import { Rate } from 'antd';
 import style from './CardsDoctor.module.css'
@@ -27,7 +26,7 @@ const CardsDoctor = ({item, id}) => {
   const closeModal = () => {
     visibleModal()
   }
-  const currentRating = item.feedBack?.reduce((acc, cur) => acc+cur.stars,0)
+  const currentRating = item.feedBack?.reduce((acc, cur) => acc+cur.stars,0)/item.feedBack.length
   
   const [isModalVisible1, setIsModalVisible1] = useState(false);
 
@@ -54,17 +53,21 @@ const CardsDoctor = ({item, id}) => {
           </div>
           <div className={style.about}>
           <h2 className={style.name}>Доктор: <span>{item.name}</span> </h2>
+          <div className={style.rating}> 
           <Rate disabled defaultValue={currentRating}  /> 
-          <span>{currentRating}</span>
+          <span className={style.rating_number}>{currentRating}</span>
+          </div>
+          <div className={style.specialist}>
+            <h3>Специальность: <br /> <span> {item.spec}</span></h3> </div>
           </div>
         </div>
         <div className={style.body}>
-          <div>
-          <div className={style.specialist}>
-            <h3>Специальность: <br /> <span> {item.spec}</span></h3> </div>
             <div className={style.price}>
-            <h3>Стоимость приема: <span> {item.price} руб</span></h3> </div>
-          </div>
+            <h3>Стоимость приема: </h3>
+              <div>
+                <span> {item.price} руб</span>
+              </div> 
+            </div>
           <div onClick={showModal1} className={style.ask}>
             <img className={style.ask_img} src="http://localhost:3006/public/logo/comments.svg" alt="" />
            <p className={style.callMe} > Оставить заявку </p>

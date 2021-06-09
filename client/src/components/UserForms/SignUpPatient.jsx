@@ -1,5 +1,5 @@
+import React from 'react'
 import { Form, Input, Button, Select, Row, Divider } from 'antd';
-import React, {  useRef } from 'react'
 import { Typography } from 'antd';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router';
@@ -55,11 +55,9 @@ const SignUpPatient = () => {
     :
     <>
   
-    <Row justify="center">
+    <Row className={style.main} >
       
-   
- 
-    <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+    <Form {...layout} className={style.form} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
     
     <h2 className={style.form_title, style.title}>Создайте аккаунт пациента</h2>
       <div className={style.form__icons}>
@@ -67,50 +65,40 @@ const SignUpPatient = () => {
             clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
             buttonText="Через Google Email"
             onSuccess={responseSuccesGoogle}
-            render = {renderProps =>(
-          
-            <img onClick={renderProps.onClick} disabled={renderProps.disabled}  className={style.google} src="https://image.flaticon.com/icons/png/512/270/270014.png" alt="goggle" />
-             )}
             onFailure={responseErrorGoogle}
             cookiePolicy={'single_host_origin'}
+            render = {renderProps =>(
+            <img onClick={renderProps.onClick} disabled={renderProps.disabled}  className={style.google} src="https://image.flaticon.com/icons/png/512/270/270014.png" alt="goggle" />
+             )}
           />
-        </div><span className={style.form__span} >or use email for registration</span>
-     <Form.Item
-        name="name"
-        
-        rules={[
+        </div><span className={style.form__span} >или используйте регистрацию по  email</span>
+
+     <Form.Item name="name" rules={[
           {
             required: true,
           },
-        ]}
-      >
-        <Input  className={style.form__input} placeholder="ФИО"/>
+        ]}>
+        <Input  className={style.form__input} placeholder="Введите ваше имя"/>
       </Form.Item>
 
       <Form.Item
-        
-        name="email"
-        rules={[
+        name="email" rules={[
           {
             required: true,
-            message: 'Пожалуйста введите электронную почту!',
+            message: 'Пожалуйста, введите электронную почту!',
           },
-        ]}
-      >
-        <Input className={style.form__input}  />
+        ]}>
+        <Input className={style.form__input} placeholder="Введите вашу электронную почту"  />
       </Form.Item>
 
       <Form.Item
-        
-        name="pass"
-        rules={[
+        name="pass" rules={[
           {
             required: true,
             message: 'Пожалуйста введите пароль!',
           },
-        ]}
-      >
-        <Input.Password  className={style.form__input}/>
+        ]}>
+        <Input.Password  className={style.form__input} placeholder="Придумайте пароль"/>
       </Form.Item>
 
       <Form.Item {...tailLayout}>
@@ -118,19 +106,8 @@ const SignUpPatient = () => {
           Зарегестрироваться
         </Button>
       </Form.Item>
-
     </Form>
-    
-    
     </Row>
-
-    <Divider/>
-    <div>
-      <div className={style.container, style.a_container} id="a-container">
-      
-      </div>
-    </div>
-    
     </>
   );
 };

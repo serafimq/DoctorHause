@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router';
 import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
 import GoogleLogin from 'react-google-login';
+import style from './SignUp.module.scss'
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -52,38 +53,38 @@ const SignUpDoctor = () => {
     <Redirect to="/"/>
     :
     <>
-    <Row justify="center">
-      <Title>Регистрация врача</Title>
-    </Row>
-    <Row justify="center">
+
+
+    <Row className={style.main}>
+      
+      <Form {...layout} className={style.form} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+    
+      <h2 className={style.form_title, style.title}>Создайте аккаунт доктору</h2>
+      <div className={style.form__icons}>
       <GoogleLogin
         clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
         buttonText="Через Google Email"
         onSuccess={responseSuccesGoogle}
         onFailure={responseErrorGoogle}
         cookiePolicy={'single_host_origin'}
-      />,
-    </Row>
+        render = {renderProps =>(
 
-    <Divider/>
-    
-    <Row justify="center">
-    <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+          <img onClick={renderProps.onClick} disabled={renderProps.disabled}  className={style.google} src="https://image.flaticon.com/icons/png/512/270/270014.png" alt="goggle" />
+           )}
+      />
+      </div><span className={style.form__span} >или используйте регистрацию по  email</span>
 
       <Form.Item
-        name="name"
-        label="ФИО"
-        rules={[
+        name="name" rules={[
           {
             required: true,
           },
         ]}
       >
-        <Input />
+        <Input className={style.form__input} placeholder="Введите ваше имя"/>
       </Form.Item>
 
       <Form.Item
-        label="E-mail"
         name="email"
         rules={[
           {
@@ -92,11 +93,10 @@ const SignUpDoctor = () => {
           },
         ]}
       >
-        <Input />
+        <Input className={style.form__input} placeholder="Введите вашу электронную почту"  />
       </Form.Item>
 
       <Form.Item
-        label="Пароль"
         name="pass"
         rules={[
           {
@@ -105,7 +105,7 @@ const SignUpDoctor = () => {
           },
         ]}
       >
-        <Input.Password />
+        <Input.Password className={style.form__input} placeholder="Придумайте пароль"/>
       </Form.Item>
 
       <Form.Item {...tailLayout}>
@@ -113,7 +113,6 @@ const SignUpDoctor = () => {
           Зарегестрироваться
         </Button>
       </Form.Item>
-
     </Form>
     </Row>
     </>

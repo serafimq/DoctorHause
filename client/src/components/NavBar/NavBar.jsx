@@ -61,7 +61,7 @@ export default function NavBar() {
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link to='/signup'>Регистрация</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/signin'>Авторизация </Link></Menu.Item>
-          <Menu.Item key="3"><Link to={`/login`}>Login</Link></Menu.Item>
+          
         </Menu>
       </Header>
     </Layout>

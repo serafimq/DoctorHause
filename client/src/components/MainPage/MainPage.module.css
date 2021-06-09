@@ -1,13 +1,15 @@
 .main_page {
-  margin: 0 20px;
+  margin: 0 auto;
+  display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 .colCentre {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    
-    align-content: flex-start;
-    flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .card {
@@ -21,16 +23,15 @@
 }
 .input_sort {
   height: 20px;
-  margin-bottom: 30px;
-  display: inline-block;
+    margin: 40px 20px 20px;
 }
 .span{
   padding-right: 20px;
+  font-size: 16px;
 }
 .news {
   padding: 20px;
-  /* display: flex; */
-  /* align-content:space-between ; */
+  
 }
  .text {
    text-align: justify;
