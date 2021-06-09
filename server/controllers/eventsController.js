@@ -73,12 +73,10 @@ const findOneEvent = async (req, res) => {
 
     if (allHistory.length) {
       allHistory.forEach(el => {allIdis = [...allIdis, ...el.events]})
-      // console.log(allIdis, 'allIdis')
       let result = await Events.find({_id: {$in: allIdis}}).populate('history')
-      console.log(result, 'result');
-      console.log(dataString, 'dataString')
+
       dataString = [...dataString, ...result]
-      console.log(dataString, 'dataString22222222')
+
     }
     
     return res.json({ arr: dataString })

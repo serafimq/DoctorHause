@@ -15,6 +15,8 @@ const CalendarPage = () => {
   const events = useSelector(state => state.events)
   const history = useSelector(state => state.history)
   const id = useSelector(state => state.user.id)
+  console.log(events, 'events');
+  console.log(new Date(), 'new Date()');
 
 
   const dispatch = useDispatch()
@@ -30,7 +32,7 @@ const CalendarPage = () => {
     return (
       <ul >
         {listData.map((item, index) => (
-          <li className={style.events} key={item._id}>
+          <li className={Date.parse(item.dateTime) > new Date() ? style.events : style.no_events} key={item._id}>
             <div>
               <span className={style.doIt}>{index + 1}.{item.problem} </span>
               {/* <Badge status={item._id} text={item.problem} /> */}
@@ -38,7 +40,7 @@ const CalendarPage = () => {
           </li>
         ))}
         {listHistory.map((item, index) => (
-          <li className={style.nextGo} key={item._id}>
+          <li className={Date.parse(item.nextDateTime) > new Date() ? style.nextGo : style.no_Go } key={item._id}>
             <div>
               <span >{index + 1}.{item.date} </span>
               {/* <Badge status={item._id} text={item.problem} /> */}

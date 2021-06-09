@@ -9,6 +9,7 @@
   margin-top: 20px;
   margin-right: 20px;
   text-align: end;
+  margin-bottom: 20px;
 }
 
 .date_description {
@@ -27,4 +28,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.margin_block{
+  width: 400px;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
