@@ -9,12 +9,12 @@ const Homepage = () => {
   const role = useSelector(state => state.user.role)
   return (
     <div>
-      {role !== 'doctor' ?
+      {/* {role !== 'doctor' ? */}
 
         <PersonalArea />
-        :
+        {/* :
         <CardDoctorPage />
-      }
+      } */}
     </div>
   )
 }

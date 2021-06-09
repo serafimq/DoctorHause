@@ -6,6 +6,7 @@ import CardProfile from './CardProfile/CardProfile';
 import History from '../../History/History';
 import MapPage from '../../MapPage/MapPage';
 import { AdminRoom } from './AdminRoom/AdminRoom';
+import { DoctorRoom } from './DoctorRoom/DoctorRoom';
 
 
 
@@ -22,6 +23,7 @@ const PersonalArea = () => {
             {visibleComponents === 1 && <History /> }
             {visibleComponents === 3 && <MapPage /> }
             {visibleComponents === 4 && <AdminRoom /> }
+            {visibleComponents === 5 && <DoctorRoom /> }
             {/* {visibleComponents === 4 && <CalendarPage /> } */}
           </Col>
           <Col className={style.left_col} span={6} pull={18}>

@@ -91,13 +91,8 @@ const CalendarPage = () => {
       <div className={style.calendar_box}>
         <Calendar
           dateCellRender={dateCellRender}
-<<<<<<< HEAD
-          onSelect={clickDate}
-          onClick={modalCardOpen}
-=======
           // onClick={modalCardOpen}
           onSelect={clickDate}
->>>>>>> origin/history-page
         />
         <Row >
           <Col className={style.button_form} span={6} >
@@ -121,15 +116,10 @@ const CalendarPage = () => {
               events
                 ?
                 events.map(el =>
-<<<<<<< HEAD
                   <> 
                     <Card title={el.dateTime.toString().slice(0, 10).replace('-', '/').replace('-', '/') + ' ' + el.dateTime.toString().slice(11)} 
                     extra={<a href="#">More</a>} style={{ width: 500 }}>
                       <p>Причина обращения: {el.problem}</p>
-=======
-                  <>
-                    <Card title={el.dateTime.toString().replace('-', '/').replace('-', '/').replace('T', ' ').substring(0,16)} extra={<a href="#">More</a>} style={{ width: 500 }}>
->>>>>>> origin/history-page
                       <p>Клиника: {el.hospital}</p>
                       <p>Имя и Фамилия врача: {el.firstLastName}</p>
                       <p>Специализация: {el.specialization}</p>

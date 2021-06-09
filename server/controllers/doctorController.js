@@ -20,6 +20,7 @@ const setAllDoctors = async (req, res) => {
 }
 
 const addFeedBack = async (req, res) => {
+  console.log(req.body, 'req.body');
   const { text, stars } = req.body.feedBack
   const currentUser = await User.findById(req.body.id)
   await currentUser.feedBack.push({

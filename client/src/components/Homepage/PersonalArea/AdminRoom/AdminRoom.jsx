@@ -14,7 +14,7 @@ export const AdminRoom = () => {
   }, [doctor])
   const changeAccess = (id) => {
     dispatch(changeAccessThunk(id))
-    // dispatch(setAllDoctorThunk(doctors))
+
   }
   const deleteUser = (id) => {
     dispatch(deleteUserThunk(id))

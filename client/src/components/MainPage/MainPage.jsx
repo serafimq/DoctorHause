@@ -10,17 +10,16 @@ import News from './News/News';
 const { Meta } = Card;
 
 export default function MainPage() {
+  const doctors = useSelector(state => state.doctors)
+  
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setAllDoctorThunk())
   }, [])
-
-  const doctors = useSelector(state => state.doctors)
-
+  
   //для сортировки
 
   const [sortedField, setSortedField] = useState(false)
-  console.log(sortDoctors, 'sortdoctors');
   const handleSort = (e, sorted) => {
     dispatch(sortDoctors(e, sorted))
     setSortedField(!sortedField);
