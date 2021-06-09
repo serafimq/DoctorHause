@@ -3,5 +3,10 @@
   align-content: stretch;
   justify-content: center;
   margin-top: 20px;
+  flex-direction: column;
+
 }
 
+.form_orientation {
+  display: flex;
+}

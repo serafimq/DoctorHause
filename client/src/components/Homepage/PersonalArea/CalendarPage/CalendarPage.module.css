@@ -14,6 +14,13 @@
   background-color: #00ff0d;
   border-radius: 5px;
 }
+
+.no_Go {
+  font-size: 12px;
+  background-color: #e25c6ee3;
+  border-radius: 5px;
+}
+
 .events .ant-badge {
   font-size: 8px;
 }
@@ -23,6 +30,12 @@
   background-color: #a571f342;
   border-radius: 5px;
   
+}
+.no_events {
+  margin-bottom: 1px;
+  list-style: none;
+  background-color: #e25c6ee3;
+  border-radius: 5px;
 }
 
 .notes_month {
