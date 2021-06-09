@@ -1,12 +1,15 @@
 const Events = require("../models/events")
+const History = require("../models/history")
 
 
 const setAllEvents = async (req, res) => {
   const { id } = req.params
-  const allEvents = await Events.find()
+  const allEvents = await Events.find({ creator: id })
   const filterEvent = allEvents.filter(el => el.creator == id)
 
-  res.json(filterEvent)
+  // console.log(filterEvent)
+
+  res.json(allEvents)
 }
 
 const addEvent = async (req, res) => {

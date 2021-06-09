@@ -18,6 +18,7 @@ const apiRouterHomepage = require('./routes/apiRouterHomepage');
 const apiRouterHistory = require('./routes/apiRouterHistory');
 const Avatar = require('./models/avatar');
 const apiRouterMap = require('./routes/apiRouterMap');
+const User = require('./models/user');
 
 const app = express();
 
@@ -35,7 +36,6 @@ app.use(logger('common', { stream: fs.createWriteStream('./access.log', { flags:
 app.use(fileUpload())
 
 
-
 app.post('/api/v1/homepage/:id', async (req, res) => {
   console.log('Start foto3');
 
@@ -47,9 +47,6 @@ app.post('/api/v1/homepage/:id', async (req, res) => {
   image.mv(userAvatarPath)
   const oldAvatar = await Avatar.findOne({ user: id })
 
-  console.log(oldAvatar)
-
-
   if (oldAvatar !== null) {
     await Avatar.findByIdAndDelete(oldAvatar._id)
   }
@@ -58,6 +55,10 @@ app.post('/api/v1/homepage/:id', async (req, res) => {
     avatar: avatarPath,
     user: id
   })
+
+  const user = await User.findById(id)
+  user.avatar = newAvatar.avatar
+  await user.save()
 
   res.json(newAvatar)
 })

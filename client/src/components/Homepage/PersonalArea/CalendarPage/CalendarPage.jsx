@@ -6,34 +6,42 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAllEvents, getOneEventThunk } from '../../../../redux/actionCreators/eventsAC';
 import { useState } from 'react';
 import ResultModal from '../../ResultModal/ResultModal'
+import { setAllHistoryThunk } from '../../../../redux/actionCreators/historyAC';
 const CalendarPage = () => {
 
   const events = useSelector(state => state.events)
+  const history = useSelector(state => state.history)
   const id = useSelector(state => state.user.id)
    
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setAllEvents(id))
+    dispatch(setAllHistoryThunk(id))
    }, [])
 
   function dateCellRender(value) {
     const listData = events.filter(i => i.date === value.format('YYYY-MM-DD'));
-    
+    const listHistory = history.filter(i => i.date === value.format('YYYY-MM-DD'));
+
     return (
-      <ul  className={style.events}>
-        
-        {listData.map(item => (
-          <li  key={item._id}>
+      <ul >
+        {listData.map((item, index) => (
+          <li className={style.events} key={item._id}>
             <div>
-            <Badge status={item.hospital} text={item.hospital} />
-            </div>
-            <div>
-              <Badge status={item.hospital} text={item.specialization} />
+            <span className={style.doIt}>{index+1}.{item.problem} </span>
+             {/* <Badge status={item._id} text={item.problem} /> */}
             </div>
           </li>
         ))}
-       
+        {listHistory.map((item, index) => (
+          <li className={style.nextGo} key={item._id}>
+            <div>
+            <span >{index+1}.{item.date} </span>
+             {/* <Badge status={item._id} text={item.problem} /> */}
+            </div>
+          </li>
+        ))}
       </ul>
     );
   }
@@ -85,12 +93,12 @@ const CalendarPage = () => {
       <div className={style.calendar_box}>
         <Calendar
           dateCellRender={dateCellRender}
-          onChange={clickDate}
+          onSelect={clickDate}
           onClick={modalCardOpen}
         />
         <Row >
           <Col className={style.button_form} span={6} >
-            <CalendarModal setEvent={(e) => console.log(e)} />
+            <CalendarModal />
           </Col>
         </Row>
 
@@ -110,15 +118,16 @@ const CalendarPage = () => {
               events
                 ?
                 events.map(el =>
-                  <>
-                    <Card title={el.dateTime.toString().slice(0, 10).replace('-', '/').replace('-', '/') + ' ' + el.dateTime.toString().slice(11)} extra={<a href="#">More</a>} style={{ width: 500 }}>
+                  <> 
+                    <Card title={el.dateTime.toString().slice(0, 10).replace('-', '/').replace('-', '/') + ' ' + el.dateTime.toString().slice(11)} 
+                    extra={<a href="#">More</a>} style={{ width: 500 }}>
+                      <p>Причина обращения: {el.problem}</p>
                       <p>Клиника: {el.hospital}</p>
                       <p>Имя и Фамилия врача: {el.firstLastName}</p>
                       <p>Специализация: {el.specialization}</p>
                       <p>Адрес: {el.address}</p>
-                      <ResultModal idEvent={el._id}/>
+                      <ResultModal idEvent={el._id} />
                     </Card>
-
                   </>)
                 :
                 <div>На текущую дату посещений не запланировано</div>

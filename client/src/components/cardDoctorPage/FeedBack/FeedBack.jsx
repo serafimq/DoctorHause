@@ -6,7 +6,7 @@ export const FeedBack = ({ feedBack }) => {
         {feedBack.author}
       </Col>
       <Col>
-        <Rate allowHalf defaultValue={feedBack.stars} />
+        <Rate disabled defaultValue={feedBack.stars} />
       </Col>
       {feedBack.text}
     </Col>

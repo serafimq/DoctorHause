@@ -10,15 +10,14 @@ export default function doctorsReducer(state = [], action) {
       console.log(action.payload.e.target.value, 'action');
       const field = action.payload.e.target.value
       const direction = action.payload.sorted ? -1 : 1
-      if (!action.payload.sorted) {
 
         const sortedDoctor = state.sort((a, b) => {
+          console.log(a)
           if (a[field] === b[field]) return 0;
           return a[field] > b[field] ? direction : -direction;
 
         })
-        return [...sortedDoctor]
-      }
+        return sortedDoctor
 
 
     default:

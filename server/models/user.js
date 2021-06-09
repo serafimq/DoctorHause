@@ -24,6 +24,7 @@ const userSchema = new Schema({
   },
   role: String,
   isAuth: Boolean,
+  avatar: String,
   spec: String,
   stage: Number,
   phone: Number,
@@ -34,7 +35,8 @@ const userSchema = new Schema({
     author: String,
     text: String,
     stars: Number
-  }]
+  }],
+  approved: Boolean
 })
 
 const User = model('User', userSchema)
