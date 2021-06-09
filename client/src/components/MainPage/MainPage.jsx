@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 import { setAllDoctorThunk, sortDoctors } from '../../redux/actionCreators/doctorsAC'
 import CardsDoctor from './CardsDoctor/CardsDoctor';
+import News from './News/News';
 
 const { Meta } = Card;
 
@@ -28,9 +29,9 @@ export default function MainPage() {
 
 
   return (
-    <Row>
+    <Row className={style.main_page}>
       <Col span={6} push={18}>
-        
+        <News />
       </Col>
       
       <Col span={18} pull={6} className={style.colCentre}>

@@ -55,7 +55,7 @@ const CardsDoctor = ({item, id}) => {
           </div>
         </div>
       </div>
-
+      
       <Modal
           justify="center"
           title="Информация о враче"
