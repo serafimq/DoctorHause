@@ -1,7 +1,5 @@
 const apiRouterEvents = require('express').Router();
-
-const { setAllEvents, addEvent, findOneEvent } = require('../controllers/eventsController')
-
+const { setAllEvents, addEvent, findOneEvent, addImageFile } = require('../controllers/eventsController')
 
 apiRouterEvents.route('/:id')
   .get(setAllEvents)
@@ -10,6 +8,7 @@ apiRouterEvents.route('/:id')
 apiRouterEvents.route('/:id/oneEvent')
   .post(findOneEvent)
 
-
+apiRouterEvents.route('/file')
+  .post(addImageFile)
 
 module.exports = apiRouterEvents

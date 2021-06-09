@@ -9,7 +9,7 @@ const setAvatars = async (req, res) => {
 const addAvatars = async (req, res) => {
   const { id } = req.params
   const { image } = req.files
-  const userAvatarPath = `${__dirname}/public/avatar/${image.name}`
+  const userAvatarPath = `${__dirname}/../public/avatar/${image.name}`
   const avatarPath = `/public/avatar/${image.name}`
   image.mv(userAvatarPath)
   const oldAvatar = await Avatar.findOne({ user: id })

@@ -1,4 +1,5 @@
 require('dotenv').config()
+const session = require('express-session');
 const express = require('express');
 const app = express();
 const MongoStore = require('connect-mongo');
@@ -15,7 +16,7 @@ const options = {
 const { DB_HOST, DB_NAME, DB_PORT, secretKey, DB_ATLAS } = process.env
 const dbConnectionURL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
 
-const sessionConfig = {
+const sessionParser = session({
   name: app.get('cookiname'),
   secret: secretKey,
   resave: false,
@@ -29,11 +30,11 @@ const sessionConfig = {
     httpOnly: true,
     maxAge: 90000 * 1e3,
   },
-};
+});
 
 module.exports = {
   options,
   dbConnectionURL,
-  sessionConfig,
+  sessionParser,
   DB_ATLAS
 }

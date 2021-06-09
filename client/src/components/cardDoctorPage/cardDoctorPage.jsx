@@ -7,9 +7,8 @@ import FormDoctor from '../FormDoctor/FormDoctor';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOneDoctorThunk } from '../../redux/actionCreators/doctorAC'
 import { FeedBack } from './FeedBack/FeedBack';
-import { useParams } from 'react-router';
 import { RegistrationForm } from './Mail';
-const nodemailer = require('nodemailer');
+import { Chat } from './Chat/Chat';
 
 const CardDoctorPage = () => {
   const user = useSelector(state => state.user)
@@ -21,69 +20,10 @@ const CardDoctorPage = () => {
     dispatch(setOneDoctorThunk(user.id))
   }, [])
 
-  // const { id } = useParams()
-  // useEffect(() => {
-    
-  //   dispatch(setOneDoctorThunk(feedBack))
-  // }, [])
-
-
   const [modal1Visible, setModal1Visible] = useState(false)
   function visibleModal() {
     setModal1Visible(modal1Visible)
   }
-
-  const output = `
-  <p>Срочно регистрируйся! 🤓</p>
-  <label>Вот тебе ссылка</label>
-  
-  `;
-  
-  // Опции отправки почты
-  let mailOptions = {
-      from: 'example@yandex.ru', // почта отправителя
-      to: 'example@yandex.ru', // лист адресов получателей через запятую
-      subject: 'Срочное оповещение', // Заголовок письма
-      text: 'Срочно регистрируйся! 😨', // Текст письма если нет тела письма в html
-      html: output // html тело письма
-  };
-  
-// Отправляет письмо
-function sendMail(mailOptions) {
-  // Создаем обьект транспортера
-  // Авторизируемся
-  let smtpTransport;
-  try {
-    smtpTransport = nodemailer.createTransport({
-      host: 'smtp.yandex.ru',
-      port: 465,
-      secure: true, // true для 465, false для других портов 587
-      auth: {
-        user: "example@yandex.ru", // почта пользователя для авторизации
-        pass: "secretPassword" // пароль пользователя
-      }
-    });
-  }catch (e) {
-    return console.log('Ошибка: ' + e.name + ":" + e.message);
-  }
-  
-  // Отправляем письмо
-  smtpTransport.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log('Ошибка');
-    }else {
-      console.log('Сообщение отправлено: %s', info.messageId);
-    }
-  });
-}
-
-const maleSubmit =(e) => {
-  console.log('Привет');
-  e.preventDefault();
-  sendMail(mailOptions);
-}
-
-
 
   return (
     <div className="site-card-wrapper">
@@ -117,6 +57,10 @@ const maleSubmit =(e) => {
           <Divider/>          
           <Row className={style.lishka}>
             <RegistrationForm/>
+          </Row>
+          <Divider/>          
+          <Row className={style.lishka}>
+            <Chat/>
           </Row>
           <Divider/>
           <Row className={style.feedBack}>

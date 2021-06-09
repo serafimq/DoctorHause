@@ -5,7 +5,7 @@ const { setAvatars, addAvatars } = require('../controllers/homepageController');
 
 apiRouterHomepage.route('/:id')
   .get(setAvatars)
-  // .post(addAvatars)
+  .post(addAvatars)
 
 apiRouterHomepage.route('/oneEvent')
   .post()

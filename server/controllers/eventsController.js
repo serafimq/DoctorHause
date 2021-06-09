@@ -1,6 +1,5 @@
 const Events = require("../models/events")
 
-
 const setAllEvents = async (req, res) => {
   const { id } = req.params
   const allEvents = await Events.find()
@@ -21,7 +20,6 @@ const addEvent = async (req, res) => {
 
     const date1 = Date.parse(event.dateTime)
     const date2 = (event.dateTime).replace(/\//gm, "-").slice(0, 10)
-
 
     if (event) {
       const newEvent = await Events.create({
@@ -55,15 +53,23 @@ const findOneEvent = async (req, res) => {
   } catch (error) {
     console.log('Ошибка в загрузке конкретных записей', error);
   }
+}
 
-
-
+const addImageFile = (req, res) => {
+  const { image } = req.files
+  console.log('image', image);
+  if (!fs.existsSync(`${__dirname}/client/public/img/${image.name}`.replace("/server", ""))) {
+    const location = `${__dirname}/client/public/img/${image.name}`.replace("/server", "")
+    const location2 = `${__dirname}/public/img/${image.name}`
+    image.mv(location)
+    image.mv(location2)
+  }
+  return res.sendStatus(200)
 }
 
 module.exports = {
   setAllEvents,
   addEvent,
-  findOneEvent
+  findOneEvent,
+  addImageFile
 }
-
-

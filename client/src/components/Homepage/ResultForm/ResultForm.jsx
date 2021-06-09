@@ -114,7 +114,7 @@ function ResultForm({ visibleModal, idEvent }) {
     fmData.append("image", file);
 
     try {
-      const response = await axios.post("http://localhost:3006/file", fmData, config);
+      const response = await axios.post("http://localhost:3006/api/v1/events/file", fmData, config);
 
       if (response.status === 200) {
         message.success(`file uploaded successfully.`);
