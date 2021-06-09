@@ -4,29 +4,31 @@ import { Redirect } from 'react-router';
 import {Link} from 'react-router-dom';
 import { Typography } from 'antd';
 import { useState } from 'react';
+import SignUpPatient from './SignUpPatient';
+import style from './SignUpChoose.module.css'
 const { Title } = Typography;
 
 const SignUpChoose = () => {
   const isAuth = useSelector(state => state.user.isAuth) 
 
-  const [showLogin, setShowLogin] = useState('')
+  const [showLogin, setShowLogin] = useState('1')
   return (
     isAuth ?
     <Redirect to="/"/>
     :
-    <>
-    <Row justify="center">
-      <Title>Форма регистрации</Title>
-    </Row>
-       
-    <Row justify="center">
+    <>       
+    <Row className={style.controller} justify="center">
       <Col span={3}>
-        <Link to='/signupdoctor'><Button type="primary" block>Регистрация врача</Button></Link>
+        
+        <Button onClick={() => {setShowLogin('2')}}  type="primary" block>Регистрация врача</Button>
       </Col>
       <Col span={3}>
-        <Link to='/signuppatient'><Button block>Регистрация пациента</Button></Link>
+        
+        <Button onClick={() => {setShowLogin('3')}} block>Регистрация пациента</Button>
       </Col>
     </Row>
+    
+    {showLogin === '3' ? <SignUpPatient /> : ''}
     
   
     </>

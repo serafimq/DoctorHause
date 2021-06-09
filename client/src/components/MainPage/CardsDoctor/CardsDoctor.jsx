@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setAvatarAxios } from '../../../redux/actionCreators/avatarAC'
 import { setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import CardDoctorMain from '../CardDoctorMain/CardDoctorMain'
-import { Button, Rate } from 'antd';
+import { Rate } from 'antd';
 import style from './CardsDoctor.module.css'
 import { RegistrationForm } from '../../cardDoctorPage/Mail'
 
@@ -16,7 +16,7 @@ const CardsDoctor = ({item, id}) => {
   function visibleModal(id) {
     setModal1Visible(!modal1Visible)
   }
-  
+
   const dispatch = useDispatch()
 
   const openModal = (e) => {

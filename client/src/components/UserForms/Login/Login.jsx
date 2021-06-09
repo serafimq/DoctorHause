@@ -19,7 +19,7 @@ const Login = () => {
           <button className={style.form__button, style.button, style.submit}>SIGN UP</button>
         </form>
       </div>
-      <div className={style.container, style.b_container}id="b-container">
+      {/* <div className={style.container, style.b_container}id="b-container">
         <form className={style.form}  id="b-form" method="" action="">
           <h2 className={style.form_title, style.title}>Sign in to Website</h2>
           <div className={style.form__icons}>
@@ -34,8 +34,8 @@ const Login = () => {
           <a className={style.form__link}>Forgot your password?</a>
           <button className={style.form__button, style.button, style.submit}>SIGN IN</button>
         </form>
-      </div>
-      <div className={style.switch} id="switch-cnt">
+      </div> */}
+      {/* <div className={style.switch} id="switch-cnt">
         <div className={style.switch__circle}></div>
         <div className={style.switch__circle, style.switch__circle__t}> </div>
         <div className={style.switch__container}  id="switch-c1">
@@ -48,7 +48,7 @@ const Login = () => {
           <p className={style.switch__description, style.description}>Enter your personal details and start journey with us</p>
           <button className={style.switch__button, style.button, style.switch_btn}>SIGN UP</button>
         </div>
-      </div>
+      </div> */}
     </div>
     </div>
   )

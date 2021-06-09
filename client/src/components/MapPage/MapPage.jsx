@@ -96,7 +96,7 @@ const MapPage = () => {
             <Marker
               position={{ lat: el.location.lat, lng: el.location.lng }}
               // label={el.hospital}
-              title={el.address + "\n" + el.date}
+              title={el.hospital + "\n" + el.address + "\n" + el.date}
               icon={{
                 url: '/medical.png',
                 scaledSize: new window.google.maps.Size(37,37)

@@ -40,3 +40,25 @@
   font-size: 12px;
   border-bottom: 1px solid black;
 }
+
+.card_styles {
+  width: 600;
+  margin-bottom: 10px;
+}
+
+.cardContainer{
+  margin-top: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.switch_left {
+  text-align: end
+}
+
+.h3 {
+  font-weight: bolder;
+}
