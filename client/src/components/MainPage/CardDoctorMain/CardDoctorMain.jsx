@@ -1,25 +1,27 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 
 import style from './CardDoctorMain.module.css'
-import { Modal, Col, Row, Rate, Button, Input, List, Skeleton } from 'antd';
+import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar } from 'antd';
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import { FeedBack } from '../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators/avatarAC';
-import Avatar from 'antd/lib/avatar/avatar';
 import { addFeedBackDoctorThunk } from '../../../redux/actionCreators/doctorsAC';
 
 const CardDoctorMain = ({closeModal,doctor}) => {
+  console.log(1111111);
   const user = useSelector(state => state.user)
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
 
-  
+  console.log(doctor, 'doctordoctordoctor')
   const dispatch = useDispatch()
+
   useEffect(() => {
-    if (user.role === 'doctor') {
+    if (user.role === 'doctor' || user.role === 'admin') {
+      console.log(123);
       dispatch(setOneDoctorThunk(doctor._id))
       dispatch(setAvatarAxios(user.id))
     }
@@ -46,7 +48,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
   };
   const { value } = stars;
 
-  const currentRating = doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0)
+  const currentRating = Math.round((doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0))/doctor.feedBack.length)
 
   const onChangeSwitch = () => {
     setLoading(!loading)
@@ -58,10 +60,10 @@ const CardDoctorMain = ({closeModal,doctor}) => {
     <div>
           <Col span={24} >
         <List className={style.list} >
-        <List.Item className={style.feedBack}>
-    <Avatar size={264} src={
-      `http://localhost:3006/${doctor.avatar}`}>
-    </Avatar>
+        <List.Item className={style.property}>
+        
+          <Avatar src={`http://localhost:3006/${doctor.avatar}`} size={150}/>
+        
         </List.Item>
         <List.Item className={style.feedBack}>
           <Rate disabled defaultValue={currentRating} />
@@ -136,10 +138,10 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           </div>
         </List>
         <Row className={style.feedBack}>
-          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack className={style.feedBack} feedBack={feedBack} > {feedBack} <hr/> </FeedBack>)
+          {doctor.feedBack?.length > 0 ? doctor.feedBack?.map(feedBack => <FeedBack className={style.feedBack} feedBack={feedBack} > {feedBack} <hr/> </FeedBack>)
             : <p className={style.feedBack}>Отзывы об этом враче отсутствуют</p>}
         </Row>
-        {user.id === doctor._id ?
+        {user && user.id === doctor._id ?
           ''
           :
           <>

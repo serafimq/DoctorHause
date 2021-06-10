@@ -94,7 +94,7 @@ const History = () => {
         <span className={styleHistory.span}><input onClick={() => filterDate()} type='checkbox' name='sortD'></input> По дате последующих приемов</span>
         <span className={styleHistory.span}><input onClick={() => filterFirstDate()} type='checkbox' name='sortND' ></input> По дате записей</span>
       </div>
-      <div className={styleHistory.switch_right}> Общая сумма затрат на текущую причину обращения: &nbsp;
+      <div className={styleHistory.switch_right_size}> Общая сумма затрат на текущую причину обращения: &nbsp;
         <span>{history.reduce((acc, cur) => acc + +cur.price, 0)}</span>
       </div>
       <div>

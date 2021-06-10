@@ -100,6 +100,7 @@ const CalendarPage = () => {
   return (
     <>
       <div className={style.calendar_box}>
+      <div className={style.title}>Календарь</div>
         <Calendar
           dateCellRender={dateCellRender}
           // onClick={modalCardOpen}
