@@ -1,4 +1,5 @@
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const Message = require('../models/message');
 const User = require('../models/user')
 
 const sendMailer = async (req, res) => {
@@ -50,6 +51,14 @@ const sendMailer = async (req, res) => {
   return res.status(200).json(carrentDoctor)
 }
 
+const wsChat = async (req, res) => {
+  let allMessages = await Message.find().populate('user').lean()
+  // Вносим изменения в массив всех сообщений. Нам нужно определить все свои сообщения, чтобы отобразить их справа
+  allMessages = allMessages.map((message) => ({ ...message, itself: req.session.user.id === message.user._id.toString() }))
+  res.render('chat', { allMessages })
+}
+
 module.exports = {
   sendMailer,
+  wsChat,
 }

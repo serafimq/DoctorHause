@@ -22,8 +22,8 @@ const setAvatar = (avatar) => {
 }
 
 const addNewAvatarAxios = (avatar, id) => async (dispatch) => {
-  const fd = new FormData()
 
+  const fd = new FormData()
   fd.append('image', avatar, avatar.name)
 
   const response = await axios.post(`http://localhost:3006/api/v1/homepage/${id}`, fd)

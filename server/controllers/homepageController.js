@@ -21,20 +21,7 @@ const addAvatars = async (req, res) => {
   res.json(newAvatar)
 }
 
-// const addAvatar = (upload.single("avatar"), async(req, res)) => {
-//   const { id } = req.params
-//   const { image } = req.files
-//   const userAvatarPath = req.file.path
-
-//   console.log(id, '<---- id')
-//   console.log(image, '<---- image')
-//   console.log(userAvatarPath, '<---- avatar')
-
-//   res.json()
-// }
-
 module.exports = {
-  // addAvatar,
   setAvatars,
   addAvatars,
 }

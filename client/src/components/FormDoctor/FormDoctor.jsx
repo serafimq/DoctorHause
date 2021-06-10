@@ -33,8 +33,7 @@ const FormDoctor = () => {
   const { Option } = Select;
   const onFinish = (values) => {
     dispatch(updateDoctorThunk(values, id))
-
-
+    
   }
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>

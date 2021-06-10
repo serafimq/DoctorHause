@@ -1,8 +1,17 @@
 import React, { useEffect } from 'react'
+// import pic from '../../../public/plas.svg'
 
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import style from './mapPage.module.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAllUserAddressThunk, getCountUserAddressThunk } from '../../redux/actionCreators/addressAC';
+import { EnvironmentOutlined } from '@ant-design/icons';
+import mapStyle from "./mapStyle"
+import {
+  Form,
+  InputNumber,
+  Button
+} from 'antd';
 
 const containerStyle = {
   width: '700px',
@@ -10,40 +19,30 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 55.75,
-  lng: 37.6167,
+  lat: 55.75222,
+  lng: 37.61556,
+};
+
+const layout = {
+  labelCol: {
+    span: 17,
+  },
+  wrapperCol: {
+    span: 7,
+  },
 };
 
 const MapPage = () => {
 
   const id = useSelector(state => state.user.id)
+  const dispatch = useDispatch()
+  const address = useSelector(state => state.address)
+  console.log('address', address);
 
-  // let map;
-  // const maps1 = document.querySelector('.maps')
-  // console.log(resultCoordination)
-
-  // function initMap() {
-  //   console.log(231564);
-  //   map = new google.maps.Map(document.querySelector('#map'), {
-  //     center: { lat: 10.397, lng: 70.644 },
-  //     zoom: 2
-  //   });
-  // }
-
-  // function addMarker(map, arrLocation = []) {
-  //   arrLocation.forEach(el => {
-  //     new google.maps.Marker({
-  //       position: el.cood,
-  //       title: el.name,
-  //       map: map
-  //     })
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   dispatch(setAllHistoryThunk(id))
-  // }, [])
-
+  useEffect(() => {
+    dispatch(setAllUserAddressThunk(id))
+  }, [])
+  console.log();
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -62,21 +61,68 @@ const MapPage = () => {
     setMap(null)
   }, [])
 
-  return isLoaded ? (
-    <div className={style.maps_orientation} >
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={12}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        { /* Child components, such as markers, info windows, etc. */}
-        <></>
-      </GoogleMap>
-    </div>
-  ) : <></>
+  const options = {
+    styles: mapStyle,
+    // disableDefaultUI: true,
+    zoomControl: true,
+  }
 
+  const onFinish = (values) => {
+    console.log(values.count, '<<<<<<');
+    dispatch(getCountUserAddressThunk(id, values.count))
+  }
+
+  const returnHandler = () => {
+    dispatch(setAllUserAddressThunk(id))
+  }
+
+  return isLoaded ? (
+    <>
+      <div className={style.maps_orientation} >
+        <h2>Карта с отметками посещенных адресов</h2>
+        <Form {...layout} className={style.form_orientation} name="nest-messages" onFinish={onFinish}>
+          <Form.Item name="count" label="Введите количество отображаемых посещений">
+            <InputNumber style={{ width: 150 }} placeholder="Количество " />
+          </Form.Item>
+          <Button type="primary" style={{ marginLeft: 30 }} htmlType="submit" >
+            Изменить количество
+          </Button>
+          <Button type="danger" style={{ marginLeft: 50 }} onClick={() => returnHandler()} htmlType="submit" >
+            Вернуть все посещения на карте
+          </Button>
+        </Form>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={{
+            lat: 55.75222,
+            lng: 37.61556
+          }}
+          zoom={13}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+          options={options}
+        >
+          {
+            address ? address.map(el =>
+              <Marker
+                position={{ lat: el.location.lat, lng: el.location.lng }}
+                // label={el.hospital}
+                title={el.hospital + "\n" + el.address + "\n" + el.date}
+                icon={{
+                  url: '/medical.png',
+                  scaledSize: new window.google.maps.Size(37, 37)
+                  // size: 1
+                }}
+              >
+
+              </Marker>)
+              : null
+          }
+          <></>
+        </GoogleMap>
+      </div >
+    </>
+  ) : <></>
 }
 
 export default React.memo(MapPage)

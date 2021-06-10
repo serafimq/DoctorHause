@@ -41,7 +41,7 @@ export const RegistrationForm = () => {
   const emailTo = useSelector(state => state.doctors[0].email)
   const emailFrom = useSelector(state => state.user.email)
   const patientName = useSelector(state => state.user.name)
-  const doctortId = useSelector(state => state.doctor._id)
+  const doctortId = useSelector(state => state.doctors[0]._id)
   
   const onFinish = (values) => {
     console.log(values);
@@ -71,9 +71,9 @@ export const RegistrationForm = () => {
     <Form {...formItemLayout} form={form} name="register" onFinish={onFinish} initialValues={{ residence: ['zhejiang', 'hangzhou', 'xihu'], prefix: '+7'}}
       scrollToFirstError>
       <Form.Item name="phone" label="" rules={[{required: true, message: 'Please input your phone number!'}]}>
-        <Input addonBefore={prefixSelector} placeholder="Оставьте нормер телефона" style={{ width: '200%' }} />
+        <Input addonBefore={prefixSelector} placeholder="Оставьте нормер телефона" style={{ width: '100%' }} />
       </Form.Item>
-      <Form.Item name={['user', 'introduction']} label="" style={{width: '200%'}}>
+      <Form.Item name={['user', 'introduction']} label="" style={{width: '100%'}}>
         <Input.TextArea placeholder="Сообщите о проблеме">
         </Input.TextArea> 
       </Form.Item>

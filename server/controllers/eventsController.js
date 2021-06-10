@@ -1,14 +1,16 @@
 const Events = require("../models/events")
+const History = require("../models/history")
 
 const setAllEvents = async (req, res) => {
   const { id } = req.params
-  const allEvents = await Events.find()
+  const allEvents = await Events.find({ creator: id }).populate('history')
   const filterEvent = allEvents.filter(el => el.creator == id)
 
-  res.json(filterEvent)
+  res.json(allEvents)
 }
 
 const addEvent = async (req, res) => {
+  console.log(999);
   try {
     const { event, id } = req.body;
     const { problem,
@@ -17,7 +19,6 @@ const addEvent = async (req, res) => {
       specialization,
       address,
       comment, } = event
-
     const date1 = Date.parse(event.dateTime)
     const date2 = (event.dateTime).replace(/\//gm, "-").slice(0, 10)
 
@@ -33,6 +34,7 @@ const addEvent = async (req, res) => {
         date: date2,
         creator: id
       })
+      console.log(newEvent, 'newEvent');
       return res.json(newEvent)
     }
     return res.sendStatus(500)
@@ -40,15 +42,33 @@ const addEvent = async (req, res) => {
   }
 }
 
+const deleteOneEvent = async (req, res) => {
+  // const { id } = req.params
+  const { idEvent } = req.body
+  try {
+    const deleteEvent = await Events.findByIdAndDelete(idEvent)
+    return res.json(deleteEvent._id)
+  } catch (error) {
+    console.log('Ошибка в удалении конкретных записей', error);
+  }
+}
+
 const findOneEvent = async (req, res) => {
   const { id } = req.params
   const { date } = req.body
   try {
-    const allEvent = await Events.find()
+    const allEvent = await Events.find().populate('history')
+    const newDate = date.replace(/\//g, '-')
     const onePersonEvent = allEvent.filter(el => el.creator == id)
-    console.log('onePersonEvent', onePersonEvent)
-    const dataString = onePersonEvent.filter(el => el.dateTime.toISOString().slice(0, 10).replace('-', '/').replace('-', '/') == date)
-    console.log('dataString', dataString);
+    let dataString = onePersonEvent.filter(el => el.dateTime.toISOString().slice(0, 10).replace('-', '/').replace('-', '/') == date)
+    const allHistory = await History.find({date: newDate, userCreator: id},{events:1, _id:0})
+    let allIdis = []
+    const findEventWithId = []
+    if (allHistory.length) {
+      allHistory.forEach(el => {allIdis = [...allIdis, ...el.events]})
+      let result = await Events.find({_id: {$in: allIdis}}).populate('history')
+      dataString = [...dataString, ...result]
+    }
     return res.json({ arr: dataString })
   } catch (error) {
     console.log('Ошибка в загрузке конкретных записей', error);
@@ -58,18 +78,23 @@ const findOneEvent = async (req, res) => {
 const addImageFile = (req, res) => {
   const { image } = req.files
   console.log('image', image);
-  if (!fs.existsSync(`${__dirname}/client/public/img/${image.name}`.replace("/server", ""))) {
-    const location = `${__dirname}/client/public/img/${image.name}`.replace("/server", "")
-    const location2 = `${__dirname}/public/img/${image.name}`
+  const location = `${__dirname}/client/public/img/${image.name}`.replace("/server", "")
+  const location2 = `${__dirname}/public/img/${image.name}`
+
+  if (!fs.existsSync(location)) {
     image.mv(location)
     image.mv(location2)
+    return res.sendStatus(200)
+  } else {
+    res.sendStatus(418)
   }
-  return res.sendStatus(200)
 }
 
 module.exports = {
   setAllEvents,
   addEvent,
   findOneEvent,
-  addImageFile
+  addImageFile,
+  addImageFile,
+  deleteOneEvent,
 }

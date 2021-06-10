@@ -1,9 +1,11 @@
 import { Form, Input, Button, Select, Row, Divider } from 'antd';
+import React, {  useRef } from 'react'
 import { Typography } from 'antd';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router';
 import { signup, succesGoogle } from '../../redux/actionCreators/userAC';
 import GoogleLogin from 'react-google-login'
+import style from './SignUp.module.scss'
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -52,39 +54,41 @@ const SignUpPatient = () => {
     <Redirect to="/"/>
     :
     <>
+  
     <Row justify="center">
-      <Title>Регистрация пациента</Title>
-    </Row>
-
-    <Row justify="center">
-      <GoogleLogin
-        clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
-        buttonText="Через Google Email"
-        onSuccess={responseSuccesGoogle}
-        onFailure={responseErrorGoogle}
-        cookiePolicy={'single_host_origin'}
-      />,
-    </Row>
-
-    <Divider/>
-    
-    <Row justify="center">
+      
+   
+ 
     <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
-
-      <Form.Item
+    
+    <h2 className={style.form_title, style.title}>Создайте аккаунт пациента</h2>
+      <div className={style.form__icons}>
+           <GoogleLogin
+            clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
+            buttonText="Через Google Email"
+            onSuccess={responseSuccesGoogle}
+            render = {renderProps =>(
+          
+            <img onClick={renderProps.onClick} disabled={renderProps.disabled}  className={style.google} src="https://image.flaticon.com/icons/png/512/270/270014.png" alt="goggle" />
+             )}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
+        </div><span className={style.form__span} >or use email for registration</span>
+     <Form.Item
         name="name"
-        label="ФИО"
+        
         rules={[
           {
             required: true,
           },
         ]}
       >
-        <Input />
+        <Input  className={style.form__input} placeholder="ФИО"/>
       </Form.Item>
 
       <Form.Item
-        label="E-mail"
+        
         name="email"
         rules={[
           {
@@ -93,11 +97,11 @@ const SignUpPatient = () => {
           },
         ]}
       >
-        <Input />
+        <Input className={style.form__input}  />
       </Form.Item>
 
       <Form.Item
-        label="Пароль"
+        
         name="pass"
         rules={[
           {
@@ -106,7 +110,7 @@ const SignUpPatient = () => {
           },
         ]}
       >
-        <Input.Password />
+        <Input.Password  className={style.form__input}/>
       </Form.Item>
 
       <Form.Item {...tailLayout}>
@@ -116,9 +120,50 @@ const SignUpPatient = () => {
       </Form.Item>
 
     </Form>
+    
+    
     </Row>
+
+    <Divider/>
+    <div>
+      <div className={style.container, style.a_container} id="a-container">
+      
+      </div>
+    </div>
+    
     </>
   );
 };
 
 export default SignUpPatient
+
+
+
+
+
+// <Form {...layout} className={style.form} id="a-form" form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+        
+//         <h2 className={style.form_title, style.title}>Создайте аккаунт пациента</h2>
+//         <div className={style.form__icons}>
+//           <GoogleLogin
+//             clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
+//             buttonText="Через Google Email"
+//             onSuccess={responseSuccesGoogle}
+//             render = {renderProps =>(
+          
+//             <img onClick={renderProps.onClick} disabled={renderProps.disabled}  className={style.google} src="https://image.flaticon.com/icons/png/512/270/270014.png" alt="goggle" />
+//              )}
+//             onFailure={responseErrorGoogle}
+//             cookiePolicy={'single_host_origin'}
+//           />
+//         </div><span className={style.form__span} >or use email for registration</span>
+              
+//         <input className={style.form__input} name="name" type="text" placeholder="ФИО"/>
+//         <input className={style.form__input} name="email" type="text" placeholder="Email"/>
+//         <input className={style.form__input} name="pass" type="password" placeholder="Password"/>
+//         <Form.Item {...tailLayout} >
+//        <Button className={style.form__button, style.button, style.submit}  type="primary" htmlType="submit">
+//          Зарегестрироваться
+//        </Button>
+//      </Form.Item>
+//       </Form>

@@ -7,7 +7,9 @@ import {
   InputNumber,
   DatePicker,
   Progress,
-  message
+  message,
+  Checkbox,
+
 } from 'antd';
 
 import axios from 'axios'
@@ -81,6 +83,7 @@ function ResultForm({ visibleModal, idEvent }) {
       beforeSent = { ...values, nextDateTime: values.nextDateTime.format('YYYY/MM/DD HH:mm') }
     }
     console.log('Success:', beforeSent);
+    
     dispatch(addOneHistoryThunk(beforeSent, id, idEvent, imagePath))
     visibleModal()
   };
@@ -153,6 +156,8 @@ function ResultForm({ visibleModal, idEvent }) {
     }
   };
 
+  
+
   return (
     <Form
       labelCol={{
@@ -170,7 +175,7 @@ function ResultForm({ visibleModal, idEvent }) {
       value="default"
       onFinish={onFinish}
     >
-      <Form.Item name="prescription" label="Рецепты врача">
+      <Form.Item name="prescription" label="Рецепты врача" rules={[{ required: true, message: 'Заполните необходимые рецепты!' }]}>
         <Input.TextArea placeholder="Рецепты" />
       </Form.Item>
       <Form.Item label="Загрузка результатов">
@@ -214,12 +219,13 @@ function ResultForm({ visibleModal, idEvent }) {
           showNow={true}
         />
       </Form.Item>
-      <Form.Item name="analyzes" label="Перечень необходимых анализов">
+      <Form.Item name="analyzes" label="Перечень необходимых анализов" rules={[{ required: true, message: 'Заполните необходимые анализы!' }]}>
         <Input.TextArea placeholder="Рецепты" />
       </Form.Item>
       <Form.Item
         name="price"
         label="Сумма приема"
+        rules={[{ required: true }]}
       // rules={[
       //   {
       //     validator: checkPrice,

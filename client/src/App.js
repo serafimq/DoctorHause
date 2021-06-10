@@ -10,6 +10,8 @@ import MapPage from './components/MapPage/MapPage';
 
 import SignUpDoctor from './components/UserForms/SignUpDoctor';
 import SignUpPatient from './components/UserForms/SignUpPatient';
+import Login from './components/UserForms/Login/Login';
+import 'antd-button-color/dist/css/style.css';
 
 function App() {
 
@@ -18,41 +20,33 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-
           <Route exact path="/homepage/history/:id">
             <History />
           </Route>
-
           <Route exact path="/signup">
             <SignUpChoose />
           </Route>
-
           <Route exact path="/signin">
             <SignIn />
           </Route>
-
           <Route exact path="/">
             <MainPage />
           </Route>
-
           <Route exact path="/signupdoctor">
             <SignUpDoctor />
           </Route>
           <Route exact path="/signuppatient">
             <SignUpPatient />
           </Route>
-
           <Route exact path="/homepage/map/:id">
             <MapPage />
           </Route>
-
           <Route exact path="/homepage/:id">
             <Homepage />
           </Route>
-
-          <Route exact path="/">
+          <Route exact path="/login">
+            <Login />
           </Route>
-
           <Route exact path="/">
           </Route>
         </Switch>

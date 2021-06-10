@@ -20,7 +20,7 @@ export const InputField = () => {
     <Form {...layout} name="nest-messages" onFinish={onFinish} >
       <Row>
         <Col>
-          <Form.Item name={['user', 'website']}>
+          <Form.Item name={['chat']}>
             <Input />
           </Form.Item>
         </Col>

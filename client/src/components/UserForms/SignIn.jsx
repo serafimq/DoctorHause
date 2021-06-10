@@ -37,22 +37,6 @@ const SignIn = () => {
 
   const [form] = Form.useForm();
 
-  const onGenderChange = (value) => {
-    switch (value) {
-      case 'doctor':
-        form.setFieldsValue({
-          note: 'Привет врач!',
-        });
-        return;
-
-      case 'patient':
-        form.setFieldsValue({
-          note: 'Привет пациент!',
-        });
-        return;
-    }
-  };
-
   const responseSuccesGoogle = async (response) => {
     dispatch(succesSignInGoogle({tokenId: response.tokenId}))
   }
@@ -113,7 +97,7 @@ const SignIn = () => {
 
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Зарегистрироваться
+          Войти!
         </Button>
       </Form.Item>
 
