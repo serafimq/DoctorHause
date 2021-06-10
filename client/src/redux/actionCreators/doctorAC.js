@@ -28,9 +28,8 @@ export const clearDoctor = () => {
   }
 }
 
-export const addFeedBackThunk = (feedBack, id) => async (dispatch) => {
-  console.log(feedBack, id, 'feedBack, id');
-  const result = await axios.put(`http://localhost:3006/api/v1/doctors/${id}`, { feedBack, id });
+export const addFeedBackThunk = (feedBack, doctorId, userId) => async (dispatch) => {
+  const result = await axios.put(`http://localhost:3006/api/v1/doctors/${doctorId}`, { feedBack, doctorId, userId});
   dispatch({
     type: ADD_FEEDBACK,
     payload: result.data

@@ -3,7 +3,6 @@ import Modal from 'antd/lib/modal/Modal'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAvatarAxios } from '../../../redux/actionCreators/avatarAC'
-import { setOneDoctorThunk,  } from '../../../redux/actionCreators/doctorAC'
 import CardDoctorMain from '../CardDoctorMain/CardDoctorMain'
 import { Rate } from 'antd';
 import style from './CardsDoctor.module.css'
@@ -84,7 +83,7 @@ const CardsDoctor = ({ item, id }) => {
         visible={modal1Visible}
         onOk={(e) => openModal(e)}
         onCancel={() => closeModal()}
-        width={900}
+        width={700}
       >
         <CardDoctorMain closeModal={closeModal} doctor={item} />
       </Modal>
