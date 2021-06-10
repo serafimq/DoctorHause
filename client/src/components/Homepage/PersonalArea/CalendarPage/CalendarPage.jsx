@@ -35,7 +35,7 @@ const CalendarPage = () => {
           <li className={Date.parse(item.dateTime) > new Date() ? style.events : style.no_events} key={item._id}>
             <div>
               <span className={style.doIt}>{index + 1}.{item.problem} </span>
-              {/* <Badge status={item._id} text={item.problem} /> */}
+              
             </div>
           </li>
         ))}
@@ -43,7 +43,7 @@ const CalendarPage = () => {
           <li className={Date.parse(item.nextDateTime) > new Date() ? style.nextGo : style.no_Go } key={item._id}>
             <div>
               <span >{index + 1}.{item.date} </span>
-              {/* <Badge status={item._id} text={item.problem} /> */}
+             
             </div>
           </li>
         ))}
@@ -100,6 +100,7 @@ const CalendarPage = () => {
   return (
     <>
       <div className={style.calendar_box}>
+      <div className={style.title}>Календарь</div>
         <Calendar
           dateCellRender={dateCellRender}
           // onClick={modalCardOpen}

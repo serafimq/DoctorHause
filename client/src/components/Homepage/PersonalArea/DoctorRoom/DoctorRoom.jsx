@@ -1,5 +1,5 @@
 import style from './DoctorRoom.module.css'
-import { Modal, Col, Row, Rate, Button, Input, List } from 'antd';
+import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar, Switch } from 'antd';
 
 import { useEffect, useRef, useState } from 'react'
 import FormDoctor from '../../../FormDoctor/FormDoctor';
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../../../redux/actionCreators/doctorAC'
 import { FeedBack } from '../../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../../redux/actionCreators/avatarAC';
+import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 
 export const DoctorRoom = () => {
   const user = useSelector(state => state.user)
@@ -15,7 +16,8 @@ export const DoctorRoom = () => {
   const [stars, setStars] = useState(3)
   const avatar = useSelector(state => state.avatar)
 
-
+  console.log(doctor, 'doctor');
+  
   const inputFile = useRef(null)
 
   const dispatch = useDispatch()
@@ -52,8 +54,18 @@ export const DoctorRoom = () => {
   };
   const { value } = stars;
 
+  const onChangeSwitch = () => {
+    setLoading(!loading)
+  }
+
+  const [loading, setLoading] = useState(true)
+
   const currentRating = doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0)
   return (
+    <>
+    <div className={style.switch_right}> Показывать загруженные сертификаты? &nbsp;
+      <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked />
+      </div>
     <div className={style.radius}>
       <Col span={24} >
         <List className={style.list} >
@@ -105,6 +117,20 @@ export const DoctorRoom = () => {
               {doctor.price} p.
           </List.Item>
           </div>
+          <div className={style.row}>
+            <List.Item className={style.property}>
+            Сертификаты:
+          
+          </List.Item>
+            <List.Item className={style.info}>
+            <Skeleton loading={loading}>
+              {
+              doctor.imageCertificate && doctor.imageCertificate.map(img => 
+                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/sert/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
+                )
+            }</Skeleton>
+          </List.Item>
+          </div>
         </List>
         <Row className={style.feedBack}>
           {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
@@ -133,10 +159,10 @@ export const DoctorRoom = () => {
           onOk={() => visibleModal()}
           onCancel={() => visibleModal()}
         >
-          <FormDoctor />
+          <FormDoctor visibleModal={visibleModal}/>
         </Modal>
       </Col>
     </div>
-
+    </>
   )
 }

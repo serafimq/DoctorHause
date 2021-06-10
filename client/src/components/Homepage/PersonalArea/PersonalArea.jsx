@@ -16,7 +16,6 @@ const PersonalArea = () => {
   const [visibleComponents, setVisibleComponents] = useState(0)
   const user =  useSelector(state => state.user)
 
-  
   return (
     <>
     { user.role === 'admin' ? 
@@ -38,7 +37,6 @@ const PersonalArea = () => {
      <div className={style.calendar}>
      <Row>
        <Col className={style.right_col} span={18} push={6}>
-        
          {visibleComponents === 0 && <DoctorRoom /> }
          {visibleComponents === 5 && <DoctorRoom /> }
        </Col>
@@ -47,9 +45,7 @@ const PersonalArea = () => {
        </Col>
      </Row>
    </div>
-
      : 
-
      <div className={style.calendar}>
         <Row>
           <Col className={style.right_col} span={18} push={6}>

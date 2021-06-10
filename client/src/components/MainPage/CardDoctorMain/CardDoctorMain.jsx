@@ -1,13 +1,14 @@
 
 import style from './CardDoctorMain.module.css'
-import { Modal, Col, Row, Rate, Button, Input, List } from 'antd';
+import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar } from 'antd';
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import { FeedBack } from '../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators/avatarAC';
+import { addFeedBackDoctorThunk } from '../../../redux/actionCreators/doctorsAC';
 
-const CardDoctorMain = ({doctor}) => {
+const CardDoctorMain = ({closeModal,doctor}) => {
   const user = useSelector(state => state.user)
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
@@ -30,9 +31,11 @@ const CardDoctorMain = ({doctor}) => {
         text,
         stars
       }
-      dispatch(addFeedBackThunk(feedBack, doctor._id))
+      // dispatch(addFeedBackThunk(feedBack, doctor._id))
+      dispatch(addFeedBackDoctorThunk(feedBack, doctor._id))
       setText('')
       setStars(0)
+      // closeModal()
     }
   }
 
@@ -49,24 +52,23 @@ const CardDoctorMain = ({doctor}) => {
   };
   const { value } = stars;
 
-  const currentRating = doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0)
-  // console.log(currentRating, '====>currentRating');
+  const currentRating = Math.round((doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0))/doctor.feedBack.length)
+
+  const onChangeSwitch = () => {
+    setLoading(!loading)
+  }
+
+  const [loading, setLoading] = useState(true)
+
   return (
     <div>
       
           <Col span={24} >
         <List className={style.list} >
         <List.Item className={style.property}>
-        <figure>
-          <img  
-          className={style.avatar} 
-          onClick={ user.id === doctor._id ?
-            () => {inputFile.current.click()} 
-            : 
-            (e) => {console.log(e);} 
-          } 
-          src={`http://localhost:3006/${doctor.avatar}`}/>
-        </figure>
+        
+          <Avatar src={`http://localhost:3006/${doctor.avatar}`} size={150}/>
+        
         </List.Item>
         <List.Item className={style.property}>
           <Rate disabled defaultValue={currentRating} />
@@ -125,6 +127,18 @@ const CardDoctorMain = ({doctor}) => {
           </List.Item>
             <List.Item className={style.info}>
               {doctor.price} p.
+          </List.Item>
+          </div>
+          <div className={style.row}>
+            <List.Item className={style.property}>
+            Сертификаты:
+          </List.Item>
+            <List.Item className={style.info}>
+              {
+              doctor.imageCertificate && doctor.imageCertificate.map(img => 
+                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/sert/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
+                )
+            }
           </List.Item>
           </div>
         </List>

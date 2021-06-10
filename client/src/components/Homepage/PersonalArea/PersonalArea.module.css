@@ -4,9 +4,10 @@
 
 .right_col {
       display: flex;
+      flex-direction: column;
     align-content: space-between;
     flex-wrap: nowrap;
-    flex-direction: row;
+    
     align-items: center;
     justify-content: center;
 }
