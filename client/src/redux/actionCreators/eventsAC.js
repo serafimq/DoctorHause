@@ -1,4 +1,4 @@
-import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT, DELETE_EVENT } from '../types/eventsTypes';
+import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT, DELETE_EVENT, SORT_DATE_EVENT } from '../types/eventsTypes';
 import axios from 'axios'
 import Login from '../../components/UserForms/Login/Login';
 
@@ -52,6 +52,19 @@ const getEvents = (events) => {
   }
 }
 
+const sortDateEventThunk = (id, events) => async (dispatch) => {
+  // const response = await axios.post(`http://localhost:3006/api/v1/events/${id}/oneEvent`, { date: date })
+  const sortEvent = [...events].sort((a,b)=> Date.parse(b.dateTime) - Date.parse(a.dateTime))
+  dispatch(sortDateEvent(sortEvent))
+}
+
+const sortDateEvent = (events) => {
+  return {
+    type: SORT_DATE_EVENT,
+    payload: events
+  }
+}
+
 const clearEvents = () => {
   return {
     type: CLEAR_EVENT,
@@ -66,5 +79,6 @@ export {
   addEvents,
   getOneEventThunk,
   clearEvents,
-  deleteEventAxios
+  deleteEventAxios,
+  sortDateEventThunk
 }

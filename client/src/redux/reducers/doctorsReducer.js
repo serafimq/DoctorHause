@@ -1,4 +1,4 @@
-import { SET_DOCTORS, SORT_DOCTORS } from '../types/doctorsTypes'
+import { SET_DOCTORS, SORT_DOCTORS, ADD_FEEDBACK_DOCTORS } from '../types/doctorsTypes'
 
 export default function doctorsReducer(state = [], action) {
   console.log('hi', state)
@@ -29,7 +29,15 @@ export default function doctorsReducer(state = [], action) {
       })
       return sortedDoctor
 
-
+        case ADD_FEEDBACK_DOCTORS:
+          return state.map(doctor => {
+            if (doctor._id == action.payload._id) {
+              return  {
+                ...doctor, feedBack: action?.payload?.feedBack
+              }
+            }
+            return doctor
+          })
     default:
       return state
   }
