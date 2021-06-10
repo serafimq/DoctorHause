@@ -83,7 +83,7 @@ const CardsDoctor = ({ item, id }) => {
         visible={modal1Visible}
         onOk={(e) => openModal(e)}
         onCancel={() => closeModal()}
-        width={900}
+        width={700}
       >
         <CardDoctorMain closeModal={closeModal} doctor={item} />
       </Modal>

@@ -9,10 +9,14 @@
     flex-wrap: nowrap;
     
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+}
+.admin_page {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
 }
 
-.title {
-margin-top: 20px;
-font-size: 35px;
+.admin_pageBox {
+  width: 100%;
 }

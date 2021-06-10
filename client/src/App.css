@@ -15,7 +15,7 @@
 
 
 .ant-layout, .ant-layout * {
-  background-color: #f6eafd ;
+  background-color: #b9c7fc ;
   
 }
 
@@ -34,7 +34,7 @@
 }
 .ant-layout-header {
     height: 65px;
-    background: #f6eafd;
+    background: #b9c7fc;
 }
 
 .ant-menu-vertical .ant-menu-item::after, .ant-menu-vertical-left .ant-menu-item::after, .ant-menu-vertical-right .ant-menu-item::after, .ant-menu-inline .ant-menu-item::after {
@@ -105,28 +105,30 @@ figure {
   font-variant: tabular-nums;
   line-height: 1.5715;
   list-style: none;
-  font-feature-settings: 'tnum', "tnum", "tnum";
+  font-feature-settings: 'tnum', "tnum";
   background: #fff;
-  border: 10px solid #fff;
+  border: 12px solid #fff;
   border-radius: 35px;
-  background-color: #ecf0f3;
-  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  background: #b9c7fc;
+  box-shadow: -25px 25px 50px #8e99c2, 25px -25px 50px #e4f5ff;
 }
-.ant-row-center {
-  justify-content: start;
+.ant-list-split .ant-list-item {
+  /* border-bottom: 1px solid #f0f0f0; */
+  border: none;
 }
 .ant-input-affix-wrapper > input.ant-input {
   padding: 0;
+  background: #ecf0f3;
   border: none;
   outline: none;
   background: #ecf0f3;
 }
 .ant-modal-content {
   border-radius: 10px;
-  color: #a0a5a8;
+  color: #ABD2FA;
 }
 .ant-modal-body {
-  color: #a0a5a8;
+  color: #ABD2FA;
 }
 .ant-modal-header {
   border-radius: 10px;
