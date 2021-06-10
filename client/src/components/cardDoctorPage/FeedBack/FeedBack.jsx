@@ -1,7 +1,9 @@
 import {Col, Rate } from 'antd';
+import style from './FeedBack.module.css'
 export const FeedBack = ({ feedBack }) => {
+
   return (
-    <Col>
+    <Col >
       <Col>
         {feedBack.author}
       </Col>

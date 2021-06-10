@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 
 import style from './CardDoctorMain.module.css'
 import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar } from 'antd';
@@ -13,7 +14,6 @@ const CardDoctorMain = ({closeModal,doctor}) => {
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
-  // const avatar = useSelector(state => state.avatar)
 
   
   const dispatch = useDispatch()
@@ -31,20 +31,13 @@ const CardDoctorMain = ({closeModal,doctor}) => {
         text,
         stars
       }
-      // dispatch(addFeedBackThunk(feedBack, doctor._id))
-      dispatch(addFeedBackDoctorThunk(feedBack, doctor._id))
+      // dispatch(addFeedBackThunk(feedBack, doctor._id, user.id))
+      dispatch(addFeedBackDoctorThunk(feedBack, doctor._id, user.id))
       setText('')
       setStars(0)
       // closeModal()
     }
   }
-
-  const fileSelectedHandler = e => {
-    console.log('Start foto');
-    dispatch(addNewAvatarAxios(e.target.files[0], user.id))
-  }
-
-  const inputFile = useRef(null) 
 
   const desc = ['Ужасно', 'Плохо', 'Нормально', 'Хорошо', 'Отлично'];
   const handleChange = (value) => {
@@ -62,7 +55,6 @@ const CardDoctorMain = ({closeModal,doctor}) => {
 
   return (
     <div>
-      
           <Col span={24} >
         <List className={style.list} >
         <List.Item className={style.property}>
@@ -70,7 +62,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           <Avatar src={`http://localhost:3006/${doctor.avatar}`} size={150}/>
         
         </List.Item>
-        <List.Item className={style.property}>
+        <List.Item className={style.feedBack}>
           <Rate disabled defaultValue={currentRating} />
           </List.Item>
         <div className={style.row} >
@@ -143,7 +135,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           </div>
         </List>
         <Row className={style.feedBack}>
-          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack className={style.feedBack} feedBack={feedBack} > {feedBack} <hr/> </FeedBack>)
             : <p className={style.feedBack}>Отзывы об этом враче отсутствуют</p>}
         </Row>
         {user.id === doctor._id ?
@@ -151,7 +143,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           :
           <>
             <hr />
-            <Row className={style.feedback}>
+            <Row >
               <form className={style.feedback} onSubmit={e => submitHandler(e)} >
                 <Input value={text} name='text' placeholder="Оставить новый отзыв" onChange={e => setText(e.target.value)}></Input>
                 <Rate tooltips={desc} onChange={handleChange} value={value} />
@@ -161,7 +153,6 @@ const CardDoctorMain = ({closeModal,doctor}) => {
             </Row>
           </>
         }
-
       </Col>
     </div>
   )
