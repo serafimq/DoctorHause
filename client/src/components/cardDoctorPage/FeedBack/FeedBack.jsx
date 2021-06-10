@@ -1,5 +1,6 @@
 import {Col, Rate } from 'antd';
 export const FeedBack = ({ feedBack }) => {
+
   return (
     <Col>
       <Col>

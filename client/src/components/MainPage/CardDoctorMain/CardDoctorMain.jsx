@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 
 import style from './CardDoctorMain.module.css'
 import { Modal, Col, Row, Rate, Button, Input, List } from 'antd';
@@ -6,13 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import { FeedBack } from '../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators/avatarAC';
+import Avatar from 'antd/lib/avatar/avatar';
 
 const CardDoctorMain = ({doctor}) => {
   const user = useSelector(state => state.user)
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
-  const avatar = useSelector(state => state.avatar)
 
 
   const dispatch = useDispatch()
@@ -30,15 +31,10 @@ const CardDoctorMain = ({doctor}) => {
         text,
         stars
       }
-      dispatch(addFeedBackThunk(feedBack, doctor._id))
+      dispatch(addFeedBackThunk(feedBack, doctor._id, user.id))
       setText('')
       setStars(0)
     }
-  }
-
-  const fileSelectedHandler = e => {
-    console.log('Start foto');
-    dispatch(addNewAvatarAxios(e.target.files[0], user.id))
   }
 
   const inputFile = useRef(null) 
@@ -53,26 +49,14 @@ const CardDoctorMain = ({doctor}) => {
 
   return (
     <div>
-      
           <Col span={24} >
         <List className={style.list} >
-        <List.Item className={style.property}>
-        <figure>
-          <img  
-          className={style.avatar} 
-          onClick={ user.id === doctor._id ?
-            () => {inputFile.current.click()} 
-            : 
-            (e) => {console.log(e);} 
-          } 
-          src={avatar?.avatar ?
-            `http://localhost:3006/${avatar.avatar}` 
-            :
-            'http://cs319323.vk.me/v319323049/70e1/2gddfIt0mvc.jpg'
-          } alt="Card image"/>
-        </figure>
+        <List.Item className={style.feedBack}>
+    <Avatar size={264} src={
+      `http://localhost:3006/${doctor.avatar}`}>
+    </Avatar>
         </List.Item>
-        <List.Item className={style.property}>
+        <List.Item className={style.feedBack}>
           <Rate disabled defaultValue={currentRating} />
           </List.Item>
         <div className={style.row} >
@@ -133,7 +117,7 @@ const CardDoctorMain = ({doctor}) => {
           </div>
         </List>
         <Row className={style.feedBack}>
-          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack  feedBack={feedBack} > {feedBack} <hr/> </FeedBack>)
             : <p className={style.feedBack}>Отзывы об этом враче отсутствуют</p>}
         </Row>
         {user.id === doctor._id ?
@@ -151,7 +135,6 @@ const CardDoctorMain = ({doctor}) => {
             </Row>
           </>
         }
-
       </Col>
     </div>
   )

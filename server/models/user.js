@@ -33,6 +33,7 @@ const userSchema = new Schema({
   stars: Number,
   feedBack: [{
     author: String,
+    // author: {type: Schema.Types.ObjectId,ref: 'User'},
     text: String,
     stars: Number
   }],
