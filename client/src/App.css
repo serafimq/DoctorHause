@@ -15,7 +15,7 @@
 
 
 .ant-layout, .ant-layout * {
-  background-color: #f6eafd ;
+  background-color: #b9c7fc ;
   
 }
 
@@ -34,7 +34,7 @@
 }
 .ant-layout-header {
     height: 65px;
-    background: #f6eafd;
+    background: #b9c7fc;
 }
 
 .ant-menu-vertical .ant-menu-item::after, .ant-menu-vertical-left .ant-menu-item::after, .ant-menu-vertical-right .ant-menu-item::after, .ant-menu-inline .ant-menu-item::after {
@@ -123,10 +123,10 @@ figure {
 }
 .ant-modal-content {
   border-radius: 10px;
-  color: #a0a5a8;
+  color: #ABD2FA;
 }
 .ant-modal-body {
-  color: #a0a5a8;
+  color: #ABD2FA;
 }
 .ant-modal-header {
   border-radius: 10px;
