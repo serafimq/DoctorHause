@@ -9,16 +9,19 @@ import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators
 import { addFeedBackDoctorThunk } from '../../../redux/actionCreators/doctorsAC';
 
 const CardDoctorMain = ({closeModal,doctor}) => {
+  console.log(1111111);
   const user = useSelector(state => state.user)
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
   // const avatar = useSelector(state => state.avatar)
 
-  
+  console.log(doctor, 'doctordoctordoctor')
   const dispatch = useDispatch()
+
   useEffect(() => {
-    if (user.role === 'doctor') {
+    if (user.role === 'doctor' || user.role === 'admin') {
+      console.log(123);
       dispatch(setOneDoctorThunk(doctor._id))
       dispatch(setAvatarAxios(user.id))
     }
