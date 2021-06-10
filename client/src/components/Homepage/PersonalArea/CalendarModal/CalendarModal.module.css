@@ -1,14 +1,1 @@
-.button {
-  line-height: 31px;
-  border-radius: 20px;
-  height: 40px;
-  background: #a671f3;
-  border-color: #a671f3;
-  box-shadow:  -7px 7px 16px #9aa5d1,
-  7px -7px 16px #d8e9ff;
-}
-.button:hover {
-  
-  background: #a571f391;
-  border-color: #a571f391;
-}
+
