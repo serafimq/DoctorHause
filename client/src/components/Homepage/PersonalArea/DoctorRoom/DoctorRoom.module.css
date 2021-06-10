@@ -6,17 +6,15 @@
   font-size: 14px;
   line-height: 1.5715;
   font-feature-settings:'tnum', "tnum", "tnum";
-  background: #fff;
-  border: 12px solid #fff;
+  background: rgb(237, 226, 238);
+  border: 12px solid rgb(236, 248, 250);
   border-radius: 10px;
   box-shadow: -25px 25px 50px#8e99c2, 25px -25px 50px#e4f5ff;
   height:auto;
-  width:100%;
+  width:800px;
 }
 
 .list {
-  /* display: flex;
-  justify-content:space-around; */
   padding-left: 100px;
   padding-right: 100px;
 }
@@ -34,5 +32,20 @@
 
 .property {
   font-size: 20px;
+}
 
+.feedBack {
+  justify-content: center;
+  display: flex;
+}
+
+.switch_right {
+  margin-top: 20px;
+  margin-right: 20px;
+  text-align: end;
+  margin-bottom: 20px;
+}
+
+.collapse {
+  background-color: rgb(190, 174, 190);
 }

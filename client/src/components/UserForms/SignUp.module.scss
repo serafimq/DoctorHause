@@ -32,18 +32,27 @@ $transition: 1.25s;
 }
 /**/
 .main{
-    position: relative;
-    width: 1000px;
-	min-width: 1000px;
-	min-height: 600px;
-    height: 600px;
-    padding: 25px;
-	background-color: $neu-1;
-	box-shadow:
-		10px 10px 10px $neu-2,
-		-10px -10px 10px $white;
-	border-radius: 12px;
-	overflow: hidden;
+  position: relative;
+  width: 700px;
+  min-width: 700px;
+  min-height: 500px;
+  height: 500px;
+  padding: 25px;
+  background-color: #ecf0f3;
+  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.row {
+  display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.form {
+      margin-top: 10px;
+    margin-bottom: 15px;
 }
 .container{
     display: flex;
@@ -59,6 +68,7 @@ $transition: 1.25s;
 	background-color: $neu-1;
     transition: $transition;
 }
+
 .form{
     display: flex;
     justify-content: center;
@@ -85,7 +95,7 @@ $transition: 1.25s;
         width: 350px;
         height: 40px;
         margin: 4px 0;
-
+        background-color: #ecf0f3;
         padding-left: 25px;
         font-size: 13px;
         letter-spacing: .15px;
@@ -108,8 +118,9 @@ $transition: 1.25s;
 		}
     }
     &__span{
-        margin-top: 30px;
-        margin-bottom: 12px;
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 15px;
     }
     &__link{
         color: $black;
@@ -120,9 +131,9 @@ $transition: 1.25s;
     }
 }
 .title{
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 700;
-    line-height: 3;
+    line-height: 2;
     color: $black;
 }
 .description{
@@ -268,4 +279,10 @@ $transition: 1.25s;
 .google {
   width: 40px;
   cursor: pointer;
+}
+.login_box {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  align-items: center;
 }

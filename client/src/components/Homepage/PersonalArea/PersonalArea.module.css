@@ -4,10 +4,19 @@
 
 .right_col {
       display: flex;
+      flex-direction: column;
     align-content: space-between;
     flex-wrap: nowrap;
-    flex-direction: row;
+    
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+}
+.admin_page {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
 }
 
+.admin_pageBox {
+  width: 100%;
+}

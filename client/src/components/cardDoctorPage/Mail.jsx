@@ -35,10 +35,10 @@ const tailFormItemLayout = {
   },
 };
 
-export const RegistrationForm = () => {
+export const RegistrationForm = ({doctor}) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch()
-  const emailTo = useSelector(state => state.doctors[0].email)
+  // const emailTo = useSelector(state => state.doctors[0].email)
   const emailFrom = useSelector(state => state.user.email)
   const patientName = useSelector(state => state.user.name)
   const doctortId = useSelector(state => state.doctors[0]._id)
@@ -50,7 +50,7 @@ export const RegistrationForm = () => {
     data.prefix = values.prefix;
     data.phone = values.phone;
     data.text = values.user.introduction;
-    data.emailTo = emailTo;
+    data.emailTo = doctor.email;
     data.emailFrom = emailFrom;
     data.id = doctortId;
     dispatch(fetchMail(data))

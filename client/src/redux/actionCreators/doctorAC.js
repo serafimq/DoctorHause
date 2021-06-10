@@ -5,17 +5,19 @@ import axios from 'axios'
 
 export const setOneDoctorThunk = (id) => async (dispatch) => {
   const result = await axios(`http://localhost:3006/api/v1/doctors/${id}`);
+    console.log(result.data, 'result.data----><><>')
   dispatch({
     type: SET_ONEDOCTOR,
     payload: result.data
   })
 }
 
-export const updateDoctorThunk = (doctor, id) => async (dispatch) => {
-  const result = await axios.post(`http://localhost:3006/api/v1/doctors/${id}`, { doctor, id });
+export const updateDoctorThunk = (doctor, id, imagePath) => async (dispatch) => {
+  const result = await axios.post(`http://localhost:3006/api/v1/doctors/${id}`, { doctor, id, imagePath });
+  console.log(result.data, 'result.data');
   dispatch({
     type: ADD_DOCTOR,
-    payload: result
+    payload: result.data
   })
 }
 
@@ -26,12 +28,11 @@ export const clearDoctor = () => {
   }
 }
 
-export const addFeedBackThunk = (feedBack, id) => async (dispatch) => {
-  console.log(feedBack, id, 'feedBack, id');
-  const result = await axios.put(`http://localhost:3006/api/v1/doctors/${id}`, { feedBack, id });
+export const addFeedBackThunk = (feedBack, doctorId, userId) => async (dispatch) => {
+  const result = await axios.put(`http://localhost:3006/api/v1/doctors/${doctorId}`, { feedBack, doctorId, userId});
   dispatch({
     type: ADD_FEEDBACK,
-    payload: result
+    payload: result.data
   })
 }
 

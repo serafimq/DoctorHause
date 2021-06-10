@@ -36,3 +36,26 @@
   margin-right: 20px;
   margin-bottom: 20px;
 }
+
+.filter_box {
+  display: flex;
+  flex-direction:row;
+}
+
+.input_sort {
+  height: 20px;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+
+.span{
+  padding-right: 20px;
+}
+
+.switch_right_size{
+  margin-top: 20px;
+  margin-right: 20px;
+  text-align: end;
+  margin-bottom: 20px;
+  font-size: 16px;
+}

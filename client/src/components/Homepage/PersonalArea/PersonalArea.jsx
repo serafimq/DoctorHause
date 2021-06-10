@@ -17,8 +17,8 @@ const PersonalArea = () => {
   return (
     <>
     { user.role === 'admin' ? 
-    <div className={style.calendar}>
-      <Row>
+    <div className={style.admin_page}>
+      <Row className={style.admin_pageBox}>
         <Col className={style.right_col} span={18} push={6}>
          
           {visibleComponents === 0 && <AdminRoom /> }
@@ -35,7 +35,6 @@ const PersonalArea = () => {
      <div className={style.calendar}>
      <Row>
        <Col className={style.right_col} span={18} push={6}>
-        
          {visibleComponents === 0 && <DoctorRoom /> }
          {visibleComponents === 5 && <DoctorRoom /> }
        </Col>

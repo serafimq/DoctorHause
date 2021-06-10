@@ -1,5 +1,5 @@
 import style from './DoctorRoom.module.css'
-import { Modal, Col, Row, Rate, Button, Input, List } from 'antd';
+import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar, Switch, Collapse } from 'antd';
 
 import { useEffect, useRef, useState } from 'react'
 import FormDoctor from '../../../FormDoctor/FormDoctor';
@@ -8,6 +8,7 @@ import { addFeedBackThunk, setOneDoctorThunk } from '../../../../redux/actionCre
 import { FeedBack } from '../../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../../redux/actionCreators/avatarAC';
 import { ModalChat } from '../../../cardDoctorPage/ModalChat';
+import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 
 export const DoctorRoom = () => {
   const user = useSelector(state => state.user)
@@ -15,7 +16,9 @@ export const DoctorRoom = () => {
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
   const avatar = useSelector(state => state.avatar)
-
+  const { Panel } = Collapse;
+  console.log(doctor, 'doctor');
+  
   const inputFile = useRef(null)
 
   const dispatch = useDispatch()
@@ -52,8 +55,16 @@ export const DoctorRoom = () => {
   };
   const { value } = stars;
 
-  const currentRating = doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0)
+  const onChangeSwitch = () => {
+    setLoading(!loading)
+  }
+
+  const [loading, setLoading] = useState(true)
   return (
+    <>
+    <div className={style.switch_right}> Показывать загруженные сертификаты? &nbsp;
+      <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked />
+      </div>
     <div className={style.radius}>
       <Col span={24} >
         <List className={style.list} >
@@ -105,26 +116,33 @@ export const DoctorRoom = () => {
               {doctor.price} p.
           </List.Item>
           </div>
+          <div className={style.row}>
+            <List.Item className={style.property}>
+            Сертификаты:
+          
+          </List.Item>
+            <List.Item className={style.info}>
+            <Skeleton loading={loading}>
+              {
+              doctor.imageCertificate && doctor.imageCertificate.map(img => 
+                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/sert/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
+                )
+            }</Skeleton>
+          </List.Item>
+          </div>
         </List>
         <ModalChat/>
         <Row className={style.feedBack}>
-          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+        <Collapse className={style.collapse} defaultActiveKey={['1']}>
+          {doctor.feedBack?.length > 0 ? doctor.feedBack.map((feedBack, key) => <Panel header={`Посмотреть отзыв пользователя: ${feedBack.author}`} key={key}>     <FeedBack feedBack={feedBack} > {feedBack}     </FeedBack>    </Panel> )
             : <p>Отзывы об этом враче отсутствуют</p>}
+            </Collapse>,
         </Row>
+        <br></br>
         {user.id === doctor._id ?
           <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
           :
-          <>
-            <hr />
-            <Row className={style.feedback}>
-              <form onSubmit={e => submitHandler(e)} >
-                <Input value={text} name='text' placeholder="Оставить новый отзыв" onChange={e => setText(e.target.value)}></Input>
-                <Rate tooltips={desc} onChange={handleChange} value={value} />
-                {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
-                <Button type="primary" htmlType="submit">Отправить отзыв</Button>
-              </form>
-            </Row>
-          </>
+          ''
         }
         <Modal
           title="Редактировать данные"
@@ -134,10 +152,10 @@ export const DoctorRoom = () => {
           onOk={() => visibleModal()}
           onCancel={() => visibleModal()}
         >
-          <FormDoctor />
+          <FormDoctor visibleModal={visibleModal}/>
         </Modal>
       </Col>
     </div>
-
+    </>
   )
 }

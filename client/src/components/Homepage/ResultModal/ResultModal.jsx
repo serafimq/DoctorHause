@@ -6,7 +6,7 @@ import {
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteEventAxios } from '../../../redux/actionCreators/eventsAC';
-
+import styleButton from '../../General/AddButton/AddButton.module.scss'
 
 function ResultModal({ idEvent, modalCardClose }) {
 
@@ -24,7 +24,7 @@ function ResultModal({ idEvent, modalCardClose }) {
   function visibleModal() {
     setModal1Visible(!modal1Visible)
   }
-  console.log(modal1Visible, 'modal1Visible');
+  
 
   const deleteHandler = (id, idEvent) => {
     dispatch(deleteEventAxios(id, idEvent))
@@ -35,10 +35,10 @@ function ResultModal({ idEvent, modalCardClose }) {
   return (
     <>
       <div>
-        <Button style={{marginRight: 10}} type="primary" onClick={() => visibleModal()}>
+        <Button  style={{marginRight: 10}} className={styleButton.button} onClick={() => visibleModal()}>
           Добавить результат посещения
       </Button>
-        <Button type="danger" onClick={() => deleteHandler( id, idEvent)}>
+        <Button className={styleButton.button, styleButton.button__del} type="danger" onClick={() => deleteHandler( id, idEvent)}>
           Удалить событие из календаря
       </Button>
       </div>
