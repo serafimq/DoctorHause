@@ -131,11 +131,12 @@ export const DoctorRoom = () => {
           </div>
         </List>
         <Row className={style.feedBack}>
-        <Collapse defaultActiveKey={['1']}>
+        <Collapse className={style.collapse} defaultActiveKey={['1']}>
           {doctor.feedBack?.length > 0 ? doctor.feedBack.map((feedBack, key) => <Panel header={`Посмотреть отзыв пользователя: ${feedBack.author}`} key={key}>     <FeedBack feedBack={feedBack} > {feedBack}     </FeedBack>    </Panel> )
             : <p>Отзывы об этом враче отсутствуют</p>}
             </Collapse>,
         </Row>
+        <br></br>
         {user.id === doctor._id ?
           <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
           :

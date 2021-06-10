@@ -125,10 +125,6 @@ const FormDoctor = ({visibleModal}) => {
             <Option value="Диетолог">Диетолог</Option>
           </Select>
         </Form.Item>
-        <Form.Item
-          name='name' label="ФИО" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
         <Form.Item name='stage' label="Стаж" style={{ width: '100%' }} rules={[{ type: 'number', min: 0, max: 99, required: true },]}>
           <InputNumber />
         </Form.Item>

@@ -22,7 +22,7 @@ const Foto = () => {
     dispatch(addNewAvatarAxios(e.target.files[0], user.id))
   }
 
-  const currentRating = Math.round((doctor.feedBack?.reduce((acc, cur) => acc+cur.stars,0))/doctor.feedBack.length)
+  const currentRating = Math.round((doctor.feedBack?.reduce((acc, cur) => acc+cur.stars,0))/doctor.feedBack?.length)
   console.log(currentRating, 'currentRating');
   return (
       <div class="card profile-card">

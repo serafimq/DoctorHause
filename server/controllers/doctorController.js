@@ -2,9 +2,9 @@ const User = require('../models/user')
 const fs = require('fs')
 
 const addDoctors = async (req, res) => {
-  const { spec, price, name, stage, phone, metro, } = req.body.doctor
+  const { spec, price, stage, phone, metro, } = req.body.doctor
   const { imagePath } = req.body
-  const currentUser = await User.findByIdAndUpdate({_id: req.body.id}, {spec, name, stage, phone, metro, price, imageCertificate: imagePath}, {new: true})
+  const currentUser = await User.findByIdAndUpdate({_id: req.body.id}, {spec, stage, phone, metro, price, imageCertificate: imagePath}, {new: true})
   // const newUser = await currentUser.updateOne({
   //   spec, name, stage, phone, metro, price, imageCertificate: imagePath
   // }, {new: true})

@@ -4,9 +4,9 @@ export const FeedBack = ({ feedBack }) => {
 
   return (
     <Col >
-      <Col>
+      {/* <Col>
         {feedBack.author}
-      </Col>
+      </Col> */}
       <Col>
         <Rate disabled defaultValue={feedBack.stars} />
       </Col>
