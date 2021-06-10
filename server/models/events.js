@@ -17,7 +17,11 @@ const eventSchema = new Schema({
   {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  history: [{
+    type: Schema.Types.ObjectId,
+    ref: 'History'
+  }]
 })
 
 const Events = model('Events', eventSchema)

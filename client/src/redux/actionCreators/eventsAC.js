@@ -41,14 +41,11 @@ const deleteEvents = (id) => {
 }
 
 const getOneEventThunk = ({ date, id }) => async (dispatch) => {
-
   const response = await axios.post(`http://localhost:3006/api/v1/events/${id}/oneEvent`, { date: date })
-
   dispatch(getEvents(response.data.arr))
 }
 
 const getEvents = (events) => {
-
   return {
     type: GET_ONE_EVENT,
     payload: events

@@ -105,11 +105,19 @@ figure {
   font-variant: tabular-nums;
   line-height: 1.5715;
   list-style: none;
-  font-feature-settings: 'tnum', "tnum";
+  font-feature-settings: 'tnum', "tnum", "tnum";
   background: #fff;
-  border: 12px solid #fff;
+  border: 10px solid #fff;
   border-radius: 35px;
-  background: #b9c7fc;
-  box-shadow: -25px 25px 50px #8e99c2, 25px -25px 50px #e4f5ff;
+  background-color: #ecf0f3;
+  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
 }
-
+.ant-row-center {
+  justify-content: start;
+}
+.ant-input-affix-wrapper > input.ant-input {
+  padding: 0;
+  border: none;
+  outline: none;
+  background: #ecf0f3;
+}

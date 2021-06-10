@@ -71,9 +71,12 @@ const History = () => {
       <div className={styleHistory.switch_right}> Показывать загруженные файлы? &nbsp;
       <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked />
       </div>
+      <div className={styleHistory.switch_right}> Общая сумма затрат на текущую причину обращения: &nbsp;
+        <span>{filteredHistory.reduce((acc, cur) => acc + +cur.price, 0)}</span>
+      </div>
       <div>
         <Row className={styleHistory.row}>
-          <Col >
+          <Col>
             <div>
               {
                 events.length ? events.map(el =>
@@ -99,7 +102,7 @@ const History = () => {
           <Col >
             <div>
               {
-                filteredHistory ? filteredHistory.map(el =>
+                filteredHistory.length ? filteredHistory.map(el =>
                   <Card
                     type="inner"
                     style={{ marginTop: 16, width: 400 }}
@@ -108,6 +111,7 @@ const History = () => {
                   >
                     <div >Выписанные рецепты: {el.prescription}  </div>
                     <div >Требуемые анализы: {el.analyzes}</div>
+                    <div >Потраченные деньги: {el.price}</div>
                     <Meta className={styleHistory.date_description} description={`Дата следующего приема: ${el.nextDateTime.replace('-', '/').replace('-', '/').replace('T', ' ').substring(0, 16)}`} />
                     {
                       el.imagePath && el.imagePath.map(imgP => <Skeleton loading={loading}><Avatar shape="square" loading={loading} style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/${imgP}`} alt="FOTO NE OTOBRACHAETSYA"></Avatar></Skeleton>)
@@ -115,7 +119,7 @@ const History = () => {
                   </Card>
                 )
                   :
-                  <p>Истории болезней пока нет</p>
+                  <div className={styleHistory.margin_block}>Истории болезни с такой причиной обращения нет</div>
               }
             </div>
           </Col>

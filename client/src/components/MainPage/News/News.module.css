@@ -25,8 +25,14 @@
 }
 
 .title{
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 14px;
   text-align: left;
   margin: 5px 10px;
+}
+.text {
+  text-align: left;
+  margin-left: 5px;
+  padding: 3px;
 }

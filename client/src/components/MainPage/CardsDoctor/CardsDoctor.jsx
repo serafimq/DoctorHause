@@ -3,10 +3,10 @@ import Modal from 'antd/lib/modal/Modal'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAvatarAxios } from '../../../redux/actionCreators/avatarAC'
-import { setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import CardDoctorMain from '../CardDoctorMain/CardDoctorMain'
 import { Rate } from 'antd';
 import style from './CardsDoctor.module.css'
+import { RegistrationForm } from '../../cardDoctorPage/Mail'
 
 const CardsDoctor = ({item, id}) => {
 
@@ -15,6 +15,7 @@ const CardsDoctor = ({item, id}) => {
   function visibleModal(id) {
     setModal1Visible(!modal1Visible)
   }
+
   const dispatch = useDispatch()
 
   const openModal = (e) => {
@@ -25,28 +26,49 @@ const CardsDoctor = ({item, id}) => {
   const closeModal = () => {
     visibleModal()
   }
+  const currentRating = item.feedBack?.reduce((acc, cur) => acc+cur.stars,0)/item.feedBack.length
+  
+  const [isModalVisible1, setIsModalVisible1] = useState(false);
+
+  const showModal1 = () => {
+    setIsModalVisible1(true);
+  };
+
+  const handleOk1 = () => {
+    setIsModalVisible1(false);
+  };
+
+  const handleCancel1 = () => {
+    setIsModalVisible1(false);
+  };
+
   return (
     <div className={style.one_card}>
-
-      <div className={style.radius} id={id} onClick={(e) => {openModal(e.target)}} > 
-        <div className={style.header}>
+      <div className={style.radius} id={id} > 
+        <div onClick={(e) => {openModal(e.target)}} className={style.header}>
           <div className={style.avatar}> 
               <img src={`http://localhost:3006/${item.avatar}`}
               className={style.img} 
               alt="Card image"/>
           </div>
+          <div className={style.about}>
           <h2 className={style.name}>Доктор: <span>{item.name}</span> </h2>
-          <Rate disabled defaultValue={4}  /> 
-          <span>4.1</span>
-        </div>
-        <div className={style.body}>
-          <div>
+          <div className={style.rating}> 
+          <Rate disabled defaultValue={currentRating}  /> 
+          <span className={style.rating_number}>{currentRating}</span>
+          </div>
           <div className={style.specialist}>
             <h3>Специальность: <br /> <span> {item.spec}</span></h3> </div>
-            <div className={style.price}>
-            <h3>Стоимость приема: <span> {item.price} руб</span></h3> </div>
           </div>
-          <div className={style.ask}>
+        </div>
+        <div className={style.body}>
+            <div className={style.price}>
+            <h3>Стоимость приема: </h3>
+              <div>
+                <span> {item.price} руб</span>
+              </div> 
+            </div>
+          <div onClick={showModal1} className={style.ask}>
             <img className={style.ask_img} src="http://localhost:3006/public/logo/comments.svg" alt="" />
            <p className={style.callMe} > Оставить заявку </p>
           </div>
@@ -64,6 +86,9 @@ const CardsDoctor = ({item, id}) => {
         >
       <CardDoctorMain doctor={item} />
     </Modal>
+    <Modal title="Basic Modal" visible={isModalVisible1} onOk={handleOk1} onCancel={handleCancel1}>
+       <RegistrationForm doctor={item} />
+     </Modal>
     </div>
   )
 }

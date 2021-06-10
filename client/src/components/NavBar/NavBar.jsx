@@ -49,15 +49,19 @@ export default function NavBar() {
     :
     <Layout className="layout">
       <Header className={style.header}>
-        <div className={style.logo} >
-        <Link to='/'>DHouse</Link>
+      <div className={style.logo} >
+        <Link to='/'> <img className={style.logoImg} src="https://image.flaticon.com/icons/png/512/1659/1659303.png" alt="" /> 
+          <span className={style.dh}>DH</span> 
+          
+          <span className={style.ouse} >ouse</span>
+        </Link>
       </div >
         <div className="menu" />
         <Menu mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link to='/signup'>Регистрация</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/signin'>Авторизация </Link></Menu.Item>
-          <Menu.Item key="3"><Link to={`/login`}>Login</Link></Menu.Item>
+          
         </Menu>
       </Header>
     </Layout>

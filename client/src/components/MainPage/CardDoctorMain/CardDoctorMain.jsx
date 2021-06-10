@@ -15,7 +15,7 @@ const CardDoctorMain = ({doctor}) => {
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
 
-
+  
   const dispatch = useDispatch()
   useEffect(() => {
     if (user.role === 'doctor') {
@@ -36,8 +36,6 @@ const CardDoctorMain = ({doctor}) => {
       setStars(0)
     }
   }
-
-  const inputFile = useRef(null) 
 
   const desc = ['Ужасно', 'Плохо', 'Нормально', 'Хорошо', 'Отлично'];
   const handleChange = (value) => {

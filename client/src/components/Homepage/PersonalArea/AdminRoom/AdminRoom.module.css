@@ -1,0 +1,29 @@
+.ant_card_bordered{
+  margin-top: 20px;
+  border-radius: 20px;
+}
+.ant_list_item{
+display: flex;
+justify-content: space-between;
+width: 100%;
+}
+
+.item{
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.button{
+  display: flex;
+  justify-content: space-between;
+}
+.item_access{
+  font-size: 20px;
+}
+
+.ant_card_bordered_two{
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+

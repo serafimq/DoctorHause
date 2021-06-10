@@ -4,7 +4,7 @@ const History = require("../models/history")
 
 const setAllEvents = async (req, res) => {
   const { id } = req.params
-  const allEvents = await Events.find({ creator: id })
+  const allEvents = await Events.find({ creator: id }).populate('history')
   const filterEvent = allEvents.filter(el => el.creator == id)
 
   // console.log(filterEvent)
@@ -13,6 +13,7 @@ const setAllEvents = async (req, res) => {
 }
 
 const addEvent = async (req, res) => {
+  console.log(999);
   try {
     const { event, id } = req.body;
     const { problem,
@@ -38,6 +39,8 @@ const addEvent = async (req, res) => {
         date: date2,
         creator: id
       })
+      console.log(newEvent, 'newEvent');
+      
       return res.json(newEvent)
     }
     return res.sendStatus(500)
@@ -47,12 +50,9 @@ const addEvent = async (req, res) => {
 
 const deleteOneEvent = async (req, res) => {
   // const { id } = req.params
-  console.log(req.body, 'req.body');
   const { idEvent } = req.body
-  console.log(idEvent, 'idEvent');
   try {
     const deleteEvent = await Events.findByIdAndDelete(idEvent)
-    console.log(deleteEvent, 'deleteEvent');
     return res.json(deleteEvent._id)
   } catch (error) {
     console.log('Ошибка в удалении конкретных записей', error);
@@ -63,11 +63,22 @@ const findOneEvent = async (req, res) => {
   const { id } = req.params
   const { date } = req.body
   try {
-    const allEvent = await Events.find()
+    const allEvent = await Events.find().populate('history')
+    const newDate = date.replace(/\//g, '-')
     const onePersonEvent = allEvent.filter(el => el.creator == id)
-    console.log('onePersonEvent', onePersonEvent)
-    const dataString = onePersonEvent.filter(el => el.dateTime.toISOString().slice(0, 10).replace('-', '/').replace('-', '/') == date)
-    console.log('dataString', dataString);
+    let dataString = onePersonEvent.filter(el => el.dateTime.toISOString().slice(0, 10).replace('-', '/').replace('-', '/') == date)
+    const allHistory = await History.find({date: newDate, userCreator: id},{events:1, _id:0})
+    let allIdis = []
+    const findEventWithId = []
+
+    if (allHistory.length) {
+      allHistory.forEach(el => {allIdis = [...allIdis, ...el.events]})
+      let result = await Events.find({_id: {$in: allIdis}}).populate('history')
+
+      dataString = [...dataString, ...result]
+
+    }
+    
     return res.json({ arr: dataString })
   } catch (error) {
     console.log('Ошибка в загрузке конкретных записей', error);

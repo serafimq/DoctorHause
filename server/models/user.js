@@ -6,6 +6,7 @@ const userSchema = new Schema({
     required: false,
     type: String
   },
+  messages: [],
   name: {
     type: String,
     required: true,

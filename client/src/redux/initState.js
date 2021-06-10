@@ -13,7 +13,6 @@ const initState = () => {
     imagePath: [],
     address: []
   }
-  console.log(state.history, 'state.history');
   const fromLS = JSON.parse(window.localStorage.getItem('DoctorHause'))
   return fromLS ? fromLS : state
 }

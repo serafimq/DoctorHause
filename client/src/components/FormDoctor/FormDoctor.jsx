@@ -1,4 +1,4 @@
-import { Form, Input, Select, InputNumber, Button } from 'antd'
+import { Form, Input, Select, InputNumber, Button, Divider } from 'antd'
 import { useDispatch} from 'react-redux'
 import { useParams } from 'react-router';
 import { updateDoctorThunk } from '../../redux/actionCreators/doctorAC';
@@ -33,8 +33,7 @@ const FormDoctor = () => {
   const { Option } = Select;
   const onFinish = (values) => {
     dispatch(updateDoctorThunk(values, id))
-
-
+    
   }
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>

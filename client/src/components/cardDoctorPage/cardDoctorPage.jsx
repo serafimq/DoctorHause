@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { Card, Modal, Col, Row, Rate, Button, Input, List, Image } from 'antd';
+import { Card, Modal, Col, Row, Rate, Button, Input, List, Divider } from 'antd';
 import style from './cardDoctorPage.module.css'
 
 import { useEffect, useRef, useState } from 'react'
@@ -47,6 +47,7 @@ const CardDoctorPage = () => {
   const [modal1Visible, setModal1Visible] = useState(false)
 
   function visibleModal() {
+    
     setModal1Visible(!modal1Visible)
   }
 
@@ -58,9 +59,13 @@ const CardDoctorPage = () => {
   const { value } = stars;
 
     const currentRating = doctor.feedBack?.reduce((acc, cur) => acc+cur.stars,0)
+
+
+
+  
+
   return (
     <div className="site-card-wrapper">
-
       <Card align="middle" justify="center" title={doctor.name} bordered={false}>
         <Col span={6}>
         <figure>
@@ -103,12 +108,22 @@ const CardDoctorPage = () => {
               Стоимость приемa: {doctor.price} p.
             </List.Item>
           </List>
+          <Divider/>          
+          <Row className={style.lishka}>
+            
+          </Row>
+          <Divider/>
           <Row className={style.feedBack}>
-            {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+            {doctor.feedBack?.length > 0 
+              ? 
+              doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
               : <p>Отзывы об этом враче отсутствуют</p>}
           </Row>
-          {user.id === doctor._id ?
-            <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
+          {user.id === doctor._id
+            ?
+            <Button type="primary" htmlType="submit" onClick={() => {
+              visibleModal()
+            }}>Редактировать</Button>
             :
             <>
               <hr />
@@ -126,19 +141,29 @@ const CardDoctorPage = () => {
             title="Редактировать данные"
             style={{ top: 20 }}
             visible={modal1Visible}
-            onClick={(e) => console.log(e)}
-            onOk={() => visibleModal()}
-            onCancel={() => visibleModal()}
+            
+            onOk={() => {
+              visibleModal()
+              dispatch(setOneDoctorThunk(user.id))
+            }}
+            onCancel={() => {
+              visibleModal()
+              dispatch(setOneDoctorThunk(user.id))
+            }}
           >
             <FormDoctor />
           </Modal>
         </Col>
+      
       </Card>
-
     </div>
-
   )
 }
 
 export default CardDoctorPage;
+
+
+
+
+
 

@@ -14,6 +14,13 @@
   background-color: #00ff0d;
   border-radius: 5px;
 }
+
+.no_Go {
+  font-size: 12px;
+  background-color: #e25c6ee3;
+  border-radius: 5px;
+}
+
 .events .ant-badge {
   font-size: 8px;
 }
@@ -23,6 +30,12 @@
   background-color: #a571f342;
   border-radius: 5px;
   
+}
+.no_events {
+  margin-bottom: 1px;
+  list-style: none;
+  background-color: #e25c6ee3;
+  border-radius: 5px;
 }
 
 .notes_month {
@@ -39,4 +52,26 @@
 .doIt {
   font-size: 12px;
   border-bottom: 1px solid black;
+}
+
+.card_styles {
+  width: 600;
+  margin-bottom: 10px;
+}
+
+.cardContainer{
+  margin-top: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.switch_left {
+  text-align: end
+}
+
+.h3 {
+  font-weight: bolder;
 }
