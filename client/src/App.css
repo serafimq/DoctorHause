@@ -116,3 +116,9 @@ figure {
   /* border-bottom: 1px solid #f0f0f0; */
   border: none;
 }
+.ant-input-affix-wrapper > input.ant-input {
+  padding: 0;
+  background: #ecf0f3;
+  border: none;
+  outline: none;
+}

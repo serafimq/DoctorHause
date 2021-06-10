@@ -32,7 +32,6 @@ const NavProfile = ({ setVisibleComponents }) => {
         mode={mode}
         theme={theme}
       > {role !== 'admin' ?
-
         role !== 'doctor' ?
           <>
             <Menu.Item onClick={() => setVisibleComponents(0)} className={style.item} key="1" icon={<CalendarOutlined />}>
@@ -52,7 +51,6 @@ const NavProfile = ({ setVisibleComponents }) => {
             </Menu.Item>
           </>
           :
-          // <span className="avatar-item">
           doctor.messages?.length > 0 ? 
           <Badge count={doctor.messages.length}>
             <Menu.Item onClick={() => setVisibleComponents(5)} shape="square" className={style.item} key="6" icon={<UserOutlined />}>
@@ -66,8 +64,6 @@ const NavProfile = ({ setVisibleComponents }) => {
           </Menu.Item>
         </Badge>
         // </span>
-
-
         :
         <Menu.Item onClick={() => setVisibleComponents(4)} className={style.item} key="5" icon={<SettingOutlined />}>
           <div >Админка</div>
@@ -75,7 +71,6 @@ const NavProfile = ({ setVisibleComponents }) => {
         }
       </Menu>
     </>
-
   )
 }
 
