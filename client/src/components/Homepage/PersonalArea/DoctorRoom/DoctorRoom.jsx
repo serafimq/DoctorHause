@@ -1,5 +1,5 @@
 import style from './DoctorRoom.module.css'
-import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar, Switch } from 'antd';
+import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar, Switch, Collapse } from 'antd';
 
 import { useEffect, useRef, useState } from 'react'
 import FormDoctor from '../../../FormDoctor/FormDoctor';
@@ -15,7 +15,7 @@ export const DoctorRoom = () => {
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
   const avatar = useSelector(state => state.avatar)
-
+  const { Panel } = Collapse;
   console.log(doctor, 'doctor');
   
   const inputFile = useRef(null)
@@ -59,8 +59,6 @@ export const DoctorRoom = () => {
   }
 
   const [loading, setLoading] = useState(true)
-
-  const currentRating = doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0)
   return (
     <>
     <div className={style.switch_right}> Показывать загруженные сертификаты? &nbsp;
@@ -133,8 +131,10 @@ export const DoctorRoom = () => {
           </div>
         </List>
         <Row className={style.feedBack}>
-          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+        <Collapse defaultActiveKey={['1']}>
+          {doctor.feedBack?.length > 0 ? doctor.feedBack.map((feedBack, key) => <Panel header={`Посмотреть отзыв пользователя: ${feedBack.author}`} key={key}>     <FeedBack feedBack={feedBack} > {feedBack}     </FeedBack>    </Panel> )
             : <p>Отзывы об этом враче отсутствуют</p>}
+            </Collapse>,
         </Row>
         {user.id === doctor._id ?
           <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>

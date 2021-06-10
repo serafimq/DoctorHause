@@ -136,7 +136,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           </div>
         </List>
         <Row className={style.feedBack}>
-          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack  feedBack={feedBack} > {feedBack} <hr/> </FeedBack>)
+          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack className={style.feedBack} feedBack={feedBack} > {feedBack} <hr/> </FeedBack>)
             : <p className={style.feedBack}>Отзывы об этом враче отсутствуют</p>}
         </Row>
         {user.id === doctor._id ?
@@ -144,7 +144,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           :
           <>
             <hr />
-            <Row className={style.feedback}>
+            <Row >
               <form className={style.feedback} onSubmit={e => submitHandler(e)} >
                 <Input value={text} name='text' placeholder="Оставить новый отзыв" onChange={e => setText(e.target.value)}></Input>
                 <Rate tooltips={desc} onChange={handleChange} value={value} />
