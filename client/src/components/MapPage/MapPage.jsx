@@ -12,6 +12,7 @@ import {
   InputNumber,
   Button
 } from 'antd';
+import styleButton from '../General/AddButton/AddButton.module.scss'
 
 const containerStyle = {
   width: '700px',
@@ -81,14 +82,14 @@ const MapPage = () => {
       <div className={style.maps_orientation} >
         <h2>Карта с отметками посещенных адресов</h2>
         <Form {...layout} className={style.form_orientation} name="nest-messages" onFinish={onFinish}>
-          <Form.Item name="count" label="Введите количество отображаемых посещений">
+          <Form.Item name="count" label="Введите количество последних посещений">
             <InputNumber style={{ width: 150 }} placeholder="Количество " />
           </Form.Item>
-          <Button type="primary" style={{ marginLeft: 30 }} htmlType="submit" >
+          <Button  className={styleButton.button} type="primary" style={{ marginLeft: 30 }} htmlType="submit" >
             Изменить количество
           </Button>
-          <Button type="danger" style={{ marginLeft: 50 }} onClick={() => returnHandler()} htmlType="submit" >
-            Вернуть все посещения на карте
+          <Button className={styleButton.button__del} type="danger" style={{ marginLeft: 50 }} onClick={() => returnHandler()} htmlType="submit" >
+            Вернуть все посещения
           </Button>
         </Form>
         <GoogleMap

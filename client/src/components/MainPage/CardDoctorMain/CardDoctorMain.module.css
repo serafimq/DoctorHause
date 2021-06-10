@@ -13,7 +13,6 @@
   height:auto;
   width:100%;
 }
-
 .list {
   /* /* display: flex; */
   justify-content:center; 
@@ -25,21 +24,14 @@
   justify-content:space-between;
   flex-direction: row;
 }
-
 .info {
   font-size: 20px;
   color: rgba(129, 48, 116, 0.85);
   justify-content: flex-start;
 }
-
 .property {
   font-size: 20px;
-
 }
-
 .feedBack {
-  display: flex;
   justify-content: center;
-  display: flex;
-  flex-direction: column;
 }
