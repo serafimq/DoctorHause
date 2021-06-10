@@ -15,8 +15,6 @@
 }
 
 .list {
-  /* display: flex;
-  justify-content:space-around; */
   padding-left: 100px;
   padding-right: 100px;
 }
@@ -34,7 +32,13 @@
 
 .property {
   font-size: 20px;
+}
 
+.feedBack {
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .switch_right {

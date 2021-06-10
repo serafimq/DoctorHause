@@ -1,6 +1,8 @@
 .ant_card_bordered{
   margin-top: 20px;
   border-radius: 20px;
+  background-color: #ecf0f3;
+    box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
 }
 .ant_list_item{
 display: flex;
@@ -21,9 +23,14 @@ width: 100%;
   font-size: 20px;
 }
 
-.ant_card_bordered_two{
+.card{
   margin-top: 20px;
-  border-radius: 20px;
+    border-radius: 20px;
+    width: 700px;
+    background-color: #ecf0f3;
+    box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
 }
 
+.admin_panel {
 
+}

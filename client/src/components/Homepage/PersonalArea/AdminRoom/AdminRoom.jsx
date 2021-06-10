@@ -23,11 +23,9 @@ export const AdminRoom = () => {
   }
 
   return (
-    <div>
-      <Card className={style.ant_card_bordered} title='Активные врачи'>
+    <div className={style.admin_panel}>
+      <Card className={style.card} title='Активные врачи'>
         {doctors.map(item => item.approved ? <List > <List.Item className={style.item}>
-
-
           {item.name} <Button type="warning"  onClick={() => changeAccess(item._id)}>Отозвать</Button>
 
         </List.Item></List>

@@ -26,7 +26,7 @@
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: #b9c7fc;
   height: 75px;
-  box-shadow: -8px 20px 26px #96a1cc, -22px -22px 52px #dcedff;
+  /* box-shadow: -8px 20px 26px #96a1cc, -22px -22px 52px #dcedff; */
   color: #fff;
 }
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected a{
@@ -110,7 +110,7 @@ figure {
   border: 10px solid #fff;
   border-radius: 35px;
   background-color: #ecf0f3;
-  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  /* box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9; */
 }
 .ant-row-center {
   justify-content: start;

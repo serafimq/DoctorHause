@@ -4,9 +4,7 @@ import PersonalArea from './PersonalArea/PersonalArea'
 
 const Homepage = () => {
   return (
-    <div>
         <PersonalArea />
-    </div>
   )
 }
 

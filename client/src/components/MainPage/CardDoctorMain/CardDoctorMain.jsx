@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 
 import style from './CardDoctorMain.module.css'
 import { Modal, Col, Row, Rate, Button, Input, List, Skeleton } from 'antd';
@@ -6,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import { FeedBack } from '../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators/avatarAC';
+import Avatar from 'antd/lib/avatar/avatar';
 import { addFeedBackDoctorThunk } from '../../../redux/actionCreators/doctorsAC';
 
 const CardDoctorMain = ({closeModal,doctor}) => {
@@ -13,7 +15,6 @@ const CardDoctorMain = ({closeModal,doctor}) => {
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
   const [stars, setStars] = useState(3)
-  // const avatar = useSelector(state => state.avatar)
 
   
   const dispatch = useDispatch()
@@ -31,20 +32,13 @@ const CardDoctorMain = ({closeModal,doctor}) => {
         text,
         stars
       }
-      // dispatch(addFeedBackThunk(feedBack, doctor._id))
-      dispatch(addFeedBackDoctorThunk(feedBack, doctor._id))
+      // dispatch(addFeedBackThunk(feedBack, doctor._id, user.id))
+      dispatch(addFeedBackDoctorThunk(feedBack, doctor._id, user.id))
       setText('')
       setStars(0)
       // closeModal()
     }
   }
-
-  const fileSelectedHandler = e => {
-    console.log('Start foto');
-    dispatch(addNewAvatarAxios(e.target.files[0], user.id))
-  }
-
-  const inputFile = useRef(null) 
 
   const desc = ['Ужасно', 'Плохо', 'Нормально', 'Хорошо', 'Отлично'];
   const handleChange = (value) => {
@@ -62,22 +56,14 @@ const CardDoctorMain = ({closeModal,doctor}) => {
 
   return (
     <div>
-      
           <Col span={24} >
         <List className={style.list} >
-        <List.Item className={style.property}>
-        <figure>
-          <img  
-          className={style.avatar} 
-          onClick={ user.id === doctor._id ?
-            () => {inputFile.current.click()} 
-            : 
-            (e) => {console.log(e);} 
-          } 
-          src={`http://localhost:3006/${doctor.avatar}`}/>
-        </figure>
+        <List.Item className={style.feedBack}>
+    <Avatar size={264} src={
+      `http://localhost:3006/${doctor.avatar}`}>
+    </Avatar>
         </List.Item>
-        <List.Item className={style.property}>
+        <List.Item className={style.feedBack}>
           <Rate disabled defaultValue={currentRating} />
           </List.Item>
         <div className={style.row} >
@@ -150,7 +136,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           </div>
         </List>
         <Row className={style.feedBack}>
-          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
+          {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack  feedBack={feedBack} > {feedBack} <hr/> </FeedBack>)
             : <p className={style.feedBack}>Отзывы об этом враче отсутствуют</p>}
         </Row>
         {user.id === doctor._id ?
@@ -168,7 +154,6 @@ const CardDoctorMain = ({closeModal,doctor}) => {
             </Row>
           </>
         }
-
       </Col>
     </div>
   )
