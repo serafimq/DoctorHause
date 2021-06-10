@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-
+import styleButton from '../../../../General/AddButton/AddButton.module.scss'
 import {
   Form,
   Input,
   Button,
   DatePicker,
-  Select,
-  Checkbox
+  Select
 } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,18 +26,7 @@ function CalendarForm({ visibleModal }) {
     if (values['dateTime']) {
       beforeSent = { ...values, dateTime: values.dateTime.format('YYYY/MM/DD HH:mm') }
     }
-    console.log('Success:', beforeSent);
 
-    // if (checkNick === true) {
-    //   const response = await fetch(`https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=${beforeSent.problem}&amp;date=${beforeSent.dateTime}&amp;details=${beforeSent.problem}&amp;location=${appointment[0]['branch_name']}`)
-    // }
-
-    // https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=CarPrice.+Аукцион.&amp;dates=${app_time}&amp;details=Не+забудьте+взять+с+собой+полный+пакет+документов,+второй+комплект+ключей,+комплект+сменной+резины,+а+также+помыть+авто+перед+продажей.&amp;src=qmindhd%40gmail.com;
-    // https://calendar.google.com/calendar/render?action=TEMPLATE&amp;location=г.Москва,+Шоссе+Энтузисастов,д.+100,+к.+1`
-    // https://calendar.google.com/calendar/u/0/r/eventedit&amp;dates=20210608T224000Z/20210609T221500Z
-
-
-    
     dispatch(addEventsAxiox(beforeSent, user.id))
     visibleModal()
   };
@@ -66,7 +54,6 @@ function CalendarForm({ visibleModal }) {
       size={componentSize}
       value="default"
       onFinish={onFinish}
-    // onSubmit={submitHandler}
     >
       <Form.Item name="problem" label="Причина обращения" rules={[{ required: true, message: 'Укажите причину обращения' }]}>
         <Input placeholder="Причина обращения" />
@@ -83,7 +70,6 @@ function CalendarForm({ visibleModal }) {
           style={{ width: 200 }}
           placeholder="Специализация врача"
           optionFilterProp="children"
-        // onChange={changeHandler}
         >
           <Option value="Стоматолог">Стоматолог</Option>
           <Option value="Мануальный терапевт">Мануальный терапевт</Option>
@@ -104,17 +90,14 @@ function CalendarForm({ visibleModal }) {
         <Input.TextArea placeholder="Комментарий" />
       </Form.Item>
       <Form.Item name="dateTime" label="Дата и время посещения" rules={[{ required: true }]}>
-        {/* <DatePicker value={values.dateTime || ""} onChange={changeHandler} name="dateTime" showTime format="YYYY-MM-DD HH:mm" /> */}
-        {/* <input type="datetime-local" value={values.dateTime || ""} onChange={changeHandler} name="dateTime" /> */}
+
         <DatePicker
           format={"YYYY/MM/DD HH:mm"}
           showTime
-          // defaultValue={moment([])}
-          // onChange={onChange}
           showNow={true}
         />
       </Form.Item>
-      <Button type="primary" htmlType="submit" >
+      <Button className={styleButton.button} type="primary" htmlType="submit" >
         Добавить в календарь
           </Button>
     </Form>

@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'antd';
 import style from './MainPage.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllDoctorThunk, sortDoctors } from '../../redux/actionCreators/doctorsAC'
+import { setAllDoctorThunk, sortDoctors,  } from '../../redux/actionCreators/doctorsAC'
 import CardsDoctor from './CardsDoctor/CardsDoctor';
 import News from './News/News';
 
 
 export default function MainPage() {
   const doctors = useSelector(state => state.doctors)
-  
+  const doctor = useSelector(state => state.doctor)
+  console.log(doctors, 'doctors');
+  console.log(doctor, 'doctor');
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setAllDoctorThunk())
   }, [])
-  
+
   //для сортировки
 
   const [sortedField, setSortedField] = useState(false)
@@ -47,7 +50,7 @@ export default function MainPage() {
           </Col>
         </Row>
       </Col>
-      
+
     </Row>
   )
 }

@@ -1,15 +1,16 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 
 import style from './CardDoctorMain.module.css'
-import { Modal, Col, Row, Rate, Button, Input, List } from 'antd';
+import { Modal, Col, Row, Rate, Button, Input, List, Skeleton } from 'antd';
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addFeedBackThunk, setOneDoctorThunk } from '../../../redux/actionCreators/doctorAC'
 import { FeedBack } from '../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators/avatarAC';
 import Avatar from 'antd/lib/avatar/avatar';
+import { addFeedBackDoctorThunk } from '../../../redux/actionCreators/doctorsAC';
 
-const CardDoctorMain = ({doctor}) => {
+const CardDoctorMain = ({closeModal,doctor}) => {
   const user = useSelector(state => state.user)
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
@@ -31,9 +32,11 @@ const CardDoctorMain = ({doctor}) => {
         text,
         stars
       }
-      dispatch(addFeedBackThunk(feedBack, doctor._id, user.id))
+      // dispatch(addFeedBackThunk(feedBack, doctor._id, user.id))
+      dispatch(addFeedBackDoctorThunk(feedBack, doctor._id, user.id))
       setText('')
       setStars(0)
+      // closeModal()
     }
   }
 
@@ -44,6 +47,12 @@ const CardDoctorMain = ({doctor}) => {
   const { value } = stars;
 
   const currentRating = doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0)
+
+  const onChangeSwitch = () => {
+    setLoading(!loading)
+  }
+
+  const [loading, setLoading] = useState(true)
 
   return (
     <div>
@@ -111,6 +120,18 @@ const CardDoctorMain = ({doctor}) => {
           </List.Item>
             <List.Item className={style.info}>
               {doctor.price} p.
+          </List.Item>
+          </div>
+          <div className={style.row}>
+            <List.Item className={style.property}>
+            Сертификаты:
+          </List.Item>
+            <List.Item className={style.info}>
+              {
+              doctor.imageCertificate && doctor.imageCertificate.map(img => 
+                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/sert/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
+                )
+            }
           </List.Item>
           </div>
         </List>

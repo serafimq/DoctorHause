@@ -121,3 +121,13 @@ figure {
   outline: none;
   background: #ecf0f3;
 }
+.ant-modal-content {
+  border-radius: 10px;
+  color: #a0a5a8;
+}
+.ant-modal-body {
+  color: #a0a5a8;
+}
+.ant-modal-header {
+  border-radius: 10px;
+}

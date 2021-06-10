@@ -38,7 +38,7 @@ const PersonalArea = () => {
      <div className={style.calendar}>
      <Row>
        <Col className={style.right_col} span={18} push={6}>
-        
+          
          {visibleComponents === 0 && <DoctorRoom /> }
          {visibleComponents === 5 && <DoctorRoom /> }
        </Col>
@@ -52,7 +52,9 @@ const PersonalArea = () => {
 
      <div className={style.calendar}>
         <Row>
+        
           <Col className={style.right_col} span={18} push={6}>
+                    <div className={style.title}>Календарь</div>
             {visibleComponents === 0 && <CalendarPage /> }
             {visibleComponents === 1 && <History /> }
             {visibleComponents === 3 && <MapPage /> }
