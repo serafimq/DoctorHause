@@ -50,7 +50,7 @@ const CardDoctorMain = ({doctor}) => {
   const { value } = stars;
 
   const currentRating = doctor.feedBack?.reduce((acc, cur) => acc + cur.stars, 0)
-
+  // console.log(currentRating, '====>currentRating');
   return (
     <div>
       
