@@ -98,7 +98,7 @@ const MapPage = () => {
             lat: 55.75222,
             lng: 37.61556
           }}
-          zoom={13}
+          zoom={11}
           onLoad={onLoad}
           onUnmount={onUnmount}
           options={options}

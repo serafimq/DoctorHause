@@ -156,7 +156,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           {doctor.feedBack?.length > 0 ? doctor.feedBack.map(feedBack => <FeedBack feedBack={feedBack} > {feedBack} </FeedBack>)
             : <p className={style.feedBack}>Отзывы об этом враче отсутствуют</p>}
         </Row>
-        {user.id === doctor._id ?
+        {user && user.id === doctor._id ?
           ''
           :
           <>
