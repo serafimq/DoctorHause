@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import { Typography } from 'antd';
 import { useState } from 'react';
 import SignUpPatient from './SignUpPatient';
+import SignUpDoctor from './SignUpDoctor'
 import style from './SignUpChoose.module.css'
 const { Title } = Typography;
 
@@ -29,7 +30,7 @@ const SignUpChoose = () => {
     </Row>
     
     {showLogin === '3' ? <SignUpPatient /> : ''}
-    
+    {showLogin === '2' ? <SignUpDoctor /> : ''}
   
     </>
   );

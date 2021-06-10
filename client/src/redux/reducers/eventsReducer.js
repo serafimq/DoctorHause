@@ -1,4 +1,4 @@
-import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT, DELETE_EVENT } from '../types/eventsTypes';
+import { SET_EVENTS, ADD_EVENT, GET_ONE_EVENT, CLEAR_EVENT, DELETE_EVENT, SORT_DATE_EVENT } from '../types/eventsTypes';
 
 function eventsReducer(state = [], action) {
   switch (action.type) {
@@ -10,10 +10,10 @@ function eventsReducer(state = [], action) {
       return [...state, action.payload]
     case GET_ONE_EVENT:
       return action.payload
-
     case DELETE_EVENT:
       return state.filter(event => event._id !== action.payload)
-
+    case SORT_DATE_EVENT:
+      return action.payload
     default:
       return state;
   }

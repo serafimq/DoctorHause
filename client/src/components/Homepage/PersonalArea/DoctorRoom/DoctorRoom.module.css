@@ -36,3 +36,10 @@
   font-size: 20px;
 
 }
+
+.switch_right {
+  margin-top: 20px;
+  margin-right: 20px;
+  text-align: end;
+  margin-bottom: 20px;
+}

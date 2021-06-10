@@ -32,6 +32,7 @@ const userSchema = new Schema({
   metro: String,
   price: Number,
   stars: Number,
+  imageCertificate: Array,
   feedBack: [{
     author: String,
     text: String,

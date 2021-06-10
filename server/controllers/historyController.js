@@ -29,7 +29,7 @@ const addOneHistoryAxios = async (req, res) => {
 
     const findEvent = await Event.findById(idEvent)
     console.log(findEvent, 'findEvent');
-    
+
     if (history) {
       const newHistory = await History.create({
         prescription,
@@ -56,9 +56,39 @@ const addOneHistoryAxios = async (req, res) => {
   }
 }
 
+const sortPriceHistoryAxios = async (req, res) => {
+  const allHistory = await History.find()
+  const sortPriceHistory = allHistory.sort((a, b) => b.price - a.price)
+  console.log(sortPriceHistory, 'sortPriceHistorysortPriceHistory');
+  return res.json(sortPriceHistory)
+}
+
+const filterProblemHistoryAxios = async (req, res) => {
+  const { problem } = req.body
+  console.log(problem)
+  const allHistory = await History.find().populate('events')
+  // const filterProblemHistory = allHistory.filter(el => el.events.forEach(ev => return (ev.problem == problem)))
+  const result = []
+  const filtHistory = allHistory?.map(el => {
+    const currentEl = el.events?.filter(event => event.problem === problem)
+    el.events = currentEl
+    console.log(el.events);
+    return el
+  })
+
+  filtHistory?.forEach(el => {
+    if (el.events.length) result.push(el)
+  })
+
+  console.log(result, 'result');
+  return res.json(result)
+}
+
 module.exports = {
   addOneHistoryAxios,
-  setAllHistoryAxios
+  setAllHistoryAxios,
+  sortPriceHistoryAxios,
+  filterProblemHistoryAxios
 }
 
 
