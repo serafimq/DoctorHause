@@ -1,0 +1,54 @@
+.radius {
+  box-sizing: border-box;
+  margin: 20px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  font-feature-settings:'tnum', "tnum", "tnum";
+  background: #fff;
+  border: 12px solid #fff;
+  border-radius: 10px;
+  box-shadow: -25px 25px 50px#8e99c2, 25px -25px 50px#e4f5ff;
+  height:auto;
+  width:100%;
+}
+.list {
+  /* /* display: flex; */
+  justify-content:center; 
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.row {
+  display: flex;
+  justify-content:space-between;
+  flex-direction: row;
+  line-height: 9px;
+}
+.info {
+  font-size: 15px;
+  color: #3235dbf3;
+  justify-content: flex-start;
+}
+.property {
+  font-size: 15px;
+  justify-content:center;
+}
+.feedBack {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px;
+}
+
+
+.feedback {
+  
+}
+.input {
+  margin: 10px;
+  width: 320px;
+} 
+.rate {
+  padding-right: 15px;
+}

@@ -1,141 +1,49 @@
-import React from 'react'
-import { List, Avatar } from 'antd';
+import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'antd';
 import style from './MainPage.module.css'
-
-const data = [
-  {
-    id: 1,
-    title: 'Карточка врача',
-    spetialization: 15,
-
-  },
-  {
-    id: 2,
-    title: 'Карточка врача',
-    spetialization: 17,
-
-  },
-  {
-    id: 3,
-    title: 'Карточка врача',
-    spetialization: 5,
-
-  },
-  {
-    id: 4,
-    title: 'Карточка врача',
-    spetialization: 20,
-  },
-];
-
-const news = [
-  {
-    title: 'news 1',
-  },
-  {
-    title: 'news 2',
-  },
-  {
-    title: 'news 3',
-  },
-  {
-    title: 'news 4',
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { setAllDoctorThunk, sortDoctors,  } from '../../redux/actionCreators/doctorsAC'
+import CardsDoctor from './CardsDoctor/CardsDoctor';
 
 
 export default function MainPage() {
+  const doctors = useSelector(state => state.doctors)
 
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(setAllDoctorThunk())
+  }, [])
+
+  const [sortedField, setSortedField] = useState(false)
+  const handleSort = (e, sorted) => {
+   
+    dispatch(sortDoctors(e.target.value, sorted))
+    setSortedField(!sortedField);
+  }
 
   return (
-
-    <Row>
-      <Col span={13}>
-
-        <List
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={item => (
-            <List.Item>
-              <List.Item.Meta
-
-                title={<a href="https://ant.design">{item.title}</a>}
-
-                description={<li  > {<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />} <br /> {item.title}<br /> {item.spetialization} </li>}
-
-
-              />
-            </List.Item>
-          )}
-        />
-      </Col>
-
-
-      <Col span={11}>
-        <List
-          itemLayout="horizontal"
-          dataSource={news}
-          renderItem={item => (
-            <List.Item>
-              <List.Item.Meta
-
-                title={<a href="https://ant.design">{item.title}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              />
-            </List.Item>
-          )}
-        />
+    <Row className={style.main_page}>
+      <Col  className={style.colCentre}>
+        <div className={style.input_sort}>
+          
+          <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='spec' ></input> По специализации </span>
+          <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='feedBack' ></input> По рейтингу</span>
+          <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='price' ></input> По стоимости приёма</span>
+        </div>
+        <Row justify="center">
+          <Col className={style.card_doc} justify="center">
+            {doctors.map(item => item.approved ? <CardsDoctor
+              id={item._id}
+              key={item._id}
+              item={item}
+            />
+              :
+              ''
+            )}
+          </Col>
+        </Row>
       </Col>
     </Row>
-
-
-
-
-
-
-
-
-
-
-
-    // <Row>
-    //   <Col className={style.right_col} span={6} push={18}>
-    //     <List
-
-    //       itemLayout="horizontal"
-    //       dataSource={news}
-    //       renderItem={item => (
-    //         <List.Item>
-    //           <List.Item.Meta
-    //             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-    //             title={<a href="https://ant.design">{item.title}</a>}
-    //             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-    //           />
-    //         </List.Item>
-    //       )}
-    //     />
-    //   </Col>
-    //   <Col className={style.left_col} span={18} pull={6}>
-    //     <List
-    //     className={style.margin}
-    //       itemLayout="horizontal"
-    //       dataSource={data}
-    //       renderItem={item => (
-    //         <List.Item>
-    //           <List.Item.Meta
-    //             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-    //             title={<a href="https://ant.design">{item.title}</a>}
-    //             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-    //           />
-    //         </List.Item>
-    //       )}
-    //     />
-    //   </Col>
-    // </Row>
-
-
-
   )
 }
 

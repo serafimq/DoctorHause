@@ -1,3 +1,6 @@
 export const SIGNUP = 'SIGNUP'
+export const SIGNUP_GOOGLE = 'SIGNUP_GOOGLE'
+export const SIGNIN_GOOGLE = 'SIGNIN_GOOGLE'
 export const SIGNIN = 'SIGNIN'
 export const SIGNOUT = 'SIGNOUT'
+export const DELETE = 'DELETE'

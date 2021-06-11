@@ -1,20 +1,50 @@
+.calendar {
+  border: 12px solid #fff;
+  border-radius: 35px;
+  background: #b9c7fc;
+  /* box-shadow: -25px 25px 50px #8e99c2, 25px -25px 50px #e4f5ff; */
+}
 .calendar_box {
-  margin-top: 100px;
-  width: 93%;
+  margin: 35px auto;
+  width: 850px;
+}
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.nextGo {
+  font-size: 12px;
+  padding: 3px;
+  background-color: #62b7f0df;
+  border-radius: 5px;
+  ;
 }
 
-.events {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.events .ant-badge-status {
-  width: 100%;
-  overflow: hidden;
+.no_Go {
   font-size: 12px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  background-color: #ff5e41d5;
+  border-radius: 5px;
 }
+
+.events .ant-badge {
+  font-size: 8px;
+}
+.events {
+  margin-bottom: 1px;
+  list-style: none;
+  background-color: #99a3ffb9;
+  border-radius: 5px;
+  padding: 5px;
+  
+}
+.no_events {
+  margin-bottom: 1px;
+  list-style: none;
+  background-color: #ff5e41d5;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+
 .notes_month {
   font-size: 28px;
   text-align: center;
@@ -23,6 +53,32 @@
   font-size: 28px;
 }
 .button_form {
-  margin-top: 10px;
+  margin-top: 25px;
   margin-left: 79.9%;
+}
+.doIt {
+  font-size: 12px;
+  border-bottom: 1px solid black;
+}
+
+.card_styles {
+  width: 600;
+  margin-bottom: 10px;
+}
+
+.cardContainer{
+  margin-top: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.switch_left {
+  text-align: end
+}
+
+.h3 {
+  font-weight: bolder;
 }

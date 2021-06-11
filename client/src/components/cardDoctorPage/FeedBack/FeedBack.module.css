@@ -1,0 +1,19 @@
+.feedBacks {
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px;
+}
+.text {
+  color: #3235dbf3;
+}
+.autor {
+  color: #000;
+}
+.col {
+  padding: 10px 10px 10px 30px;
+}
+.form_feedback {
+  
+}

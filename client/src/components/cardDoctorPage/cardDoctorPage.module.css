@@ -1,7 +1,27 @@
 .info {
   text-align:left;
 }
-
-.lishka {
-margin-top: 15px;
+.input {
+  display: none;
 }
+.lishka {
+margin-top: 5px;
+}
+
+.feedBack {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  
+}
+.avatar {
+
+  object-fit: cover;
+  width: 100%;
+}
+

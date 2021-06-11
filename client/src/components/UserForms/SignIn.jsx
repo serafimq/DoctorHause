@@ -1,8 +1,10 @@
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Row, Divider } from 'antd';
 import { Typography } from 'antd';
+import GoogleLogin from 'react-google-login';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router';
-import { signin } from '../../redux/actionCreators/userAC';
+import { signin, succesSignInGoogle } from '../../redux/actionCreators/userAC';
+import style from './SignUp.module.scss'
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -36,21 +38,13 @@ const SignIn = () => {
 
   const [form] = Form.useForm();
 
-  const onGenderChange = (value) => {
-    switch (value) {
-      case 'doctor':
-        form.setFieldsValue({
-          note: 'Привет врач!',
-        });
-        return;
+  const responseSuccesGoogle = async (response) => {
+    dispatch(succesSignInGoogle({tokenId: response.tokenId}))
+  }
 
-      case 'patient':
-        form.setFieldsValue({
-          note: 'Привет пациент!',
-        });
-        return;
-    }
-  };
+  const responseErrorGoogle = (response) => {
+    console.log(response);
+  }
 
   const isAuth = useSelector(state => state.user.isAuth) 
 
@@ -58,63 +52,60 @@ const SignIn = () => {
     isAuth ?
     <Redirect to="/"/>
     :
-    <>
-    <Title>Форма авторизации</Title>
-    <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+    <div className={style.login_box}>
+      <Row className={style.main}>
+        <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+          
+        <h2 className={style.form_title, style.title}>Авторизуйтесь</h2>
+        <span className={style.form__span} >с помощью аккаунта google</span>
+        <div className={style.form__icons}>
 
-      <Form.Item
-        name="role"
-        label="Кто Вы?"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Select
-          placeholder="Выберите из списка"
-          onChange={onGenderChange}
-          allowClear
+          <GoogleLogin
+            clientId="841640719406-h6m0ejjq4i5gs63dnahqd1ss9mpu6b42.apps.googleusercontent.com"
+            buttonText="Sign Up with Google"
+            onSuccess={responseSuccesGoogle}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={'single_host_origin'}
+
+            render = {renderProps =>(
+              <img onClick={renderProps.onClick} disabled={renderProps.disabled}  className={style.google} src="https://image.flaticon.com/icons/png/512/270/270014.png" alt="goggle" />
+              )}
+          />
+
+        </div><span className={style.form__span} >или авторизуйтесь по email</span>
+
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: 'Пожалуйста введите электронную почту!',
+            },
+          ]}
         >
-          <Option value="doctor">Врач</Option>
-          <Option value="patient">Пациент</Option>
-        </Select>
-      </Form.Item>
+          <Input className={style.form__input} placeholder="Введите вашу электронную почту" />
+        </Form.Item>
 
-      <Form.Item
-        label="E-mail"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: 'Пожалуйста введите электронную почту!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          name="pass"
+          rules={[
+            {
+              required: true,
+              message: 'Пожалуйста введите пароль!',
+            },
+          ]}
+        >
+          <Input.Password className={style.form__input} placeholder="Придумайте пароль" />
+        </Form.Item>
 
-      <Form.Item
-        label="Пароль"
-        name="pass"
-        rules={[
-          {
-            required: true,
-            message: 'Пожалуйста введите пароль!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Зарегестрироваться
-        </Button>
-      </Form.Item>
-
-    </Form>
-    </>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Войти!
+          </Button>
+        </Form.Item>
+      </Form>
+      </Row>
+    </div>
   );
 };
 

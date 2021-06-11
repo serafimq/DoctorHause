@@ -1,0 +1,52 @@
+.radius {
+  
+  box-sizing: border-box;
+  margin: 20px;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  font-feature-settings:'tnum', "tnum", "tnum";
+  background: #fff;
+  /* border: 12px solid rgb(236, 248, 250); */
+  border-radius: 10px;
+  /* box-shadow: -25px 25px 50px#8e99c2, 25px -25px 50px#e4f5ff; */
+  height:auto;
+  width:800px;
+}
+
+.list {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.row {
+  display: flex;
+  justify-content:space-between;
+  flex-direction: row;
+}
+
+.info {
+  font-size: 20px;
+  color: #3235dbf3;
+  justify-content: flex-start;
+}
+
+.property {
+  font-size: 20px;
+}
+
+.feedBack {
+  justify-content: center;
+  display: flex;
+}
+
+.switch_right {
+  margin-top: 20px;
+  margin-right: 20px;
+  text-align: end;
+  margin-bottom: 20px;
+}
+
+.collapse {
+  background-color: #ecf0f3;
+}

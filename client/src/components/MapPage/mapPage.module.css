@@ -1,0 +1,12 @@
+.maps_orientation {
+  display: flex;
+  align-content: stretch;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form_orientation {
+  display: flex;
+}

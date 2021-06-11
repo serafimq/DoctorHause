@@ -1,0 +1,9 @@
+.reg_box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.controller {
+ margin: 30px 0 20px; 
+ justify-content: center;
+}

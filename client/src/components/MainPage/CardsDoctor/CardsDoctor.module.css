@@ -1,0 +1,128 @@
+.one_card {
+   flex: 0 0 33%;
+}
+.radius {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 20px;
+  padding: 5px 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum', "tnum", "tnum", "tnum";
+  background: #fff;
+  border-radius: 10px;
+  height: 330px;
+  background-color: #ecf0f3;
+  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  /* box-shadow: -1px 1px 10px #d1d9e6, 0px 0px 57px #f9f9ef; */
+  
+}
+
+.img {
+  height: 220px;
+  max-width: 140px;
+  border-radius: 5px;
+}
+.avatar {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 3px;
+}
+.about {
+  display: flex;
+  flex-direction: column;
+  padding-left: 35px;
+  align-items: flex-start;
+}
+
+.name {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 7px;
+  margin-bottom: 3px;
+  font-weight: 900;
+  text-align: left;
+  font-size: 18px;
+}
+.name span{
+  font-family: 'Comfortaa', cursive;
+ font-weight: normal;
+ font-size: 18px;
+}
+.header {
+  display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    flex: 1 1 70%;
+}
+.body{
+  flex: 0 0 30%;
+    border-top: 1px solid #2f2f2f5e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.specialist {
+  text-align: left;
+}
+.specialist h3{
+  font-size: 16px;
+  margin-top: 10px;
+  flex: 1 1 75%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+.specialist span{
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
+}
+.price {
+  display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.price h3{
+  font-size: 16px;
+  margin-top: 10px;
+  margin-right: 7px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+.price span{
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
+}
+
+.ask_img {
+      position: relative;
+    height: 30px;
+    top: 14px;
+    right: -30px;
+}
+.callMe {
+  position: relative;
+  top: 18px;
+  border-radius: 10px;
+
+}
+.ask {
+  position: relative;
+    padding-left: 10px;
+    margin-top: 5px;
+    border-left: 1px solid #2f2f2f5e;
+}
+.rating {
+  display: flex;
+  align-items: center;
+
+}
+.rating_number {
+  margin-left: 15px;
+  font-size: 16px;
+}
