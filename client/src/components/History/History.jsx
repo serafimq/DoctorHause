@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAllHistoryThunk, sortPriceHistoryThunk, filterProblemHistoryThunk, sortDateHistoryThunk } from '../../redux/actionCreators/historyAC'
-import { Card, Switch, Skeleton, Avatar, Col, Row, Button } from 'antd';
+import { Card, Switch, Skeleton, Avatar, Col, Row } from 'antd';
 import styleHistory from './History.module.css'
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { setAllEvents } from '../../redux/actionCreators/eventsAC';
 import { sortDateEventThunk } from '../../redux/actionCreators/eventsAC'
+
 const { Meta } = Card;
+
 
 const History = () => {
 
@@ -29,32 +31,6 @@ const History = () => {
   }
 
   const filterHandler = (id, problem) => {
-    // const filtHistory = history.reduce((acc, el) => {
-    //   const currentEl = el.events.filter(event => {
-    //     console.log({ problem });
-    //     console.log(event.problem);
-    //     return event.problem === problem
-    //   })
-    //   el.events = currentEl;
-    //   if (currentEl.length) {
-    //     acc.push(el)
-    //   }
-    //   return acc
-    // }, [])
-    // const result = []
-    // const newHistory = JSON.parse(JSON.stringify(history)) 
-    // const filtHistory = newHistory?.map(el => {
-    //   const currentEl = el.events?.filter(event => event.problem === problem)
-    //   el.events = currentEl
-    //   console.log(el.events);
-    //   return el
-    // })
-    // filtHistory?.forEach(el => {
-    //   if (el.events.length) result.push(el)
-    // })
-    // console.log({ result });
-    // setFilteredHistory(result)
-    // console.log(filteredHistory, 'filteredHistory');
     dispatch(filterProblemHistoryThunk(id, problem))
   }
 
@@ -77,22 +53,14 @@ const History = () => {
       <div className={styleHistory.switch_right}> Показывать загруженные файлы? &nbsp;
       <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked />
       </div>
-      {/* <div className={styleHistory.filter_box}>
-        <div className={styleHistory.switch_right}> Отсортировать по цене: &nbsp;
-        <Button onClick={() => filterPrice()}>Price</Button>
-        </div>
-        <div className={styleHistory.switch_right}> Отсортировать по дате следующего приема: &nbsp;
-        <Button onClick={() => filterDate()}>Date next</Button>
-        </div>
-        <div className={styleHistory.switch_right}> Отсортировать по дате первичного приема: &nbsp;
-        <Button onClick={() => filterFirstDate()}>Date now</Button>
-        </div>
-      </div> */}
-        <span style={{textAlign: 'center'}}>Сортировка</span>
       <div className={styleHistory.input_sort}>
+        <div className={styleHistory.sort_title} >Сортировка</div>
+        <div className={styleHistory.inputs}>
+
         <span className={styleHistory.span}><input onClick={() => filterPrice()} type='checkbox' name='sortP' ></input> По тратам </span>
         <span className={styleHistory.span}><input onClick={() => filterDate()} type='checkbox' name='sortD'></input> По дате последующих приемов</span>
         <span className={styleHistory.span}><input onClick={() => filterFirstDate()} type='checkbox' name='sortND' ></input> По дате записей</span>
+        </div>
       </div>
       <div className={styleHistory.switch_right_size}> Общая сумма затрат на текущую причину обращения: &nbsp;
         <span>{history.reduce((acc, cur) => acc + +cur.price, 0)}</span>
@@ -137,7 +105,7 @@ const History = () => {
                     <div >Потраченные деньги: {el.price}</div>
                     <Meta className={styleHistory.date_description} description={`Дата следующего приема: ${el.nextDateTime.replace('-', '/').replace('-', '/').replace('T', ' ').substring(0, 16)}`} />
                     {
-                      el.imagePath && el.imagePath.map(imgP => <Skeleton loading={loading}><Avatar shape="square" loading={loading} style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/${imgP}`} alt="FOTO NE OTOBRACHAETSYA"></Avatar></Skeleton>)
+                      el.imagePath && el.imagePath.map(imgP => <Skeleton loading={loading}><Avatar className={styleHistory.recept} shape="square" loading={loading} src={`/img/${imgP}`} alt="FOTO NE OTOBRACHAETSYA"></Avatar></Skeleton>)
                     }
                   </Card>
                 )

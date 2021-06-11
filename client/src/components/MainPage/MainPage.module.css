@@ -11,7 +11,11 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
+.sort_title {
+  font-size: 20px;
+  text-align-last: left;
+  margin-bottom: 10px;
+}
 .card {
   color: black;
 }
@@ -23,7 +27,7 @@
 }
 .input_sort {
   height: 20px;
-    margin: 40px 20px 20px;
+  margin: 40px 20px 50px;
 }
 .span{
   padding-right: 20px;

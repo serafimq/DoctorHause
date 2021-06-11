@@ -35,25 +35,27 @@ const tailFormItemLayout = {
   },
 };
 
-export const RegistrationForm = ({doctor}) => {
+export const RegistrationForm = ({doctor, showModal1}) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch()
-  // const emailTo = useSelector(state => state.doctors[0].email)
+  const emailTo = useSelector(state => state.doctors[0].email)
   const emailFrom = useSelector(state => state.user.email)
   const patientName = useSelector(state => state.user.name)
   const doctortId = useSelector(state => state.doctors[0]._id)
   
   const onFinish = (values) => {
-    console.log(values);
+    // console.log(values);
+    // console.log(doctor);
     const data = {};
     data.patientName = patientName;
     data.prefix = values.prefix;
     data.phone = values.phone;
     data.text = values.user.introduction;
-    data.emailTo = doctor.email;
+    data.emailTo = emailTo;
     data.emailFrom = emailFrom;
     data.id = doctortId;
     dispatch(fetchMail(data))
+    showModal1()
   };
 
   const prefixSelector = (

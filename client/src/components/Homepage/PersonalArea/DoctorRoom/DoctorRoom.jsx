@@ -124,7 +124,7 @@ export const DoctorRoom = () => {
             <Skeleton loading={loading}>
               {
               doctor.imageCertificate && doctor.imageCertificate.map(img => 
-                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/sert/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
+                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`http://localhost:3006/public/img/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
                 )
             }</Skeleton>
           </List.Item>

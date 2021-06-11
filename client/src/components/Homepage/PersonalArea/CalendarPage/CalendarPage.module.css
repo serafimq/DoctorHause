@@ -7,7 +7,10 @@
 .calendar_box {
   margin: 35px auto;
   width: 850px;
-  
+}
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 .nextGo {
   font-size: 12px;

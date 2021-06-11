@@ -133,3 +133,7 @@ figure {
 .ant-modal-header {
   border-radius: 10px;
 }
+.ant-rate-star-first, .ant-rate-star-second {
+  color: #d5c6c6;
+  
+}

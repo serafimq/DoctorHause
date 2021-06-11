@@ -57,10 +57,13 @@ export const AdminRoom = () => {
         {doctors?.map(item => item?.approved
           ?
           <List  >
+            <div className={style.item_box}>
+
             <List.Item onClick={() => changeProb(item)} className={style.item}>
               {item.name}
             </List.Item>
             <Button type="warning" onClick={() => changeAccess(item._id)}>Отозвать</Button>
+            </div>
           </List>
           : ''
         )}

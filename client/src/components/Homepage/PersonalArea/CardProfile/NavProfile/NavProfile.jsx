@@ -36,18 +36,16 @@ const NavProfile = ({ setVisibleComponents }) => {
           <>
             <Menu.Item onClick={() => setVisibleComponents(0)} className={style.item} key="1" icon={<CalendarOutlined />}>
               <div >Календарь</div>
-              {/* <Link className={style.link} to={`/homepage/${id}`} >Календарь</Link> */}
             </Menu.Item>
             <Menu.Item onClick={() => setVisibleComponents(1)} className={style.item} key="2" icon={<HistoryOutlined />}>
               <div >История</div>
               {/* <Link to={`/homepage/history/${id}`}>История</Link> */}
             </Menu.Item>
-            <Menu.Item className={style.item} key="3" icon={<FileTextOutlined />}>
+            {/* <Menu.Item className={style.item} key="3" icon={<FileTextOutlined />}>
               Курс лечения
-        </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item onClick={() => setVisibleComponents(3)} className={style.item} key="4" icon={<CompassOutlined />}>
               <div >Карта</div>
-              {/* <Link to={`/homepage/map/${id}`}>Карта</Link> */}
             </Menu.Item>
           </>
           :
