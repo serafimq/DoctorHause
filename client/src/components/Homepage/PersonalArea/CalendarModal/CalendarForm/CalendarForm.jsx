@@ -71,16 +71,19 @@ function CalendarForm({ visibleModal }) {
           placeholder="Специализация врача"
           optionFilterProp="children"
         >
-          <Option value="Стоматолог">Стоматолог</Option>
-          <Option value="Мануальный терапевт">Мануальный терапевт</Option>
-          <Option value="Акушер">Акушер</Option>
-          <Option value="Аллерголог">Аллерголог</Option>
-          <Option value="Патологоанатом">Патологоанатом</Option>
-          <Option value="Ортопед">Ортопед</Option>
-          <Option value="Диетолог">Диетолог</Option>
-          <Option value="Терапевт">Терапевт</Option>
-          <Option value="Офтальмолог">Офтальмолог</Option>
-          <Option value="Дерматолог">Дерматолог</Option>
+            <Option value="Мануальный терапевт">Мануальный терапевт</Option>
+            <Option value="Аллерголог">Аллерголог</Option>
+            <Option value="Диетолог">Диетолог</Option>
+            <Option value="Генетик">Генетик</Option>
+            <Option value="Дефектолог">Дефектолог</Option>
+            <Option value="Косметолог">Косметолог</Option>
+            <Option value="Лазерный хирург">Лазерный хирург</Option>
+            <Option value="Логопед">Логопед</Option>
+            <Option value="Паразитолог">Паразитолог</Option>
+            <Option value="Психолог">Психолог</Option>
+            <Option value="Семейный врач">Семейный врач</Option>
+            <Option value="Филиппинский хиллер">Филиппинский хиллер</Option>
+            <Option value="Сибирский шаман">Сибирский шаман</Option>
         </Select>
       </Form.Item>
       <Form.Item name="address" label="Адрес клиники">

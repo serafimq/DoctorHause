@@ -40,7 +40,7 @@ const Foto = () => {
                 <div className={style.user_name}>{user.name}</div>
                 <div className={style.user_email}>{user.email}</div>
                 {user.role === 'doctor' ?
-                <Rate disabled defaultValue={currentRating} />
+                <Rate className={style.rating} disabled defaultValue={currentRating} />
                 : ''
                 }
               </div>
