@@ -54,7 +54,7 @@ const History = () => {
       <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked />
       </div>
       <div className={styleHistory.input_sort}>
-        <div className={styleHistory.sort_title} >Сортировка</div>
+        
         <div className={styleHistory.inputs}>
 
         <span className={styleHistory.span}><input onClick={() => filterPrice()} type='checkbox' name='sortP' ></input> По тратам </span>
@@ -68,6 +68,7 @@ const History = () => {
       <div>
         <Row className={styleHistory.row}>
           <Col>
+          <div className={styleHistory.title} >Первичная запись</div>
             <div>
               {
                 events.length ? events.map(el =>
@@ -91,6 +92,7 @@ const History = () => {
             </div>
           </Col>
           <Col >
+          <div className={styleHistory.title} >Результат посещения</div>
             <div>
               {
                 history.length ? history.map(el =>
@@ -98,7 +100,7 @@ const History = () => {
                     type="inner"
                     style={{ marginTop: 16, width: 400 }}
                     title={el?.events[0]?.problem ? `Причина обращения:${el?.events[0]?.problem}` : `Причина обращения: Болит`}
-                    extra={<a href="#">More</a>}
+                    
                   >
                     <div >Выписанные рецепты: {el.prescription}  </div>
                     <div >Требуемые анализы: {el.analyzes}</div>

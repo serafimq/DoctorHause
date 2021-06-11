@@ -76,10 +76,15 @@ const CardsDoctor = ({ item, id }) => {
         onOk={(e) => openModal(e)}
         onCancel={() => closeModal()}
         width={700}
+        footer={null}
       >
         <CardDoctorMain closeModal={closeModal} doctor={item} />
       </Modal>
-      <Modal title="Оставить заявку" visible={isModalVisible1} onOk={showModal1} onCancel={showModal1}>
+      <Modal title="Оставить заявку" 
+      visible={isModalVisible1} onOk={showModal1} 
+      onCancel={showModal1} 
+      footer={null} 
+      >
         <RegistrationForm showModal1={showModal1} />
       </Modal>
     </div>

@@ -1,5 +1,33 @@
-.menu {
+.menu  {
   font-size: 20px;
   font-weight: 200;
+  width: 100%;
 }
-
+.menu span {
+  font-size: 16px;
+  display: block;
+}
+.badge {
+  position: relative;
+}
+.call {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  text-align: center;
+  line-height: 30px;
+  position: absolute;
+  text-align: 0;
+  top: 2px;
+  z-index: 1;
+  left: 327px;
+  color: #fff;
+}
+.text {
+  position: absolute;
+    top: 11px;
+    z-index: 1;
+    left: 260px;
+    color: #fff;
+}

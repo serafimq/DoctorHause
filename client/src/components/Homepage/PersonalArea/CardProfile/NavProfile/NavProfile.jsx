@@ -50,13 +50,15 @@ const NavProfile = ({ setVisibleComponents }) => {
           </>
           :
           doctor.messages?.length > 0 ? 
-          <Badge count={doctor.messages.length}>
+          
+          <Badge className={style.badge}>
+            <span className={style.text} > Заявки</span> <span className={style.call}>{`${doctor.messages.length}`}</span>
             <Menu.Item onClick={() => setVisibleComponents(5)} shape="square" className={style.item} key="6" icon={<UserOutlined />}>
-              <div >Личный кабинет врача</div>
+              <div className={style.badge} >Личный кабинет врача</div>
             </Menu.Item>
           </Badge>
           :
-          <Badge count={0}>
+          <Badge count={doctor.messages.length}>
           <Menu.Item onClick={() => setVisibleComponents(5)} shape="square" className={style.item} key="6" icon={<UserOutlined />}>
             <div >Личный кабинет врача</div>
           </Menu.Item>

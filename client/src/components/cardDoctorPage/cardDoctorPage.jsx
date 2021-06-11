@@ -138,7 +138,7 @@ const CardDoctorPage = () => {
               <>
                 <hr />
                 <Row className={style.feedback}>
-                  <form onSubmit={e => submitHandler(e)} >
+                  <form className={style.form_feedback} onSubmit={e => submitHandler(e)} >
                     <Input value={text} name='text' placeholder="Оставить новый отзыв" onChange={e => setText(e.target.value)}></Input>
                     <Rate tooltips={desc} onChange={handleChange} value={value} />
                     {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}

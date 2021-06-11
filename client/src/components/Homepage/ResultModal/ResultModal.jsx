@@ -49,6 +49,7 @@ function ResultModal({ idEvent, modalCardClose }) {
         onOk={() => visibleModal()}
         onCancel={() => visibleModal()}
         width={800}
+        footer={null}
       >
         <ResultForm idEvent={idEvent} visibleModal={visibleModal} />
       </Modal>

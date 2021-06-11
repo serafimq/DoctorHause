@@ -37,7 +37,7 @@ export default function NavBar() {
           <span className={style.ouse} >ouse</span>
         </Link>
       </div >
-      <div className="menu" >
+      <div className={style.menu} >
           <Menu mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link onClick={() => deleteHandler(id)} to='/'>Выйти</Link></Menu.Item>
@@ -56,13 +56,13 @@ export default function NavBar() {
           <span className={style.ouse} >ouse</span>
         </Link>
       </div >
-        <div className="menu" />
+        <div className={style.menu} >
         <Menu mode="horizontal" defaultSelectedKeys={['0']} >
           <Menu.Item key="0"><Link to='/'>Главная</Link></Menu.Item>
           <Menu.Item key="1"><Link to='/signup'>Регистрация</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/signin'>Авторизация </Link></Menu.Item>
-          
         </Menu>
+          </div >
       </Header>
     </Layout>
   )

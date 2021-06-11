@@ -8,9 +8,10 @@ import { addFeedBackThunk, setOneDoctorThunk } from '../../../redux/actionCreato
 import { FeedBack } from '../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators/avatarAC';
 import { addFeedBackDoctorThunk } from '../../../redux/actionCreators/doctorsAC';
+import styleBtn from '../../General/AddButton/AddButton.module.scss'
 
 const CardDoctorMain = ({closeModal,doctor}) => {
-  console.log(1111111);
+  
   const user = useSelector(state => state.user)
   // const doctor = useSelector(state => state.doctor)
   const [text, setText] = useState('')
@@ -21,7 +22,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
 
   useEffect(() => {
     if (user.role === 'doctor' || user.role === 'admin') {
-      console.log(123);
+      
       dispatch(setOneDoctorThunk(doctor._id))
       dispatch(setAvatarAxios(user.id))
     }
@@ -148,12 +149,19 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           <>
             <hr />
             <Row >
-              <form className={style.feedback} onSubmit={e => submitHandler(e)} >
-                <Input value={text} name='text' placeholder="Оставить новый отзыв" onChange={e => setText(e.target.value)}></Input>
-                <Rate tooltips={desc} onChange={handleChange} value={value} />
-                {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
-                <Button type="primary" htmlType="submit">Отправить отзыв</Button>
-              </form>
+              <div>
+                <form className={style.feedback} onSubmit={e => submitHandler(e)} >
+                    <div className={style.input}>
+                    <Input value={text} name='text' placeholder="Оставить новый отзыв" onChange={e => setText(e.target.value)}></Input>
+                    </div>
+                  
+                    <div >
+                    <Rate className={style.rate} tooltips={desc} onChange={handleChange} value={value} />
+                    {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
+                    <Button className={styleBtn.button} type="primary" htmlType="submit">Отправить отзыв</Button>
+                    </div>
+                </form>
+              </div>
             </Row>
           </>
         }

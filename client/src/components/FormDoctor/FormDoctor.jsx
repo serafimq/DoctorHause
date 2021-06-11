@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router';
 import { updateDoctorThunk } from '../../redux/actionCreators/doctorAC';
 import axios from 'axios'
+import styleBut from '../General/AddButton/AddButton.module.scss'
 
 const FormDoctor = ({visibleModal}) => {
   const dispatch = useDispatch()
@@ -152,8 +153,8 @@ const FormDoctor = ({visibleModal}) => {
         <Form.Item label="Стоимость приема" name="price" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
-        <Button htmlType='submit'>
-          Ok
+        <Button className={styleBut.button} htmlType='submit'>
+          Подтвердить
         </Button>
       </Form>
     </>

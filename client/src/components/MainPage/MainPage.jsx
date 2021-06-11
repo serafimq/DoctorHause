@@ -25,7 +25,7 @@ export default function MainPage() {
     <Row className={style.main_page}>
       <Col  className={style.colCentre}>
         <div className={style.input_sort}>
-          <div className={style.sort_title}>Сортировка:</div>
+          
           <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='spec' ></input> По специализации </span>
           <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='feedBack' ></input> По рейтингу</span>
           <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='price' ></input> По стоимости приёма</span>

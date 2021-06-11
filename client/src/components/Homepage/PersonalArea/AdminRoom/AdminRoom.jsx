@@ -76,6 +76,7 @@ export const AdminRoom = () => {
         onOk={() => visibleModal()}
         onCancel={() => visibleModal()}
         width={900}
+        footer={null}
       >
         <CardDoctorMain doctor={stateDoctor} />
       </Modal>
@@ -87,15 +88,19 @@ export const AdminRoom = () => {
           ?
           ''
           :
-          <List >
+          <List className={style.zayavki} >
             <List.Item className={style.item_access} onClick={() => changeProb(item)}>
               {item.name}
-
             </List.Item>
-            <Button type="success" onClick={() => changeAccess(item._id)}>Добавить в активные врачи</Button >
-            <Button type="primary" danger onClick={() => deleteUser(item._id)} >Удалить</Button>
-          </List>
+              
+              
+          <div className={style.button_admin}>
+            <Button  type="success" onClick={() => changeAccess(item._id)}>Добавить в активные врачи</Button >
+            <Button  style={{marginLeft: 20}} type="primary" danger onClick={() => deleteUser(item._id)} >Удалить</Button>
 
+          </div>
+              
+          </List>
         )}
       </Card>
       {/* <Modal

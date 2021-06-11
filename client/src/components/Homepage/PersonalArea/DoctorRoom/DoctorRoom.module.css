@@ -1,22 +1,23 @@
 .radius {
+  
   box-sizing: border-box;
   margin: 20px;
-  padding: 0;
+  padding: 15px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   line-height: 1.5715;
   font-feature-settings:'tnum', "tnum", "tnum";
-  background: rgb(237, 226, 238);
-  border: 12px solid rgb(236, 248, 250);
+  background: #fff;
+  /* border: 12px solid rgb(236, 248, 250); */
   border-radius: 10px;
-  box-shadow: -25px 25px 50px#8e99c2, 25px -25px 50px#e4f5ff;
+  /* box-shadow: -25px 25px 50px#8e99c2, 25px -25px 50px#e4f5ff; */
   height:auto;
   width:800px;
 }
 
 .list {
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 .row {
   display: flex;
@@ -26,7 +27,7 @@
 
 .info {
   font-size: 20px;
-  color: rgba(129, 48, 116, 0.85);
+  color: #3235dbf3;
   justify-content: flex-start;
 }
 
@@ -47,5 +48,5 @@
 }
 
 .collapse {
-  background-color: rgb(190, 174, 190);
+  background-color: #ecf0f3;
 }

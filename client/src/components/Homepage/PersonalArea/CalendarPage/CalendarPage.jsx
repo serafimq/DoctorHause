@@ -123,6 +123,7 @@ const CalendarPage = () => {
             visible={showModal}
             onOk={() => modalCardClose()}
             onCancel={() => modalCardClose()}
+            footer={null}
           >
             <><p className={style.switch_left}>Показать результаты посещений? <Switch checked={!loading} onChange={onChangeSwitch} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked /></p></>
             {

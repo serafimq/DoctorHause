@@ -18,7 +18,11 @@
   background-color: #b9c7fc ;
   
 }
-
+.ant-card-head {
+  background: #b9c7fc !important;
+  color: #fff;
+  font-size: 17px;
+}
 .ant-picker-calendar-header {
   background-color: #fff;
 }
@@ -136,4 +140,24 @@ figure {
 .ant-rate-star-first, .ant-rate-star-second {
   color: #d5c6c6;
   
+}
+.ant-modal-body {
+  color: #ABD2FA;
+}
+.ant-modal-header {
+  border-radius: 10px;
+}
+/* TUT */
+.ant-card{
+  font-size: 15px;
+}
+/* TUT */
+.ant-card-head-title{
+  font-size: 17px;
+}
+.ant-card-type-inner .ant-card-head-title {
+  font-size: 17px;
+}
+.ant-rate {
+  color: #fd391ff3;
 }

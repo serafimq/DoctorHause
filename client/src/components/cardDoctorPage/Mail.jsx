@@ -70,7 +70,7 @@ export const RegistrationForm = ({doctor, showModal1}) => {
   );
 
   return (
-    <Form {...formItemLayout} form={form} name="register" onFinish={onFinish} initialValues={{ residence: ['zhejiang', 'hangzhou', 'xihu'], prefix: '86'}}
+    <Form  {...formItemLayout} form={form} name="register" onFinish={onFinish} initialValues={{ residence: ['zhejiang', 'hangzhou', 'xihu'], prefix: '86'}}
       scrollToFirstError>
       <Form.Item name="phone" label="" rules={[{required: true, message: 'Please input your phone number!'}]}>
         <Input addonBefore={prefixSelector} placeholder="Оставьте нормер телефона" style={{ width: '100%' }} />

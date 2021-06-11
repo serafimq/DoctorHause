@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.menu a{
+  font-size: 17px;
+}
 .logo {
   color: #000;
   position: relative;
