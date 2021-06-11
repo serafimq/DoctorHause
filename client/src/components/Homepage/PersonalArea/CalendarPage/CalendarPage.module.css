@@ -7,17 +7,22 @@
 .calendar_box {
   margin: 35px auto;
   width: 850px;
-  
+}
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 .nextGo {
   font-size: 12px;
-  background-color: #00ff0d;
+  padding: 3px;
+  background-color: #62b7f0df;
   border-radius: 5px;
+  ;
 }
 
 .no_Go {
   font-size: 12px;
-  background-color: #e25c6ee3;
+  background-color: #ff5e41d5;
   border-radius: 5px;
 }
 
@@ -27,14 +32,16 @@
 .events {
   margin-bottom: 1px;
   list-style: none;
-  background-color: #a571f342;
+  background-color: #99a3ffb9;
   border-radius: 5px;
+  padding: 5px;
   
 }
 .no_events {
   margin-bottom: 1px;
   list-style: none;
-  background-color: #e25c6ee3;
+  background-color: #ff5e41d5;
+  padding: 0px 5px;
   border-radius: 5px;
 }
 

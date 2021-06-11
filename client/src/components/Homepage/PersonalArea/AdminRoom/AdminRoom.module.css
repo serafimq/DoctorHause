@@ -16,10 +16,14 @@ width: 100%;
   display: flex;
     justify-content: space-between;
 }
+.item_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .item{
   font-size: 20px;
-  display: flex;
-  flex-direction: row;
+  display: inline-block;
 }
 .button{
   display: flex;
@@ -27,6 +31,7 @@ width: 100%;
 }
 .item_access{
   font-size: 20px;
+  
 }
 
 .card{
@@ -59,4 +64,16 @@ width: 100%;
 }
 .btn {
   margin-right: 10px;
+}
+.zayavki {
+  display: flex;
+  
+}
+.nameUser {
+  
+}
+.button_admin {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }

@@ -1,5 +1,6 @@
 .left_col {
   background-color: #fff;
+  height: 100vh;
 }
 
 .right_col {
@@ -20,3 +21,4 @@
 .admin_pageBox {
   width: 100%;
 }
+

@@ -36,25 +36,25 @@ const NavProfile = ({ setVisibleComponents }) => {
           <>
             <Menu.Item onClick={() => setVisibleComponents(0)} className={style.item} key="1" icon={<CalendarOutlined />}>
               <div >Календарь</div>
-              {/* <Link className={style.link} to={`/homepage/${id}`} >Календарь</Link> */}
             </Menu.Item>
             <Menu.Item onClick={() => setVisibleComponents(1)} className={style.item} key="2" icon={<HistoryOutlined />}>
               <div >История</div>
               {/* <Link to={`/homepage/history/${id}`}>История</Link> */}
             </Menu.Item>
-            <Menu.Item className={style.item} key="3" icon={<FileTextOutlined />}>
+            {/* <Menu.Item className={style.item} key="3" icon={<FileTextOutlined />}>
               Курс лечения
-        </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item onClick={() => setVisibleComponents(3)} className={style.item} key="4" icon={<CompassOutlined />}>
               <div >Карта</div>
-              {/* <Link to={`/homepage/map/${id}`}>Карта</Link> */}
             </Menu.Item>
           </>
           :
           doctor.messages?.length > 0 ? 
-          <Badge count={doctor.messages.length}>
+          
+          <Badge className={style.badge}>
+            <span className={style.text} > Заявки</span> <span className={style.call}>{`${doctor.messages.length}`}</span>
             <Menu.Item onClick={() => setVisibleComponents(5)} shape="square" className={style.item} key="6" icon={<UserOutlined />}>
-              <div >Личный кабинет врача</div>
+              <div className={style.badge} >Личный кабинет врача</div>
             </Menu.Item>
           </Badge>
           :

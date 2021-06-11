@@ -4,6 +4,10 @@
   flex-direction: column;
   align-items: center;
 } */
+.sort_title {
+  font-size: 26px;
+  text-align: left;
+}
 
 .switch_right {
   margin-top: 20px;
@@ -11,7 +15,11 @@
   text-align: end;
   margin-bottom: 20px;
 }
-
+.recept {
+  margin-top: 5px;
+  width: 300px;
+  height: 420px;
+}
 .date_description {
   text-align: end;
   margin-top: 10px;
@@ -40,12 +48,18 @@
 .filter_box {
   display: flex;
   flex-direction:row;
+  
 }
-
+.inputs {
+  
+}
 .input_sort {
   height: 20px;
   margin-bottom: 30px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 10px 35px;
 }
 
 .span{
@@ -58,4 +72,8 @@
   text-align: end;
   margin-bottom: 20px;
   font-size: 16px;
+  color: #ff5e41d5;
+}
+.title {
+  font-size: 20px;
 }

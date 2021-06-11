@@ -32,15 +32,7 @@ const CardsDoctor = ({ item, id }) => {
   const [isModalVisible1, setIsModalVisible1] = useState(false);
 
   const showModal1 = () => {
-    setIsModalVisible1(true);
-  };
-
-  const handleOk1 = () => {
-    setIsModalVisible1(false);
-  };
-
-  const handleCancel1 = () => {
-    setIsModalVisible1(false);
+    setIsModalVisible1(!isModalVisible1);
   };
 
   return (
@@ -53,7 +45,7 @@ const CardsDoctor = ({ item, id }) => {
               alt="Card image" />
           </div>
           <div className={style.about}>
-          <h2 className={style.name}>Доктор: <span>{item.name}</span> </h2>
+          <h2 className={style.name}>Доктор: <br /> <span>{item.name}</span> </h2>
           <div className={style.rating}> 
           <Rate disabled defaultValue={currentRating || 0 }  /> 
           <span className={style.rating_number}>{currentRating || 0 }</span>
@@ -84,11 +76,16 @@ const CardsDoctor = ({ item, id }) => {
         onOk={(e) => openModal(e)}
         onCancel={() => closeModal()}
         width={700}
+        footer={null}
       >
         <CardDoctorMain closeModal={closeModal} doctor={item} />
       </Modal>
-      <Modal title="Basic Modal" visible={isModalVisible1} onOk={handleOk1} onCancel={handleCancel1}>
-        <RegistrationForm />
+      <Modal title="Оставить заявку" 
+      visible={isModalVisible1} onOk={showModal1} 
+      onCancel={showModal1} 
+      footer={null} 
+      >
+        <RegistrationForm showModal1={showModal1} />
       </Modal>
     </div>
   )

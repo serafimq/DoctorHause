@@ -16,8 +16,8 @@
 .list {
   /* /* display: flex; */
   justify-content:center; 
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 .row {
   display: flex;
@@ -27,7 +27,7 @@
 }
 .info {
   font-size: 15px;
-  color: rgba(129, 48, 116, 0.85);
+  color: #3235dbf3;
   justify-content: flex-start;
 }
 .property {
@@ -42,3 +42,13 @@
 }
 
 
+.feedback {
+  
+}
+.input {
+  margin: 10px;
+  width: 320px;
+} 
+.rate {
+  padding-right: 15px;
+}

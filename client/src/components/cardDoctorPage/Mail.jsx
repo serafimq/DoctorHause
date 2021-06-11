@@ -35,25 +35,27 @@ const tailFormItemLayout = {
   },
 };
 
-export const RegistrationForm = ({doctor}) => {
+export const RegistrationForm = ({doctor, showModal1}) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch()
-  // const emailTo = useSelector(state => state.doctors[0].email)
+  const emailTo = useSelector(state => state.doctors[0].email)
   const emailFrom = useSelector(state => state.user.email)
   const patientName = useSelector(state => state.user.name)
   const doctortId = useSelector(state => state.doctors[0]._id)
   
   const onFinish = (values) => {
-    console.log(values);
+    // console.log(values);
+    // console.log(doctor);
     const data = {};
     data.patientName = patientName;
     data.prefix = values.prefix;
     data.phone = values.phone;
     data.text = values.user.introduction;
-    data.emailTo = doctor.email;
+    data.emailTo = emailTo;
     data.emailFrom = emailFrom;
     data.id = doctortId;
     dispatch(fetchMail(data))
+    showModal1()
   };
 
   const prefixSelector = (
@@ -61,14 +63,18 @@ export const RegistrationForm = ({doctor}) => {
       <Select style={{width: 70}}>
       <Option value="+7">+7</Option>
       <Option value="+375">+375</Option>
-      <Option value="+375">+374</Option>
+      <Option value="+374">+374</Option>
       <Option value="+380">+380</Option>
       </Select>
     </Form.Item>
   );
 
   return (
+<<<<<<< HEAD
     <Form {...formItemLayout} form={form} name="register" onFinish={onFinish} initialValues={{ residence: ['zhejiang', 'hangzhou', 'xihu'], prefix: '+7'}}
+=======
+    <Form  {...formItemLayout} form={form} name="register" onFinish={onFinish} initialValues={{ residence: ['zhejiang', 'hangzhou', 'xihu'], prefix: '+7'}}
+>>>>>>> origin/finish
       scrollToFirstError>
       <Form.Item name="phone" label="" rules={[{required: true, message: 'Please input your phone number!'}]}>
         <Input addonBefore={prefixSelector} placeholder="Оставьте нормер телефона" style={{ width: '100%' }} />

@@ -4,21 +4,15 @@ import style from './MainPage.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { setAllDoctorThunk, sortDoctors,  } from '../../redux/actionCreators/doctorsAC'
 import CardsDoctor from './CardsDoctor/CardsDoctor';
-import News from './News/News';
 
 
 export default function MainPage() {
   const doctors = useSelector(state => state.doctors)
-  const doctor = useSelector(state => state.doctor)
-  console.log(doctors, 'doctors');
-  console.log(doctor, 'doctor');
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setAllDoctorThunk())
   }, [])
-
-  //для сортировки
 
   const [sortedField, setSortedField] = useState(false)
   const handleSort = (e, sorted) => {
@@ -29,9 +23,9 @@ export default function MainPage() {
 
   return (
     <Row className={style.main_page}>
-      
       <Col  className={style.colCentre}>
         <div className={style.input_sort}>
+          
           <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='spec' ></input> По специализации </span>
           <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='feedBack' ></input> По рейтингу</span>
           <span className={style.span}><input onChange={(e) => handleSort(e, sortedField)} type='radio' name='sort' value='price' ></input> По стоимости приёма</span>
@@ -46,11 +40,9 @@ export default function MainPage() {
               :
               ''
             )}
-
           </Col>
         </Row>
       </Col>
-
     </Row>
   )
 }

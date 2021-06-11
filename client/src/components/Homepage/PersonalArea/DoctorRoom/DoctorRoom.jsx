@@ -1,4 +1,5 @@
 import style from './DoctorRoom.module.css'
+import styleBtn from '../../../General/AddButton/AddButton.module.scss'
 import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar, Switch, Collapse } from 'antd';
 
 import { useEffect, useRef, useState } from 'react'
@@ -125,7 +126,7 @@ export const DoctorRoom = () => {
             <Skeleton loading={loading}>
               {
               doctor.imageCertificate && doctor.imageCertificate.map(img => 
-                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`/img/sert/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
+                <img style={{ marginTop: 5, width: 400, height: 400 }} src={`http://localhost:3006/public/img/${img}`} alt="SERTIFICAT NE OTOBRACHAETSYA"/>
                 )
             }</Skeleton>
           </List.Item>
@@ -136,21 +137,23 @@ export const DoctorRoom = () => {
         <Collapse className={style.collapse} defaultActiveKey={['1']}>
           {doctor.feedBack?.length > 0 ? doctor.feedBack.map((feedBack, key) => <Panel header={`Посмотреть отзыв пользователя: ${feedBack.author}`} key={key}>     <FeedBack feedBack={feedBack} > {feedBack}     </FeedBack>    </Panel> )
             : <p>Отзывы об этом враче отсутствуют</p>}
-            </Collapse>,
+            </Collapse>
         </Row>
         <br></br>
         {user.id === doctor._id ?
-          <Button type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
+          <Button className={styleBtn.button} type="primary" htmlType="submit" onClick={() => visibleModal()}>Редактировать</Button>
           :
           ''
         }
         <Modal
           title="Редактировать данные"
-          style={{ top: 20 }}
+          style={{ top: 20}}
+          width={800}
           visible={modal1Visible}
           onClick={(e) => console.log(e)}
           onOk={() => visibleModal()}
           onCancel={() => visibleModal()}
+          footer={null}
         >
           <FormDoctor visibleModal={visibleModal}/>
         </Modal>
