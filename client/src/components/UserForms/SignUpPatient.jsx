@@ -57,7 +57,7 @@ const SignUpPatient = () => {
   
     <Row className={style.main} >
       
-    <Form {...layout} className={style.form} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+    <Form {...layout} autocomplete="off" className={style.form} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
     
     <h2 className={style.form_title, style.title}>Создайте аккаунт пациента</h2>
       <div className={style.form__icons}>

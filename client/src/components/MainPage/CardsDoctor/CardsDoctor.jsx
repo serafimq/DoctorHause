@@ -26,7 +26,7 @@ const CardsDoctor = ({ item, id }) => {
   const closeModal = () => {
     visibleModal()
   }
-  const currentRating = item.feedBack?.reduce((acc, cur) => acc+cur.stars,0)/item.feedBack.length
+  const currentRating = (item.feedBack?.reduce((acc, cur) => acc+cur.stars,0)/item.feedBack.length)
   
 
   const [isModalVisible1, setIsModalVisible1] = useState(false);
@@ -48,7 +48,7 @@ const CardsDoctor = ({ item, id }) => {
           <h2 className={style.name}>Доктор: <br /> <span>{item.name}</span> </h2>
           <div className={style.rating}> 
           <Rate disabled defaultValue={currentRating || 0 }  /> 
-          <span className={style.rating_number}>{currentRating || 0 }</span>
+          <span className={style.rating_number}>{Math.ceil((currentRating*100)/100) || 0 }</span>
           </div>
           <div className={style.specialist}>
             <h3>Специальность: <br /> <span> {item.spec}</span></h3> </div>
