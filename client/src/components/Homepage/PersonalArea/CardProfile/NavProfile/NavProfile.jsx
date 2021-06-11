@@ -58,7 +58,7 @@ const NavProfile = ({ setVisibleComponents }) => {
             </Menu.Item>
           </Badge>
           :
-          <Badge count={doctor.messages.length}>
+          <Badge count={0}>
           <Menu.Item onClick={() => setVisibleComponents(5)} shape="square" className={style.item} key="6" icon={<UserOutlined />}>
             <div >Личный кабинет врача</div>
           </Menu.Item>

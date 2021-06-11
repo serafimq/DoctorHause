@@ -124,6 +124,13 @@ const FormDoctor = ({visibleModal}) => {
             <Option value="Патологоанатом">Патологоанатом</Option>
             <Option value="Ортопед">Ортопед</Option>
             <Option value="Диетолог">Диетолог</Option>
+            <Option value="Лазерный хирург">Лазерный хирург</Option>
+            <Option value="Логопед">Логопед</Option>
+            <Option value="Паразитолог">Паразитолог</Option>
+            <Option value="Психолог">Психолог</Option>
+            <Option value="Семейный врач">Семейный врач</Option>
+            <Option value="Филиппинский хиллер">Филиппинский хиллер</Option>
+            <Option value="Сибирский шаман">Сибирский шаман</Option>
           </Select>
         </Form.Item>
         <Form.Item name='stage' label="Стаж" style={{ width: '100%' }} rules={[{ type: 'number', min: 0, max: 99, required: true },]}>
