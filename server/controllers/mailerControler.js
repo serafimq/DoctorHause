@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 const User = require('../models/user')
 
 const sendMailer = async (req, res) => {
-  const {phone, text, emailTo, emailFrom, prefix, patientName, id} = req.body;
+  const { phone, text, emailTo, emailFrom, prefix, patientName, id } = req.body;
   const carrentDoctor = await User.findById(id)
   await carrentDoctor.messages.push({
     patientName,
@@ -41,15 +41,22 @@ const sendMailer = async (req, res) => {
 
   const mailer = message => {
     transporter.sendMail(message, (err, info) => {
-      if(err) return console.log(err)
+      if (err) return console.log(err)
       console.log('Email sent: ', info)
     })
   }
 
-  mailer(message) 
+  mailer(message)
   return res.status(200).json(carrentDoctor)
 }
 
+const wsChat = async (req, res) => {
+  let allMessages = await Message.find().populate('user').lean()
+  // Вносим изменения в массив всех сообщений. Нам нужно определить все свои сообщения, чтобы отобразить их справа
+  allMessages = allMessages.map((message) => ({ ...message, itself: req.session.user.id === message.user._id.toString() }))
+  res.render('chat', { allMessages })
+}
 module.exports = {
   sendMailer,
+  wsChat,
 }

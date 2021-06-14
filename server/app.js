@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const ws = require('ws')
 const cors = require('cors');
 const logger = require('morgan');
 const express = require('express');
@@ -17,7 +18,7 @@ const Avatar = require('./models/avatar');
 const apiRouterMap = require('./routes/apiRouterMap');
 const User = require('./models/user');
 const apiRouterHomepage = require('./routes/apiRouterHomepage');
-const apiRouterMailer = require('./routes/apiRouterMailer');
+const apiRouterMailer = require('./routes/apiRouterMessage');
 
 const app = express();
 
@@ -85,6 +86,28 @@ app.post('/file', (req, res) => {
   }
   // res.json({imagePath: image.name})
 })
+
+const wss = new ws.Server({
+  port: 5000,
+}, () => console.log(`Server started on 5000`))
+wss.on('connection', function connection(ws) {
+  ws.on('message', function (message) {
+    message = JSON.parse(message)
+    switch (message.event) {
+      case 'message':
+        broadcastMessage(message)
+        break;
+      case 'connection':
+        broadcastMessage(message)
+        break;
+    }
+  })
+})
+function broadcastMessage(message, id) {
+  wss.clients.forEach(client => {
+    client.send(JSON.stringify(message))
+  })
+}
 
 app.use(createErr, cathErrAndSendAnswer);
 
