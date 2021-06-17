@@ -21,4 +21,4 @@
 - [Евгений](https://github.com/Ricorder).
 - [Антон](https://github.com/KovtunenkoAnton).
 - [Игорь](https://github.com/KorolevIgorr).
-- [Gfdtk](https://github.com/PavelZorin).
+- [Павел](https://github.com/PavelZorin).
