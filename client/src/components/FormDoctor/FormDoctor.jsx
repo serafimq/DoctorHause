@@ -108,7 +108,7 @@ const FormDoctor = ({visibleModal}) => {
 
   return (
     <>
-      <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+      <Form autocomplete="off" {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
         <Form.Item label="Специализация"
           rules={[{ required: true }]} name='spec'>
           <Select showSearch style={{ width: '100%' }} placeholder="Ваша специализация" optionFilterProp="children" filterOption={(input, option) =>

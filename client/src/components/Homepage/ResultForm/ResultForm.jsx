@@ -102,6 +102,7 @@ function ResultForm({ visibleModal, idEvent }) {
 
   return (
     <Form
+    autocomplete="off"
       labelCol={{
         span: 9,
       }}
@@ -143,7 +144,7 @@ function ResultForm({ visibleModal, idEvent }) {
         />
       </Form.Item>
       <Form.Item name="analyzes" label="Перечень необходимых анализов" rules={[{ required: true, message: 'Заполните необходимые анализы!' }]}>
-        <Input.TextArea placeholder="Рецепты" />
+        <Input.TextArea placeholder="Анализы" />
       </Form.Item>
       <Form.Item
         name="price"

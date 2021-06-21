@@ -1,7 +1,7 @@
 import style from './DoctorRoom.module.css'
 import styleBtn from '../../../General/AddButton/AddButton.module.scss'
 import { Modal, Col, Row, Rate, Button, Input, List, Skeleton, Avatar, Switch, Collapse } from 'antd';
-
+import { ModalChat } from '../../../cardDoctorPage/Chat/ModalChat';
 import { useEffect, useRef, useState } from 'react'
 import FormDoctor from '../../../FormDoctor/FormDoctor';
 import { useDispatch, useSelector } from 'react-redux';
@@ -131,6 +131,7 @@ export const DoctorRoom = () => {
           </List.Item>
           </div>
         </List>
+        <ModalChat/>
         <Row className={style.feedBack}>
         <Collapse className={style.collapse} defaultActiveKey={['1']}>
           {doctor.feedBack?.length > 0 ? doctor.feedBack.map((feedBack, key) => <Panel header={`Посмотреть отзыв пользователя: ${feedBack.author}`} key={key}>     <FeedBack feedBack={feedBack} > {feedBack}     </FeedBack>    </Panel> )

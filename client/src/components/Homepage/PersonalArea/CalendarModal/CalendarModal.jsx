@@ -29,6 +29,7 @@ const  CalendarModal = () => {
         onCancel={() => visibleModal()}
         width={800}
         footer={null}
+        
       >
         <CalendarForm visibleModal={visibleModal}/>
       </Modal >

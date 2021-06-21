@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, Select, Row, Divider } from 'antd';
+
 import { Typography } from 'antd';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router';
@@ -57,7 +58,7 @@ const SignUpPatient = () => {
   
     <Row className={style.main} >
       
-    <Form {...layout} className={style.form} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+    <Form {...layout} autocomplete="off" className={style.form} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
     
     <h2 className={style.form_title, style.title}>Создайте аккаунт пациента</h2>
       <div className={style.form__icons}>

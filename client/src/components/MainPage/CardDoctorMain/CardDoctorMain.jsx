@@ -9,6 +9,7 @@ import { FeedBack } from '../../cardDoctorPage/FeedBack/FeedBack';
 import { addNewAvatarAxios, setAvatarAxios } from '../../../redux/actionCreators/avatarAC';
 import { addFeedBackDoctorThunk } from '../../../redux/actionCreators/doctorsAC';
 import styleBtn from '../../General/AddButton/AddButton.module.scss'
+import { ModalChat } from '../../cardDoctorPage/Chat/ModalChat';
 
 const CardDoctorMain = ({closeModal,doctor}) => {
   
@@ -126,6 +127,9 @@ const CardDoctorMain = ({closeModal,doctor}) => {
           </List.Item>
           </div>
           <div className={style.row}>
+          <ModalChat/>
+          </div>
+          <div className={style.row}>
             <List.Item className={style.property}>
             Сертификаты:
           </List.Item>
@@ -150,7 +154,7 @@ const CardDoctorMain = ({closeModal,doctor}) => {
             <hr />
             <Row >
               <div>
-                <form className={style.feedback} onSubmit={e => submitHandler(e)} >
+                <form autocomplete="off" className={style.feedback} onSubmit={e => submitHandler(e)} >
                     <div className={style.input}>
                     <Input value={text} name='text' placeholder="Оставить новый отзыв" onChange={e => setText(e.target.value)}></Input>
                     </div>

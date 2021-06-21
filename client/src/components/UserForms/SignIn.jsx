@@ -54,7 +54,7 @@ const SignIn = () => {
     :
     <div className={style.login_box}>
       <Row className={style.main}>
-        <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} >
+        <Form {...layout} form={form} name="basic control-hooks" initialValues={{ remember: true, }} onFinish={onFinish} onFinishFailed={onFinishFailed} autocomplete="off" >
           
         <h2 className={style.form_title, style.title}>Авторизуйтесь</h2>
         <span className={style.form__span} >с помощью аккаунта google</span>
